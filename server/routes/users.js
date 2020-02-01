@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
+
+const secret = require("../config/config").tokenSecret;
 
 // Login Page
 router.get("/login", (req, res) => res.send("Login"));
@@ -53,7 +56,8 @@ router.post("/login", async (req, res) => {
 	);
 	if (!validPassword) return res.status(400).send("password is wrong");
 
-	res.send("Logged in!");
+	const token = jwt.sign({ _id: registeredUser._id }, secret);
+	res.header("auth-token", token).send(token);
 });
 
 module.exports = router;
