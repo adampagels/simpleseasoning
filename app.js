@@ -8,9 +8,9 @@ const bodyParser = require("body-parser");
 const db = require("./config/config").MongoURI;
 
 mongoose
-	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => console.log("MongoDB Connected..."))
-	.catch(err => console.log(err));
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB Connected..."))
+  .catch((err) => console.log(err));
 
 app.use(express.json());
 app.use(cors());
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-app.use("/jobs", require("./routes/jobs"));
+app.use("/recipes", require("./routes/recipes"));
 
 const PORT = process.env.PORT || 5000;
 
