@@ -42,4 +42,14 @@ router.post("/", verify, async (req, res) => {
   );
 });
 
+router.get("/", verify, async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.status(201).json(recipes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Request error: " + err);
+  }
+});
+
 module.exports = router;
