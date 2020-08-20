@@ -39,6 +39,18 @@ router.post(
   }
 );
 
+// Get user info
+router.get("/:username", verify, async (req, res) => {
+  User.findOne({ username: req.params.username })
+    .then((user) => {
+      res.status(201).json(user);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Request error: " + err);
+    });
+});
+
 // Delete recipe to favorites list
 router.delete(
   "/:username/favorite-recipes/:RecipeID",
