@@ -27,10 +27,35 @@ router.post(
         },
       },
       { new: true },
-      (error, updatedUser) => {
-        if (error) {
-          console.error(error);
-          res.status(500).send("Error: " + error);
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
+// Delete recipe to favorites list
+router.delete(
+  "/:username/favorite-recipes/:RecipeID",
+  verify,
+  async (req, res) => {
+    User.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $pull: {
+          favoriteRecipes: req.params.RecipeID,
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
         } else {
           res.json(updatedUser);
         }
