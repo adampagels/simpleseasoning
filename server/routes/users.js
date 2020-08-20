@@ -3,17 +3,43 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const verify = require("./verifyToken");
 const { registerValidation, loginValidation } = require("../validation");
 
 const secret = require("../config/config").tokenSecret;
 
-// Login Page
+// Login page
 router.get("/login", (req, res) => res.send("Login"));
 
-// Register Page
+// Register page
 router.get("/register", (req, res) => res.send("Register"));
 
-// Register User
+// Add recipe to favorites list
+router.post(
+  "/:username/favorite-recipes/:RecipeID",
+  verify,
+  async (req, res) => {
+    User.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $push: {
+          favoriteRecipes: req.params.RecipeID,
+        },
+      },
+      { new: true },
+      (error, updatedUser) => {
+        if (error) {
+          console.error(error);
+          res.status(500).send("Error: " + error);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
+// Register user
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
