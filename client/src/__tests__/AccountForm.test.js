@@ -7,6 +7,16 @@ beforeAll(() => {
   AccountFormWrapper = shallow(<AccountForm />);
 });
 
-it("renders", () => {
+describe("<AccountForm /> component", () => {
+  it("renders", () => {
     shallow(<AccountForm />);
   });
+
+  it("should render name input", () => {
+    expect(AccountFormWrapper.find(".email")).toHaveLength(1);
+  });
+
+  it("should render password input", () => {
+    expect(AccountFormWrapper.find(".password")).toHaveLength(1);
+  });
+});
