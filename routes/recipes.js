@@ -3,11 +3,14 @@ const router = express.Router();
 const Recipe = require("../models/Recipe");
 const User = require("../models/User");
 const verify = require("./verifyToken");
+const upload = require("../services/ImageUpload");
+const singleUpload = upload.single("image");
 
 // Add recipe
 router.post("/", verify, async (req, res) => {
   const {
     title,
+    photo,
     ingredients,
     instructions,
     cookTime,
@@ -17,6 +20,7 @@ router.post("/", verify, async (req, res) => {
 
   const recipe = new Recipe({
     title: title,
+    photo: photo,
     ingredients: ingredients,
     instructions: instructions,
     cookTime: cookTime,
@@ -41,6 +45,19 @@ router.post("/", verify, async (req, res) => {
       }
     }
   );
+});
+
+// Upload image of recipe
+router.post("/image-upload", verify, async (req, res) => {
+  singleUpload(req, res, function (err) {
+    if (err) {
+      return res.status(422).send({
+        errors: [{ title: "Image Upload Error", detail: err.message }],
+      });
+    }
+
+    return res.json({ imageUrl: req.file.location });
+  });
 });
 
 // Get all recipes
