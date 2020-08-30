@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -15,6 +16,38 @@ const RecipeForm = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let token = localStorage.getItem("auth-token");
+    axios
+      .post(
+        "http://localhost:5000/recipes",
+        {
+          title: values.title,
+          photos: values.image,
+          description: values.description,
+          ingredients: values.ingredients,
+          instructions: values.instructions,
+          cookTime: values.cookTime,
+          prepTime: values.prepTime,
+          diet: values.diet,
+        },
+        {
+          headers: {
+            "auth-token": `${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   return (
@@ -93,7 +126,7 @@ const RecipeForm = () => {
           value={values.diet}
         />
       </label>
-      <button>Submit</button>
+      <button onClick={(event) => handleSubmit(event)}>Submit</button>
     </form>
   );
 };
