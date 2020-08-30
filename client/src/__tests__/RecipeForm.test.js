@@ -39,4 +39,8 @@ describe("<RecipeFormWrapper /> component", () => {
   it("should render diet input", () => {
     expect(RecipeFormWrapper.find(".diet-input")).toHaveLength(1);
   });
+
+  it("should render image input", () => {
+    expect(RecipeFormWrapper.find(".image-input")).toHaveLength(1);
+  });
 });
