@@ -8,6 +8,10 @@ const RecipeForm = () => {
         <input type="text" name="title" className="title-input" />
       </label>
       <label>
+        Image Upload:
+        <input type="file" name="image-upload" className="image-input" />
+      </label>
+      <label>
         Description:
         <input type="text" name="description" className="description-input" />
       </label>
