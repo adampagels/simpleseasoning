@@ -10,6 +10,7 @@ const singleUpload = upload.single("image");
 router.post("/", verify, async (req, res) => {
   const {
     title,
+    description,
     photo,
     ingredients,
     instructions,
@@ -20,6 +21,7 @@ router.post("/", verify, async (req, res) => {
 
   const recipe = new Recipe({
     title: title,
+    description: description,
     photo: photo,
     ingredients: ingredients,
     instructions: instructions,
