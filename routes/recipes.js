@@ -57,20 +57,19 @@ router.post("/image-upload", verify, async (req, res) => {
         errors: [{ title: "Image Upload Error", detail: err.message }],
       });
     }
-
     return res.json({ imageUrl: req.file.location });
   });
 });
 
-// Get all recipes
-router.get("/", verify, async (req, res) => {
-  try {
-    const recipes = await Recipe.find();
-    res.status(201).json(recipes);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Request error: " + err);
-  }
+// Get 20 most recent recipes
+router.get("/most-recent", verify, async (req, res) => {
+  Recipe.find({})
+    .sort({ createdAt: -1 })
+    .limit(20)
+    .exec((err, docs) => {
+      if (err) console.log(err);
+      res.json(docs);
+    });
 });
 
 // Get single recipe
