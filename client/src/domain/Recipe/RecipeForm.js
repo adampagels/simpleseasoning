@@ -18,9 +18,9 @@ const RecipeForm = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleRecipeSubmit = (event) => {
     event.preventDefault();
-    let token = localStorage.getItem("auth-token");
+    const token = localStorage.getItem("auth-token");
     axios
       .post(
         "http://localhost:5000/recipes",
@@ -50,6 +50,31 @@ const RecipeForm = () => {
       });
   };
 
+  const handleImageUpload = async (file) => {
+    const token = localStorage.getItem("auth-token");
+    const imageData = new FormData();
+    imageData.append("image", file);
+    const url = "http://localhost:5000/recipes/image-upload";
+
+    const config = {
+      method: "POST",
+      body: imageData,
+      headers: {
+        "auth-token": `${token}`,
+      },
+    };
+
+    try {
+      const req = await fetch(url, config);
+      if (req.ok) {
+        const res = await req.json();
+        setValues({ ...values, image: res.imageUrl });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <form>
       <label>
@@ -64,7 +89,15 @@ const RecipeForm = () => {
       </label>
       <label>
         Image Upload:
-        <input type="file" name="image-upload" className="image-input" />
+        <input
+          type="file"
+          name="image-upload"
+          className="image-input"
+          accept="image/png, image/jpeg"
+          onChange={(e) => {
+            handleImageUpload(e.target.files[0]);
+          }}
+        />
       </label>
       <label>
         Description:
@@ -126,7 +159,7 @@ const RecipeForm = () => {
           value={values.diet}
         />
       </label>
-      <button onClick={(event) => handleSubmit(event)}>Submit</button>
+      <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
     </form>
   );
 };
