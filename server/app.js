@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/recipes", require("./routes/recipes"));
+app.use("/rating", require("./routes/rating"));
 
 const PORT = process.env.PORT || 5000;
 
