@@ -27,6 +27,12 @@ const RecipeSchema = new mongoose.Schema(
     diet: {
       type: [String],
     },
+    ratings: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Rating",
+      },
+    ],
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
