@@ -86,4 +86,18 @@ router.get("/:RecipeID", verify, async (req, res) => {
     });
 });
 
+// Get all reviews of a recipe
+router.get("/:RecipeID/rating", verify, async (req, res) => {
+  Recipe.findOne({
+    _id: req.params.RecipeID,
+  })
+    .populate("ratings")
+    .then(function (rating) {
+      res.json(rating);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+
 module.exports = router;
