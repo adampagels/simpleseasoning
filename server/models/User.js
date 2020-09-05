@@ -28,6 +28,12 @@ const UserSchema = new mongoose.Schema({
       ref: "Recipe",
     },
   ],
+  ratings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Rating",
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);
