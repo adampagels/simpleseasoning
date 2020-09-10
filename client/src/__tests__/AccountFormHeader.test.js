@@ -17,4 +17,10 @@ describe("<AccountFormHeaderWrapper /> component", () => {
       1
     );
   });
+
+  it("should set the accountformheader-h1 prop", () => {
+    expect(AccountFormHeaderWrapper.find(".accountformheader-h1").text()).toBe(
+      "Sign up"
+    );
+  });
 });
