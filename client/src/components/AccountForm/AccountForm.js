@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import "../../sass/main.scss";
 
-const AccountForm = (props) => {
+const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,13 +53,14 @@ const AccountForm = (props) => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    props.page === "register" ? handleRegister() : handleLogin();
+    page === "register" ? handleRegister() : handleLogin();
   };
 
   return (
     <div class="accountform-container">
       <div class="accountform-left-block"></div>
       <div class="accountform-form-container">
+        <AccountFormHeader page={page} />
         <form class="accountform-form">
           <>
             <label>Email:</label>
@@ -71,7 +73,7 @@ const AccountForm = (props) => {
               placeholder="Email"
             />
           </>
-          {props.page === "register" && (
+          {page === "register" && (
             <>
               <label>Username:</label>
               <input
@@ -97,7 +99,7 @@ const AccountForm = (props) => {
           </>
         </form>
         <button onClick={(event) => handleClick(event)}>
-          {props.page === "register" ? "Register" : "Login"}
+          {page === "register" ? "Register" : "Login"}
         </button>
       </div>
     </div>
