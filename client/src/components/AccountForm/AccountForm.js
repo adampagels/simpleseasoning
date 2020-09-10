@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../sass/main.scss";
 
 const AccountForm = (props) => {
   const [username, setUsername] = useState("");
@@ -55,43 +56,51 @@ const AccountForm = (props) => {
   };
 
   return (
-    <form>
-      <label>
-        Email:
-        <input
-          type="text"
-          name="email"
-          className="email-input"
-          onChange={handleEmailChange}
-          value={email}
-        />
-      </label>
-      {props.page === "register" && (
-        <label>
-          Username:
-          <input
-            type="text"
-            name="name"
-            className="username-input"
-            onChange={handleUsernameChange}
-            value={username}
-          />
-        </label>
-      )}
-      <label>
-        Password:
-        <input
-          type="password"
-          name="name"
-          className="password-input"
-          onChange={handlePasswordChange}
-          value={password}
-        />
-      </label>
-      <button onClick={(event) => handleClick(event)}>
-        {props.page === "register" ? "Register" : "Login"}
-      </button>
-    </form>
+    <div class="accountform-container">
+      <div class="accountform-left-block"></div>
+      <div class="accountform-form-container">
+        <form class="accountform-form">
+          <>
+            <label>Email:</label>
+            <input
+              type="text"
+              name="email"
+              className="email-input"
+              onChange={handleEmailChange}
+              value={email}
+              placeholder="Email"
+            />
+          </>
+          {props.page === "register" && (
+            <>
+              <label>Username:</label>
+              <input
+                type="text"
+                name="name"
+                className="username-input"
+                onChange={handleUsernameChange}
+                value={username}
+                placeholder="Username"
+              />
+            </>
+          )}
+          <>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="name"
+              className="password-input"
+              onChange={handlePasswordChange}
+              value={password}
+              placeholder="Password"
+            />
+          </>
+        </form>
+        <button onClick={(event) => handleClick(event)}>
+          {props.page === "register" ? "Register" : "Login"}
+        </button>
+      </div>
+    </div>
   );
 };
 
