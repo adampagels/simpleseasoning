@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import AccountForm from "../components/AccountForm/AccountForm";
+import AccountFormHeader from "../components/AccountFormHeader/AccountFormHeader";
 
 let AccountFormWrapper;
 beforeAll(() => {
@@ -38,5 +39,9 @@ describe("<AccountForm /> component", () => {
     expect(AccountFormWrapper.find(".password-input").prop("value")).toEqual(
       "password123"
     );
+  });
+
+  it("render form header", () => {
+    expect(AccountFormWrapper.find(AccountFormHeader)).toHaveLength(1);
   });
 });
