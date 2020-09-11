@@ -1,5 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
+import { MemoryRouter } from "react-router-dom";
 import AccountFormHeader from "../components/AccountFormHeader/AccountFormHeader";
 
 let AccountFormHeaderWrapper;
@@ -22,5 +23,14 @@ describe("<AccountFormHeaderWrapper /> component", () => {
     expect(AccountFormHeaderWrapper.find(".accountformheader-h1").text()).toBe(
       "Sign up"
     );
+  });
+
+  it("should link to login page when currently on register page", () => {
+    const RouteWrapper = mount(
+      <MemoryRouter>
+        <AccountFormHeader page={"register"} />
+      </MemoryRouter>
+    );
+    expect(RouteWrapper.find("Link").prop("to")).toBe("/login");
   });
 });
