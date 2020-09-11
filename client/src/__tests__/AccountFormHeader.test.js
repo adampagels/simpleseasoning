@@ -33,4 +33,13 @@ describe("<AccountFormHeaderWrapper /> component", () => {
     );
     expect(RouteWrapper.find("Link").prop("to")).toBe("/login");
   });
+
+  it("should link to register page when currently on login page", () => {
+    const RouteWrapper = mount(
+      <MemoryRouter>
+        <AccountFormHeader page={"login"} />
+      </MemoryRouter>
+    );
+    expect(RouteWrapper.find("Link").prop("to")).toBe("/register");
+  });
 });
