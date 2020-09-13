@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
+import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -29,6 +31,7 @@ const AccountForm = ({ page }) => {
       .then((response) => {
         const data = response.data;
         localStorage.setItem("auth-token", data);
+        history.push("/");
       })
       .catch((error) => {
         console.log(error.response.data);
