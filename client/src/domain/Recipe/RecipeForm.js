@@ -26,7 +26,7 @@ const RecipeForm = () => {
         "http://localhost:5000/recipes",
         {
           title: values.title,
-          photos: values.image,
+          photo: values.image,
           description: values.description,
           ingredients: values.ingredients,
           instructions: values.instructions,
