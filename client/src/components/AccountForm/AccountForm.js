@@ -66,7 +66,7 @@ const AccountForm = ({ page }) => {
         <AccountFormHeader page={page} />
         <form class="accountform-form">
           <>
-            <label>Email:</label>
+            <label className="accountform-label">Email:</label>
             <input
               type="text"
               name="email"
@@ -78,7 +78,7 @@ const AccountForm = ({ page }) => {
           </>
           {page === "register" && (
             <>
-              <label>Username:</label>
+              <label className="accountform-label">Username:</label>
               <input
                 type="text"
                 name="name"
@@ -90,7 +90,7 @@ const AccountForm = ({ page }) => {
             </>
           )}
           <>
-            <label>Password:</label>
+            <label className="accountform-label">Password:</label>
             <input
               type="password"
               name="name"
