@@ -17,4 +17,16 @@ describe("test routes", () => {
         done();
       });
   })
+
+  describe('/GET most recent recipes', () => {
+    it('', (done) => {
+      chai.request(app)
+        .get('/recipes/most-recent')
+        .set({ "auth-token": `${token}` })
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+  });
 });
