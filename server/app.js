@@ -4,6 +4,8 @@ const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 
+module.exports = app
+
 // DB Config
 const db = require("./config/config").MongoURI;
 
