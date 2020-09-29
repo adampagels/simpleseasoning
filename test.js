@@ -18,13 +18,23 @@ describe("test routes", () => {
       });
   })
 
-  describe('/GET most recent recipes', () => {
-    it('', (done) => {
+  describe('/GET requests', () => {
+    it('should return most recent recipes', (done) => {
       chai.request(app)
         .get('/recipes/most-recent')
         .set({ "auth-token": `${token}` })
         .end((err, res) => {
           res.should.have.status(200);
+          done();
+        });
+    });
+
+    it('should return current user info', (done) => {
+      chai.request(app)
+        .get('/users/test')
+        .set({ "auth-token": `${token}` })
+        .end((err, res) => {
+          res.should.have.status(201);
           done();
         });
     });
