@@ -1,11 +1,11 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let app = require('../server/app');
+let app = require('../app');
 let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe("test routes", () => {
+describe("test user routes", () => {
   let token;
   before((done) => {
     chai.request(app)
@@ -19,16 +19,6 @@ describe("test routes", () => {
   })
 
   describe('/GET requests', () => {
-    it('should return most recent recipes', (done) => {
-      chai.request(app)
-        .get('/recipes/most-recent')
-        .set({ "auth-token": `${token}` })
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
-
     it('should return current user info', (done) => {
       chai.request(app)
         .get('/users/test')
@@ -40,3 +30,4 @@ describe("test routes", () => {
     });
   });
 });
+  
