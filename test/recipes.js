@@ -28,5 +28,16 @@ describe("test recipe routes", () => {
           done();
         });
     });
+
+    it('should return a single recipe', (done) => {
+      chai.request(app)
+        .get('/recipes/5f6405901b57d1085fe85d53')
+        .set({ "auth-token": `${token}` })
+        .end((err, res) => {
+          res.should.have.status(201);
+          console.log(res.text)
+          done();
+        });
+    });
   });
 });
