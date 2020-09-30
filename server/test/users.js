@@ -52,7 +52,17 @@ describe("test user routes", () => {
       .set({ "auth-token": `${token}` })
       .end((err, res) => {
         res.should.have.status(200);
-        console.log(res.text);
+        done();
+      });
+  });
+
+  it("should remove recipe from user's favorite recipe list", (done) => {
+    chai
+      .request(app)
+      .delete("/users/test/favorite-recipes/5f6405901b57d1085fe85d53")
+      .set({ "auth-token": `${token}` })
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
       });
   });
