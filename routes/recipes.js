@@ -49,6 +49,30 @@ router.post("/", verify, async (req, res) => {
   );
 });
 
+// Delete a recipe
+router.delete("/:username/:RecipeID", verify, async (req, res) => {
+  User.findOneAndUpdate(
+    { username: req.params.username },
+    {
+      $pull: { recipes: req.params.RecipeID },
+    },
+    { new: true },
+    function (err, updatedUser) {
+      if (updatedUser) {
+        Recipe.findByIdAndDelete({ _id: req.params.RecipeID }, (err) => {
+          if (!err) {
+            res.json(updatedUser);
+          } else {
+            console.log(err);
+          }
+        });
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
 // Upload image of recipe
 router.post("/image-upload", verify, async (req, res) => {
   singleUpload(req, res, function (err) {
