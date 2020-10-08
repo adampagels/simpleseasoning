@@ -14,6 +14,10 @@ router.post("/:RecipeID", verify, async (req, res) => {
     recipe: req.params.RecipeID,
     user: req.user,
   });
+
+  const recipeIdExist = await Recipe.findOne({ _id: req.params.RecipeID });
+  if (!recipeIdExist) return res.status(400).send("Recipe does not exist");
+
   try {
     const savedRating = await rating.save();
     res.send(rating._id);
