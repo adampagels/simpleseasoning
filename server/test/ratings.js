@@ -30,4 +30,16 @@ describe("test rating routes", () => {
         done();
       });
   });
+
+  it("should return status 404 when recipe Id does not exist", (done) => {
+    chai
+      .request(app)
+      .post("/rating/notARecipeId")
+      .set({ "auth-token": `${token}` })
+      .send({ stars: 5 })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
 });
