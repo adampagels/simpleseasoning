@@ -21,6 +21,20 @@ describe("test user routes", () => {
       });
   });
 
+  it("should return status 400 when email is not registered", (done) => {
+    chai
+      .request(app)
+      .post("/users/login")
+      .send({
+        email: "noUser@none.com",
+        password: "noUser",
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
   let token;
   before((done) => {
     chai
