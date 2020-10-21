@@ -88,6 +88,7 @@ router.post("/image-upload", verify, async (req, res) => {
 // Get 20 most recent recipes
 router.get("/most-recent", verify, async (req, res) => {
   Recipe.find({})
+    .populate("ratings")
     .sort({ createdAt: -1 })
     .limit(20)
     .exec((err, docs) => {
@@ -101,26 +102,13 @@ router.get("/:RecipeID", verify, async (req, res) => {
   Recipe.findOne({
     _id: req.params.RecipeID,
   })
+    .populate("ratings")
     .then((singleRecipe) => {
       res.status(201).json(singleRecipe);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send("Request error: " + err);
-    });
-});
-
-// Get all reviews of a recipe
-router.get("/:RecipeID/rating", verify, async (req, res) => {
-  Recipe.findOne({
-    _id: req.params.RecipeID,
-  })
-    .populate("ratings")
-    .then(function (rating) {
-      res.json(rating);
-    })
-    .catch(function (err) {
-      res.json(err);
     });
 });
 
