@@ -89,6 +89,7 @@ router.post("/image-upload", verify, async (req, res) => {
 router.get("/most-recent", verify, async (req, res) => {
   Recipe.find({})
     .populate("ratings")
+    .populate("creator", "username")
     .sort({ createdAt: -1 })
     .limit(20)
     .exec((err, docs) => {
@@ -103,6 +104,7 @@ router.get("/:RecipeID", verify, async (req, res) => {
     _id: req.params.RecipeID,
   })
     .populate("ratings")
+    .populate("creator", "username")
     .then((singleRecipe) => {
       res.status(201).json(singleRecipe);
     })
@@ -110,6 +112,7 @@ router.get("/:RecipeID", verify, async (req, res) => {
       console.error(err);
       res.status(500).send("Request error: " + err);
     });
+  console.log(req);
 });
 
 module.exports = router;
