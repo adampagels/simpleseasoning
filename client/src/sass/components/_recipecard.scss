@@ -1,0 +1,18 @@
+.recipecard-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.recipecard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  max-width: 1300px;
+}
+
+.recipecard-wrapper {
+  border: 1px solid blue;
+  margin: 0px 10px;
+}
