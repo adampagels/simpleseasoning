@@ -1,10 +1,10 @@
 import React from "react";
 
-const RecipeCard = ({ recentRecipes, onClick }) => {
+const RecipeCard = ({ recipes, onClick }) => {
   return (
     <div className="recipecard-container">
-      {recentRecipes &&
-        recentRecipes.map((recipes, id) => (
+      {recipes &&
+        recipes.map((recipes) => (
           <div className="recipecard-wrapper" key={recipes._id}>
             <img
               alt={recipes.title}
