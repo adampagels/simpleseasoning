@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchRecentJobs = (accessToken) => {
+export const fetchRecentRecipes = (accessToken) => {
   return axios
     .get("http://localhost:5000/recipes/most-recent", {
       headers: {

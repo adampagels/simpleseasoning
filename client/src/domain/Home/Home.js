@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipeForm from "../../domain/Recipe/RecipeForm";
-import { fetchRecentJobs } from "../../api/GET/fetchRecentJobs";
+import { fetchRecentRecipes } from "../../api/GET/fetchRecentRecipes";
 
 const Home = () => {
   const [recentRecipes, setRecentRecipes] = useState(null);
@@ -10,7 +10,7 @@ const Home = () => {
   const accessToken = localStorage.getItem("auth-token");
 
   useEffect(() => {
-    fetchRecentJobs(accessToken).then(
+    fetchRecentRecipes(accessToken).then(
       (response) => {
         console.log(response);
         setRecentRecipes(response);
