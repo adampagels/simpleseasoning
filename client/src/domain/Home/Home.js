@@ -5,7 +5,7 @@ import RecipeForm from "../../domain/Recipe/RecipeForm";
 import { fetchRecentRecipes } from "../../api/GET/fetchRecentRecipes";
 
 const Home = ({ history }) => {
-  const [recentRecipes, setRecentRecipes] = useState(null);
+  const [recipes, setRecipes] = useState(null);
 
   const accessToken = localStorage.getItem("auth-token");
 
@@ -21,8 +21,7 @@ const Home = ({ history }) => {
   useEffect(() => {
     fetchRecentRecipes(accessToken).then(
       (response) => {
-        console.log(response);
-        setRecentRecipes(response);
+        setRecipes(response);
       },
       (error) => {
         console.log(error);
@@ -35,7 +34,7 @@ const Home = ({ history }) => {
       {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
       <RecipeForm />
-      <RecipeCard recentRecipes={recentRecipes} onClick={handleUserClick} />
+      <RecipeCard recipes={recipes} onClick={handleUserClick} />
     </>
   );
 };
