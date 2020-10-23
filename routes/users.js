@@ -40,8 +40,10 @@ router.post(
 );
 
 // Get user info
-router.get("/:username", verify, async (req, res) => {
-  User.findOne({ username: req.params.username })
+router.get("/:userID", verify, async (req, res) => {
+  User.findOne({ _id: req.params.userID })
+    .select("username recipes favoriteRecipes")
+    .populate("recipes favoriteRecipes")
     .then((user) => {
       res.status(201).json(user);
     })
