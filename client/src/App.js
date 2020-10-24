@@ -4,12 +4,14 @@ import Register from "../src/domain/Register/Register";
 import Home from "../src/domain/Home/Home";
 import Profile from "../src/domain/Profile/Profile";
 import Recipe from "../src/domain/Recipe/Recipe";
+import NavBar from "../src/components/NavBar/NavBar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <Router>
       <div>
+        <NavBar />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
