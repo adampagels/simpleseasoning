@@ -26,6 +26,7 @@ const Profile = ({ location }) => {
     <>
       <h1>Profile</h1>
       <h2>{user.username}</h2>
+      <RecipeCard recipes={user.recipes} />
     </>
   );
 };
