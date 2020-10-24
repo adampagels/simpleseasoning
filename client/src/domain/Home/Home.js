@@ -18,6 +18,15 @@ const Home = ({ history }) => {
     });
   };
 
+  const handleImageClick = (value) => {
+    history.push({
+      pathname: `/recipe/${value}`,
+      state: {
+        recipe: `${value}`,
+      },
+    });
+  };
+
   useEffect(() => {
     fetchRecentRecipes(accessToken).then(
       (response) => {
@@ -34,7 +43,11 @@ const Home = ({ history }) => {
       {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
       <RecipeForm />
-      <RecipeCard recipes={recipes} onClick={handleUserClick} />
+      <RecipeCard
+        recipes={recipes}
+        onClick={handleUserClick}
+        handleImageClick={handleImageClick}
+      />
     </>
   );
 };

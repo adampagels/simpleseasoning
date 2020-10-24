@@ -1,6 +1,6 @@
 import React from "react";
 
-const RecipeCard = ({ recipes, onClick }) => {
+const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
   return (
     <div className="recipecard-container">
       {recipes &&
@@ -10,6 +10,7 @@ const RecipeCard = ({ recipes, onClick }) => {
               alt={recipes.title}
               className="recipecard-image"
               src={recipes.photo}
+              onClick={() => handleImageClick(recipes._id)}
             />
             <h2>{recipes.title}</h2>
             <h3 onClick={() => onClick(recipes.creator._id)}>

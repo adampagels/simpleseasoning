@@ -3,7 +3,7 @@ import axios from "axios";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { withRouter } from "react-router-dom";
 
-const Profile = ({ location }) => {
+const Profile = ({ location, history }) => {
   const [user, setUser] = useState("");
   const getUser = () => {
     const accessToken = localStorage.getItem("auth-token");
@@ -18,6 +18,15 @@ const Profile = ({ location }) => {
       });
   };
 
+  const handleImageClick = (value) => {
+    history.push({
+      pathname: `/recipe/${value}`,
+      state: {
+        recipe: `${value}`,
+      },
+    });
+  };
+
   useEffect(() => {
     getUser();
   }, []);
@@ -26,7 +35,7 @@ const Profile = ({ location }) => {
     <>
       <h1>Profile</h1>
       <h2>{user.username}</h2>
-      <RecipeCard recipes={user.recipes} />
+      <RecipeCard recipes={user.recipes} handleImageClick={handleImageClick} />
     </>
   );
 };
