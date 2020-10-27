@@ -60,11 +60,11 @@ const AccountForm = ({ page }) => {
   };
 
   return (
-    <div class="accountform-container">
-      <div class="accountform-left-block"></div>
-      <div class="accountform-form-container">
+    <div className="accountform-container">
+      <div className="accountform-left-block"></div>
+      <div className="accountform-form-container">
         <AccountFormHeader page={page} />
-        <form class="accountform-form">
+        <form className="accountform-form">
           <>
             <label className="accountform-label">Email:</label>
             <input
