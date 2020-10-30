@@ -5,7 +5,7 @@ import Home from "../src/domain/Home/Home";
 import Profile from "../src/domain/Profile/Profile";
 import Recipe from "../src/domain/Recipe/Recipe";
 import RecipeForm from "../src/domain/Recipe/RecipeForm";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 const Routes = () => {
   return (
