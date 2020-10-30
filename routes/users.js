@@ -14,6 +14,11 @@ router.get("/login", (req, res) => res.send("Login"));
 // Register page
 router.get("/register", (req, res) => res.send("Register"));
 
+// Get userid
+router.get("/", verify, (req, res) => {
+  res.send(req.user);
+});
+
 // Add recipe to favorites list
 router.post(
   "/:username/favorite-recipes/:RecipeID",
