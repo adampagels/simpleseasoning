@@ -3,12 +3,25 @@ import axios from "axios";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { withRouter } from "react-router-dom";
 
-const Profile = ({ location, history }) => {
+const Profile = ({ location, history, userId }) => {
   const [user, setUser] = useState("");
-  const getUser = () => {
+  const getOtherUser = () => {
     const accessToken = localStorage.getItem("auth-token");
     axios
       .get(`http://localhost:5000/users/${location.state.user}`, {
+        headers: {
+          "auth-token": `${accessToken}`,
+        },
+      })
+      .then((userData) => {
+        setUser(userData.data);
+      });
+  };
+
+  const getCurrentUser = () => {
+    const accessToken = localStorage.getItem("auth-token");
+    axios
+      .get(`http://localhost:5000/users/${location.userId}`, {
         headers: {
           "auth-token": `${accessToken}`,
         },
@@ -28,7 +41,7 @@ const Profile = ({ location, history }) => {
   };
 
   useEffect(() => {
-    getUser();
+    location.state ? getOtherUser() : getCurrentUser();
   }, []);
 
   return (
