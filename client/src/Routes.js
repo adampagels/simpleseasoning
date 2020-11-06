@@ -5,6 +5,7 @@ import Home from "../src/domain/Home/Home";
 import Profile from "../src/domain/Profile/Profile";
 import Recipe from "../src/domain/Recipe/Recipe";
 import RecipeForm from "./domain/RecipeForm/RecipeForm";
+import SearchResults from "./domain/SearchResults/SearchResults";
 import { Switch, Route } from "react-router-dom";
 
 const Routes = () => {
@@ -16,6 +17,7 @@ const Routes = () => {
         <Route path="/register" exact component={Register} />
         <Route path="/user/:userid" exact component={Profile} />
         <Route path="/recipe/:recipeid" exact component={Recipe} />
+        <Route path="/search/:searchresults" exact component={SearchResults} />
         <Route path="/add-recipe" exact component={RecipeForm} />
       </Switch>
     </div>
