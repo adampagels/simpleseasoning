@@ -42,7 +42,6 @@ const Home = ({ history }) => {
     <>
       {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
-      <RecipeForm />
       <RecipeCard
         recipes={recipes}
         onClick={handleUserClick}
