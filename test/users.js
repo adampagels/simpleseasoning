@@ -51,7 +51,7 @@ describe("test user routes", () => {
   it("should return current user info", (done) => {
     chai
       .request(app)
-      .get("/users/test")
+      .get("/users/5f70ac084ba3dc0daa1acd0f")
       .set({ "auth-token": `${token}` })
       .end((err, res) => {
         res.should.have.status(201);
