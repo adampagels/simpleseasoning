@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import RecipeForm from "../RecipeForm/RecipeForm";
+import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow"
 import { fetchRecentRecipes } from "../../api/GET/fetchRecentRecipes";
 
 const Home = ({ history }) => {
@@ -42,6 +42,7 @@ const Home = ({ history }) => {
     <>
       {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
+      <CategoryCardRow />
       <RecipeCard
         recipes={recipes}
         onClick={handleUserClick}
