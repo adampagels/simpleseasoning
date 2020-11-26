@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const [user, setUser] = useState("");
@@ -33,7 +32,6 @@ const NavBar = () => {
         <NavLink to="/">
           <li className="navbar-item">Home</li>
         </NavLink>
-        <SearchBar />
         <NavLink to="/add-recipe">
           <li className="navbar-item">Add Recipe</li>
         </NavLink>
