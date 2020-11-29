@@ -76,91 +76,82 @@ const RecipeForm = () => {
   };
 
   return (
-    <form>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          className="title-input"
-          onChange={handleInputChange}
-          value={values.title}
-        />
-      </label>
-      <label>
-        Image Upload:
-        <input
-          type="file"
-          name="image-upload"
-          className="image-input"
-          accept="image/png, image/jpeg"
-          onChange={(e) => {
-            handleImageUpload(e.target.files[0]);
-          }}
-        />
-      </label>
-      <label>
-        Description:
-        <input
-          type="text"
-          name="description"
-          className="description-input"
-          onChange={handleInputChange}
-          value={values.description}
-        />
-      </label>
-      <label>
-        Ingredients:
-        <input
-          type="text"
-          name="ingredients"
-          className="ingredients-input"
-          onChange={handleInputChange}
-          value={values.ingredients}
-        />
-      </label>
-      <label>
-        Instructions:
-        <input
-          type="text"
-          name="instructions"
-          className="instructions-input"
-          onChange={handleInputChange}
-          value={values.instructions}
-        />
-      </label>
-      <label>
-        Cook-Time:
-        <input
-          type="text"
-          name="cookTime"
-          className="cook-time-input"
-          onChange={handleInputChange}
-          value={values.cookTime}
-        />
-      </label>
-      <label>
-        Prep-Time:
-        <input
-          type="text"
-          name="prepTime"
-          className="prep-time-input"
-          onChange={handleInputChange}
-          value={values.prepTime}
-        />
-      </label>
-      <label>
-        Diet:
-        <input
-          type="text"
-          name="diet"
-          className="diet-input"
-          onChange={handleInputChange}
-          value={values.diet}
-        />
-      </label>
-      <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
-    </form>
+    <div className="recipeform-container">
+      <form className="recipeform-form">
+        <div className="recipeform-left-div">
+          <label for="recipeform-input-photo">Image Upload:</label>
+          <input
+            id="recipeform-input-photo"
+            type="file"
+            name="image-upload"
+            className="recipeform-input"
+            accept="image/png, image/jpeg"
+            onChange={(e) => {
+              handleImageUpload(e.target.files[0]);
+            }}
+          />
+          <label>Prep-Time:</label>
+          <input
+            type="text"
+            name="prepTime"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.prepTime}
+          />
+          <label>Cook-Time:</label>
+          <input
+            type="text"
+            name="cookTime"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.cookTime}
+          />
+        </div>
+        <div className="recipeform-right-div">
+          <label>Title:</label>
+          <input
+            type="text"
+            name="title"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.title}
+          />
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.description}
+          />
+          <label>Ingredients:</label>
+          <input
+            type="text"
+            name="ingredients"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.ingredients}
+          />
+          <label>Instructions:</label>
+          <input
+            type="text"
+            name="instructions"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.instructions}
+          />
+          <label for>Diet:</label>
+          <input
+            type="text"
+            name="diet"
+            className="recipeform-input"
+            onChange={handleInputChange}
+            value={values.diet}
+          />
+          <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
