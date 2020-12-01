@@ -130,18 +130,16 @@ const RecipeForm = () => {
             value={values.description}
           />
           <label>Ingredients:</label>
-          <input
-            type="text"
+          <textarea
             name="ingredients"
-            className="recipeform-input"
+            className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.ingredients}
           />
           <label>Instructions:</label>
-          <input
-            type="text"
+          <textarea
             name="instructions"
-            className="recipeform-input"
+            className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.instructions}
           />
