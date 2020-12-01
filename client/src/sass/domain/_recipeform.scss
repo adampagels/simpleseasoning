@@ -1,6 +1,7 @@
 .recipeform-container {
   display: flex;
-  width: 100%;
+  margin-left: 25vw;
+  margin-top: 20vh;
 }
 
 .recipeform-form {
@@ -22,6 +23,24 @@
 }
 
 .recipeform-input {
+  height: 35px;
+  margin-bottom: 20px;
   max-width: 350px;
   width: 55%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.recipeform-image-label {
+  cursor: pointer;
+  border: 1px solid;
+  height: 300px;
+  width: 300px;
+}
+
+#recipeform-image {
+  height: 300px;
+  width: 300px;
 }
