@@ -79,7 +79,12 @@ const RecipeForm = () => {
     <div className="recipeform-container">
       <form className="recipeform-form">
         <div className="recipeform-left-div">
-          <label for="recipeform-input-photo">Image Upload:</label>
+          <label
+            className="recipeform-image-label"
+            htmlFor="recipeform-input-photo"
+          >
+            <img src={values.image && values.image} id="recipeform-image" />
+          </label>
           <input
             id="recipeform-input-photo"
             type="file"
@@ -140,7 +145,7 @@ const RecipeForm = () => {
             onChange={handleInputChange}
             value={values.instructions}
           />
-          <label for>Diet:</label>
+          <label>Diet:</label>
           <input
             type="text"
             name="diet"
