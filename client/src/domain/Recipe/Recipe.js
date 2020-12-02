@@ -47,10 +47,16 @@ const Recipe = ({ location, history }) => {
             By: {recipe.creator.username}
           </p>
           <img alt={recipe.title} className="recipe-image" src={recipe.photo} />
-          <p>{recipe.ingredients}</p>
-          <p>Instructions: {recipe.instructions}</p>
           <p>Cook Time: {recipe.cookTime}</p>
           <p>Prep Time:{recipe.prepTime}</p>
+          <p>Ingredients:</p>
+          {recipe.ingredients.map((ingredient, index) => (
+            <p key={index}>{ingredient}</p>
+          ))}
+          <p>Instructions: </p>
+          {recipe.instructions.map((instruction, index) => (
+            <p key={index}>{"Step" + " " + (index + 1) + " " + instruction}</p>
+          ))}
         </div>
       )}
     </div>
