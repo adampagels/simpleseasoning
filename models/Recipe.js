@@ -13,10 +13,10 @@ const RecipeSchema = new mongoose.Schema(
       type: String,
     },
     ingredients: {
-      type: String,
+      type: [String],
     },
     instructions: {
-      type: String,
+      type: [String],
     },
     cookTime: {
       type: String,
