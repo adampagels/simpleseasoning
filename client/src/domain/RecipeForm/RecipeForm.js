@@ -19,6 +19,8 @@ const RecipeForm = () => {
   };
 
   const handleRecipeSubmit = (event) => {
+    const ingredientArray = values.ingredients.split("\n");
+    const instructionArray = values.instructions.split("\n");
     event.preventDefault();
     const token = localStorage.getItem("auth-token");
     axios
@@ -28,8 +30,8 @@ const RecipeForm = () => {
           title: values.title,
           photo: values.image,
           description: values.description,
-          ingredients: values.ingredients,
-          instructions: values.instructions,
+          ingredients: ingredientArray,
+          instructions: instructionArray,
           cookTime: values.cookTime,
           prepTime: values.prepTime,
           diet: values.diet,
@@ -139,7 +141,7 @@ const RecipeForm = () => {
           <label>Instructions:</label>
           <textarea
             name="instructions"
-            className="recipeform-textarea"
+            className="recipeform-input"
             onChange={handleInputChange}
             value={values.instructions}
           />
