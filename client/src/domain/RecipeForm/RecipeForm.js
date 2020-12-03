@@ -117,16 +117,18 @@ const RecipeForm = () => {
               handleImageUpload(e.target.files[0]);
             }}
           />
-          <label>Prep-Time:</label>
+          <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
           <input
+            id="recipeform-input-preptime"
             type="text"
             name="prepTime"
             className="recipeform-input"
             onChange={handleInputChange}
             value={values.prepTime}
           />
-          <label>Cook-Time:</label>
+          <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
           <input
+            id="recipeform-input-cooktime"
             type="text"
             name="cookTime"
             className="recipeform-input"
@@ -135,38 +137,43 @@ const RecipeForm = () => {
           />
         </div>
         <div className="recipeform-right-div">
-          <label>Title:</label>
+          <label htmlFor="recipeform-input-title">Title:</label>
           <input
+            id="recipeform-input-title"
             type="text"
             name="title"
             className="recipeform-input"
             onChange={handleInputChange}
             value={values.title}
           />
-          <label>Description:</label>
+          <label htmlFor="recipeform-input-description">Description:</label>
           <input
+            id="recipeform-input-description"
             type="text"
             name="description"
             className="recipeform-input"
             onChange={handleInputChange}
             value={values.description}
           />
-          <label>Ingredients:</label>
+          <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
           <textarea
+            id="recipeform-input-ingredients"
             name="ingredients"
             className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.ingredients}
           />
-          <label>Instructions:</label>
+          <label htmlFor="recipeform-input-instructions">Instructions:</label>
           <textarea
+            id="recipeform-input-instructions"
             name="instructions"
             className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.instructions}
           />
-          <label>Diet:</label>
+          <label htmlFor="recipeform-input-diet">Diet:</label>
           <Select
+            id="recipeform-input-diet"
             components={animatedComponents}
             name="diet"
             isMulti
