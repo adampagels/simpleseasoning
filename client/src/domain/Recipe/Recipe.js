@@ -42,7 +42,9 @@ const Recipe = ({ location, history }) => {
               `(${recipe.ratings.length})`}
           </p>
           <p>{recipe.description}</p>
-          <p>{recipe.diet}</p>
+          {recipe.diet.map((diet, index) => (
+            <p key={index}>{diet}</p>
+          ))}
           <p onClick={() => handleUserClick(recipe.creator._id)}>
             By: {recipe.creator.username}
           </p>
