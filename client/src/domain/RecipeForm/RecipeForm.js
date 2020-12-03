@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -10,12 +12,29 @@ const RecipeForm = () => {
     instructions: "",
     cookTime: "",
     prepTime: "",
-    diet: "",
   });
+  const [diet, setDiet] = useState([]);
+
+  const options = [
+    { value: "high-protein", label: "High-Protein" },
+    { value: "vegan", label: "Vegan" },
+    { value: "pescetarian", label: "Pescetarian" },
+    { value: "vegetarian", label: "Vegetarian" },
+    { value: "keto", label: "Keto" },
+    { value: "dairy-free", label: "Dairy-Free" },
+    { value: "paleo", label: "Paleo" },
+    { value: "gluten-free", label: "Gluten-Free" },
+  ];
+
+  const animatedComponents = makeAnimated();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const handleSelectChange = (dietLabel) => {
+    setDiet(dietLabel);
   };
 
   const handleRecipeSubmit = (event) => {
@@ -34,7 +53,7 @@ const RecipeForm = () => {
           instructions: instructionArray,
           cookTime: values.cookTime,
           prepTime: values.prepTime,
-          diet: values.diet,
+          diet: diet,
         },
         {
           headers: {
@@ -141,17 +160,18 @@ const RecipeForm = () => {
           <label>Instructions:</label>
           <textarea
             name="instructions"
-            className="recipeform-input"
+            className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.instructions}
           />
           <label>Diet:</label>
-          <input
-            type="text"
+          <Select
+            components={animatedComponents}
             name="diet"
-            className="recipeform-input"
-            onChange={handleInputChange}
-            value={values.diet}
+            isMulti
+            value={diet}
+            onChange={handleSelectChange}
+            options={options}
           />
           <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
         </div>
