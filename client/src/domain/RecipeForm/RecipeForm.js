@@ -38,6 +38,7 @@ const RecipeForm = () => {
   };
 
   const handleRecipeSubmit = (event) => {
+    const dietArray = diet.map((diet) => diet.label);
     const ingredientArray = values.ingredients.split("\n");
     const instructionArray = values.instructions.split("\n");
     event.preventDefault();
@@ -53,7 +54,7 @@ const RecipeForm = () => {
           instructions: instructionArray,
           cookTime: values.cookTime,
           prepTime: values.prepTime,
-          diet: diet,
+          diet: dietArray,
         },
         {
           headers: {
