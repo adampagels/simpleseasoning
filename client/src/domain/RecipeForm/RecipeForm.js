@@ -147,11 +147,11 @@ const RecipeForm = () => {
             value={values.title}
           />
           <label htmlFor="recipeform-input-description">Description:</label>
-          <input
+          <textarea
             id="recipeform-input-description"
             type="text"
             name="description"
-            className="recipeform-input"
+            className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.description}
           />
