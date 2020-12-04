@@ -33,33 +33,43 @@ const Recipe = ({ location, history }) => {
   return (
     <div className="recipe-container">
       {recipe && (
-        <div>
-          <h1>{recipe.title}</h1>
-          <p>
-            {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
-              recipe.ratings.length +
-              " " +
-              `(${recipe.ratings.length})`}
-          </p>
-          <p>{recipe.description}</p>
-          {recipe.diet.map((diet, index) => (
-            <p key={index}>{diet}</p>
-          ))}
-          <p onClick={() => handleUserClick(recipe.creator._id)}>
-            By: {recipe.creator.username}
-          </p>
-          <img alt={recipe.title} className="recipe-image" src={recipe.photo} />
-          <p>Cook Time: {recipe.cookTime}</p>
-          <p>Prep Time:{recipe.prepTime}</p>
-          <p>Ingredients:</p>
-          {recipe.ingredients.map((ingredient, index) => (
-            <p key={index}>{ingredient}</p>
-          ))}
-          <p>Instructions: </p>
-          {recipe.instructions.map((instruction, index) => (
-            <p key={index}>{"Step" + " " + (index + 1) + " " + instruction}</p>
-          ))}
-        </div>
+        <>
+          <div class="recipe-left-div">
+            <h1>{recipe.title}</h1>
+            <p>
+              {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
+                recipe.ratings.length +
+                " " +
+                `(${recipe.ratings.length})`}
+            </p>
+            <p>{recipe.description}</p>
+            {recipe.diet.map((diet, index) => (
+              <p key={index}>{diet}</p>
+            ))}
+            <p onClick={() => handleUserClick(recipe.creator._id)}>
+              By: {recipe.creator.username}
+            </p>
+            <p>Cook Time: {recipe.cookTime}</p>
+            <p>Prep Time:{recipe.prepTime}</p>
+            <p>Instructions: </p>
+            {recipe.instructions.map((instruction, index) => (
+              <p key={index}>
+                {"Step" + " " + (index + 1) + " " + instruction}
+              </p>
+            ))}
+          </div>
+          <div class="recipe-right-div">
+            <img
+              alt={recipe.title}
+              className="recipe-image"
+              src={recipe.photo}
+            />
+            <p>Ingredients:</p>
+            {recipe.ingredients.map((ingredient, index) => (
+              <p key={index}>{ingredient}</p>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
