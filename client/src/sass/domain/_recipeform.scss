@@ -13,20 +13,18 @@
 .recipeform-left-div {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .recipeform-right-div {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .recipeform-input {
   height: 35px;
   margin-bottom: 20px;
   max-width: 350px;
-  width: 55%;
+  width: 30vw;
 }
 
 input[type="file"] {
@@ -40,7 +38,20 @@ input[type="file"] {
   width: 300px;
 }
 
+.recipeform-textarea {
+  height: 100px;
+  margin-bottom: 20px;
+  max-width: 350px;
+  width: 30vw;
+}
+
 #recipeform-image {
   height: 300px;
   width: 300px;
+}
+
+#recipeform-input-preptime,
+#recipeform-input-cooktime {
+  margin-bottom: 20px;
+  width: 15vw;
 }
