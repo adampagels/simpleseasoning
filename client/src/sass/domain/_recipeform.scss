@@ -1,18 +1,19 @@
 .recipeform-container {
   display: flex;
-  margin-left: 25vw;
-  margin-top: 20vh;
+  width: 100%;
 }
 
 .recipeform-form {
   display: flex;
   justify-content: center;
+  margin-top: 12vw;
   width: 100%;
 }
 
 .recipeform-left-div {
   display: flex;
   flex-direction: column;
+  margin-right: 5vw;
 }
 
 .recipeform-right-div {
