@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const [user, setUser] = useState("");
@@ -38,6 +39,7 @@ const NavBar = () => {
         <NavLink to={{ pathname: `/user/${user}`, userId: user }}>
           <li className="navbar-item">View Profile</li>
         </NavLink>
+        <SearchBar />
         <li className="navbar-item" onClick={() => logOut()}>
           Logout
         </li>
