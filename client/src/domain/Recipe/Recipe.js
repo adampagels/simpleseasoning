@@ -56,7 +56,7 @@ const Recipe = ({ location, history }) => {
             </p>
             <p className="recipe-cooktime">Cook Time: {recipe.cookTime}</p>
             <p className="recipe-preptime">Prep Time:{recipe.prepTime}</p>
-            <p className="recipe-instructions-header">Instructions: </p>
+            <h2 className="recipe-instructions-header">Instructions: </h2>
             {recipe.instructions.map((instruction, index) => (
               <p className="recipe-instructions" key={index}>
                 {"Step" + " " + (index + 1) + " " + instruction}
@@ -69,7 +69,7 @@ const Recipe = ({ location, history }) => {
               alt={recipe.title}
               src={recipe.photo}
             />
-            <p className="recipe-ingredients-label">Ingredients:</p>
+            <h2 className="recipe-ingredients-header">Ingredients:</h2>
             {recipe.ingredients.map((ingredient, index) => (
               <p className="recipe-ingredients" key={index}>
                 {ingredient}
