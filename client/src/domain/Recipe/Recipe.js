@@ -36,26 +36,28 @@ const Recipe = ({ location, history }) => {
         <>
           <div className="recipe-left-div">
             <h1 className="recipe-title">{recipe.title}</h1>
-            <p className="recipe-ratings">
-              {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
-                recipe.ratings.length +
-                " " +
-                `(${recipe.ratings.length})`}
-            </p>
-            <p className="recipe-description">{recipe.description}</p>
-            {recipe.diet.map((diet, index) => (
-              <p className="recipe-diet" key={index}>
-                {diet}
-              </p>
-            ))}
             <p
               className="recipe-creator"
               onClick={() => handleUserClick(recipe.creator._id)}
             >
               By: {recipe.creator.username}
             </p>
-            <p className="recipe-cooktime">Cook Time: {recipe.cookTime}</p>
-            <p className="recipe-preptime">Prep Time:{recipe.prepTime}</p>
+            <div className="recipe-timing-rating-wrapper">
+              <p className="recipe-preptime">Prep Time:{recipe.prepTime}</p>
+              <p className="recipe-cooktime">Cook Time: {recipe.cookTime}</p>
+              <p className="recipe-ratings">
+                {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
+                  recipe.ratings.length +
+                  " " +
+                  `(${recipe.ratings.length})`}
+              </p>
+            </div>
+            <p className="recipe-description">{recipe.description}</p>
+            {recipe.diet.map((diet, index) => (
+              <p className="recipe-diet" key={index}>
+                {diet}
+              </p>
+            ))}
             <h2 className="recipe-instructions-header">Instructions: </h2>
             {recipe.instructions.map((instruction, index) => (
               <p className="recipe-instructions" key={index}>
