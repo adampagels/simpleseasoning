@@ -34,39 +34,46 @@ const Recipe = ({ location, history }) => {
     <div className="recipe-container">
       {recipe && (
         <>
-          <div class="recipe-left-div">
-            <h1>{recipe.title}</h1>
-            <p>
+          <div className="recipe-left-div">
+            <h1 className="recipe-title">{recipe.title}</h1>
+            <p className="recipe-ratings">
               {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
                 recipe.ratings.length +
                 " " +
                 `(${recipe.ratings.length})`}
             </p>
-            <p>{recipe.description}</p>
+            <p className="recipe-description">{recipe.description}</p>
             {recipe.diet.map((diet, index) => (
-              <p key={index}>{diet}</p>
+              <p className="recipe-diet" key={index}>
+                {diet}
+              </p>
             ))}
-            <p onClick={() => handleUserClick(recipe.creator._id)}>
+            <p
+              className="recipe-creator"
+              onClick={() => handleUserClick(recipe.creator._id)}
+            >
               By: {recipe.creator.username}
             </p>
-            <p>Cook Time: {recipe.cookTime}</p>
-            <p>Prep Time:{recipe.prepTime}</p>
-            <p>Instructions: </p>
+            <p className="recipe-cooktime">Cook Time: {recipe.cookTime}</p>
+            <p className="recipe-preptime">Prep Time:{recipe.prepTime}</p>
+            <p className="recipe-instructions-header">Instructions: </p>
             {recipe.instructions.map((instruction, index) => (
-              <p key={index}>
+              <p className="recipe-instructions" key={index}>
                 {"Step" + " " + (index + 1) + " " + instruction}
               </p>
             ))}
           </div>
-          <div class="recipe-right-div">
+          <div className="recipe-right-div">
             <img
-              alt={recipe.title}
               className="recipe-image"
+              alt={recipe.title}
               src={recipe.photo}
             />
-            <p>Ingredients:</p>
+            <p className="recipe-ingredients-label">Ingredients:</p>
             {recipe.ingredients.map((ingredient, index) => (
-              <p key={index}>{ingredient}</p>
+              <p className="recipe-ingredients" key={index}>
+                {ingredient}
+              </p>
             ))}
           </div>
         </>
