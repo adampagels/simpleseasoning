@@ -2,17 +2,20 @@
   display: flex;
   justify-content: center;
   margin: auto;
+  margin-top: 150px;
   max-width: 1300px;
 }
 
 .recipe-image {
-  width: 400px;
   height: 400px;
   object-fit: cover;
+  width: 400px;
 }
 
 .recipe-title {
   font-size: 70px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .recipe-description {
@@ -47,4 +50,9 @@
 
 .recipe-diet {
   font-size: 13px;
+}
+
+.recipe-left-div {
+  margin-right: 5vw;
+  max-width: 700px;
 }
