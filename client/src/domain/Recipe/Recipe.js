@@ -51,6 +51,12 @@ const Recipe = ({ location, history }) => {
                 <p className="recipe-cooktime-header">Cook Time:</p>
                 <p className="recipe-cooktime">{recipe.cookTime}</p>
               </div>
+              <div className="recipe-totaltime-wrapper">
+                <p className="recipe-totaltime-header">Total Time:</p>
+                <p className="recipe-totaltime">
+                  {Number(recipe.prepTime) + Number(recipe.cookTime)}
+                </p>
+              </div>
               <p className="recipe-ratings">
                 {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
                   recipe.ratings.length +
