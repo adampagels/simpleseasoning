@@ -43,10 +43,14 @@ const Recipe = ({ location, history }) => {
               By: {recipe.creator.username}
             </p>
             <div className="recipe-timing-rating-wrapper">
-              <p className="recipe-preptimep-header">Prep Time:</p>
-              <p className="recipe-preptime">{recipe.prepTime}</p>
-              <p className="recipe-cooktime-header">Cook Time:</p>
-              <p className="recipe-cooktime">{recipe.cookTime}</p>
+              <div className="recipe-preptime-wrapper">
+                <p className="recipe-preptime-header">Prep Time:</p>
+                <p className="recipe-preptime">{recipe.prepTime}</p>
+              </div>
+              <div className="recipe-cooktime-wrapper">
+                <p className="recipe-cooktime-header">Cook Time:</p>
+                <p className="recipe-cooktime">{recipe.cookTime}</p>
+              </div>
               <p className="recipe-ratings">
                 {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
                   recipe.ratings.length +
