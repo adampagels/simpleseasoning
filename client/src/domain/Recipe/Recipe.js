@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../../components/Icon/Icon";
 
 const Recipe = ({ location, history }) => {
   const [recipe, setRecipe] = useState("");
@@ -57,12 +59,16 @@ const Recipe = ({ location, history }) => {
                   {Number(recipe.prepTime) + Number(recipe.cookTime)}
                 </p>
               </div>
+              <p className="recipe-ratings-header">
+                {recipe.ratings.length} ratings
+              </p>
               <p className="recipe-ratings">
                 {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
                   recipe.ratings.length +
                   " " +
                   `(${recipe.ratings.length})`}
               </p>
+              <Icon solidIcon={faStar} />
             </div>
             <p className="recipe-description">{recipe.description}</p>
             {recipe.diet.map((diet, index) => (
