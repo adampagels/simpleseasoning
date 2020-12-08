@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import Icon from "../../components/Icon/Icon";
 
 const Recipe = ({ location, history }) => {
@@ -62,13 +63,7 @@ const Recipe = ({ location, history }) => {
               <p className="recipe-ratings-header">
                 {recipe.ratings.length} ratings
               </p>
-              <p className="recipe-ratings">
-                {recipe.ratings.reduce((x, y) => x + y.stars, 0) /
-                  recipe.ratings.length +
-                  " " +
-                  `(${recipe.ratings.length})`}
-              </p>
-              <Icon solidIcon={faStar} />
+              <Icon solidIcon={faStar} regularIcon={farStar} ratings={recipe.ratings} />
             </div>
             <p className="recipe-description">{recipe.description}</p>
             {recipe.diet.map((diet, index) => (
