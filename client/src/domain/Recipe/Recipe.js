@@ -34,9 +34,10 @@ const Recipe = ({ location, history }) => {
   }, []);
 
   return (
-    <div className="recipe-container">
+    <>
+      <div className="recipe-background"></div>
       {recipe && (
-        <>
+        <div className="recipe-container">
           <div className="recipe-left-div">
             <h1 className="recipe-title">{recipe.title}</h1>
             <p
@@ -98,9 +99,9 @@ const Recipe = ({ location, history }) => {
               </p>
             ))}
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
