@@ -6,6 +6,15 @@
   max-width: 1300px;
 }
 
+.recipe-background {
+  background-color: #111;
+  height: 300px;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  z-index: 1;
+}
+
 .recipe-image {
   height: 400px;
   object-fit: cover;
@@ -31,7 +40,8 @@
 
 .recipe-cooktime-header,
 .recipe-preptime-header,
-.recipe-totaltime-header {
+.recipe-totaltime-header,
+.recipe-ratings-header {
   font-size: 13px;
 }
 
@@ -62,6 +72,11 @@
 .recipe-left-div {
   margin-right: 5vw;
   width: 600px;
+  z-index: 9;
+}
+
+.recipe-right-div {
+  z-index: 9;
 }
 
 .recipe-timing-rating-wrapper {
