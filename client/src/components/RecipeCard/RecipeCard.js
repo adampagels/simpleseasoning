@@ -20,13 +20,15 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               {recipes.creator.username}
             </h3>
             <p>{recipes.description}</p>
-            <Icon
-              className={"recipe-star"}
-              solidIcon={faStar}
-              regularIcon={farStar}
-              ratings={recipes.ratings}
-            />
-            <p>{`${recipes.ratings.length}`}</p>
+            <div classname="recipecard-ratings-wrapper">
+              <Icon
+                className={"recipe-star"}
+                solidIcon={faStar}
+                regularIcon={farStar}
+                ratings={recipes.ratings}
+              />
+              <p>{`${recipes.ratings.length}`}</p>
+            </div>
           </div>
         ))}
     </div>
