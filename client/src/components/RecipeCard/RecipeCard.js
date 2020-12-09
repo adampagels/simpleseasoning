@@ -20,7 +20,7 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               {recipes.creator.username}
             </h3>
             <p>{recipes.description}</p>
-            <div classname="recipecard-ratings-wrapper">
+            <div className="recipecard-ratings-wrapper">
               <Icon
                 className={"recipe-star"}
                 solidIcon={faStar}

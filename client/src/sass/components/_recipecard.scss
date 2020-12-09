@@ -16,3 +16,13 @@
   border: 1px solid blue;
   margin: 10px 10px;
 }
+
+.recipecard-ratings-wrapper {
+  display: flex;
+}
+
+.recipecard-ratings {
+  font-size: 13px;
+  margin-left: 5px;
+  margin-top: -1px;
+}
