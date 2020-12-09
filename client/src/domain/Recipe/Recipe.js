@@ -65,6 +65,7 @@ const Recipe = ({ location, history }) => {
                   {recipe.ratings.length} ratings
                 </p>
                 <Icon
+                  className={"recipe-star"}
                   solidIcon={faStar}
                   regularIcon={farStar}
                   ratings={recipe.ratings}

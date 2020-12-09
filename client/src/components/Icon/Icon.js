@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Icon = ({ solidIcon, regularIcon, ratings }) => {
+const Icon = ({ solidIcon, regularIcon, ratings, className }) => {
   const averageRatings =
     ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
 
@@ -18,9 +18,9 @@ const Icon = ({ solidIcon, regularIcon, ratings }) => {
     <>
       {starIconArray.map((star) =>
         star === "solid" ? (
-          <FontAwesomeIcon icon={solidIcon} />
+          <FontAwesomeIcon className={className} icon={solidIcon} />
         ) : (
-          <FontAwesomeIcon icon={regularIcon} />
+          <FontAwesomeIcon className={className} icon={regularIcon} />
         )
       )}
     </>
