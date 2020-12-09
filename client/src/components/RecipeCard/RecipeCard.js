@@ -27,7 +27,7 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
                 regularIcon={farStar}
                 ratings={recipes.ratings}
               />
-              <p>{`${recipes.ratings.length}`}</p>
+              <p className="recipecard-ratings">{`${recipes.ratings.length}`}</p>
             </div>
           </div>
         ))}
