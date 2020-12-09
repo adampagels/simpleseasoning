@@ -1,4 +1,7 @@
 import React from "react";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
+import Icon from "../../components/Icon/Icon";
 
 const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
   return (
@@ -17,12 +20,13 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               {recipes.creator.username}
             </h3>
             <p>{recipes.description}</p>
-            <p>
-              {recipes.ratings.reduce((x, y) => x + y.stars, 0) /
-                recipes.ratings.length +
-                " " +
-                `(${recipes.ratings.length})`}
-            </p>
+            <Icon
+              className={"recipe-star"}
+              solidIcon={faStar}
+              regularIcon={farStar}
+              ratings={recipes.ratings}
+            />
+            <p>{`${recipes.ratings.length}`}</p>
           </div>
         ))}
     </div>
