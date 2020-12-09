@@ -60,10 +60,16 @@ const Recipe = ({ location, history }) => {
                   {Number(recipe.prepTime) + Number(recipe.cookTime)}
                 </p>
               </div>
-              <p className="recipe-ratings-header">
-                {recipe.ratings.length} ratings
-              </p>
-              <Icon solidIcon={faStar} regularIcon={farStar} ratings={recipe.ratings} />
+              <div className="recipe-ratings-wrapper">
+                <p className="recipe-ratings-header">
+                  {recipe.ratings.length} ratings
+                </p>
+                <Icon
+                  solidIcon={faStar}
+                  regularIcon={farStar}
+                  ratings={recipe.ratings}
+                />
+              </div>
             </div>
             <p className="recipe-description">{recipe.description}</p>
             {recipe.diet.map((diet, index) => (
