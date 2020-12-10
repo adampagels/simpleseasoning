@@ -98,7 +98,10 @@ const Recipe = ({ location, history }) => {
             <h2 className="recipe-ingredients-header">Ingredients:</h2>
             {recipe.ingredients.map((ingredient, index) => (
               <>
-                <Icon secondRegularIcon={farCheckCircle} />
+                <Icon
+                  secondRegularIcon={farCheckCircle}
+                  secondClassName={"recipe-checkmark"}
+                />
                 <p className="recipe-ingredients" key={index}>
                   {ingredient}
                 </p>
