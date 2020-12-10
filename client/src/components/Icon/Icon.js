@@ -24,18 +24,28 @@ const Icon = ({
   const ratingStars = (
     <>
       {starIconArray.map((star) =>
-        star === "solid" ? (
-          <FontAwesomeIcon className={className} icon={solidIcon} />
-        ) : (
-          <FontAwesomeIcon className={className} icon={regularIcon} />
-        )
+        star === "solid"
+          ? solidIcon && (
+              <FontAwesomeIcon
+                className={className}
+                icon={solidIcon && solidIcon}
+              />
+            )
+          : regularIcon && (
+              <FontAwesomeIcon
+                className={className}
+                icon={regularIcon && regularIcon}
+              />
+            )
       )}
     </>
   );
   return (
     <>
       {ratingStars}
-      <FontAwesomeIcon className={secondClassName} icon={secondRegularIcon} />
+      {secondRegularIcon && (
+        <FontAwesomeIcon className={secondClassName} icon={secondRegularIcon} />
+      )}
     </>
   );
 };
