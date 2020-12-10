@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faStar as farStar,
+  faCheckCircle as farCheckCircle,
+} from "@fortawesome/free-regular-svg-icons";
 import Icon from "../../components/Icon/Icon";
 
 const Recipe = ({ location, history }) => {
@@ -94,9 +97,12 @@ const Recipe = ({ location, history }) => {
             />
             <h2 className="recipe-ingredients-header">Ingredients:</h2>
             {recipe.ingredients.map((ingredient, index) => (
-              <p className="recipe-ingredients" key={index}>
-                {ingredient}
-              </p>
+              <>
+                <Icon secondRegularIcon={farCheckCircle} />
+                <p className="recipe-ingredients" key={index}>
+                  {ingredient}
+                </p>
+              </>
             ))}
           </div>
         </div>

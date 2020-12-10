@@ -1,9 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Icon = ({ solidIcon, regularIcon, ratings, className }) => {
+const Icon = ({
+  solidIcon,
+  regularIcon,
+  ratings,
+  className,
+  secondRegularIcon,
+}) => {
   const averageRatings =
-    ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
+    ratings && ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
 
   const starIconArray = [];
   for (let i = 0; i < 5; i++) {
@@ -25,7 +31,12 @@ const Icon = ({ solidIcon, regularIcon, ratings, className }) => {
       )}
     </>
   );
-  return <>{ratingStars}</>;
+  return (
+    <>
+      {ratingStars}
+      <FontAwesomeIcon className={className} icon={secondRegularIcon} />
+    </>
+  );
 };
 
 export default Icon;
