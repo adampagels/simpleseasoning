@@ -113,7 +113,11 @@ const Recipe = ({ location, history }) => {
               <>
                 <Icon
                   secondRegularIcon={farCheckCircle}
-                  secondClassName={"recipe-checkmark"}
+                  secondClassName={
+                    checkmark.includes(index)
+                      ? "recipe-checkmark-checked"
+                      : "recipe-checkmark-unchecked"
+                  }
                   onClick={() => toggleCheckmark(index)}
                 />
                 <p className="recipe-ingredients" key={index}>
