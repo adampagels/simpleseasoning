@@ -9,6 +9,7 @@ import {
 import Icon from "../../components/Icon/Icon";
 
 const Recipe = ({ location, history }) => {
+  const [checkmark, setCheckmark] = useState([]);
   const [recipe, setRecipe] = useState("");
   const getRecipe = () => {
     const accessToken = localStorage.getItem("auth-token");
@@ -21,6 +22,18 @@ const Recipe = ({ location, history }) => {
       .then((userData) => {
         setRecipe(userData.data);
       });
+  };
+
+  const toggleCheckmark = (ingredientIndex) => {
+    if (checkmark.includes(ingredientIndex)) {
+      setCheckmark(
+        checkmark.filter((ingredient) => ingredient !== ingredientIndex)
+      );
+    } else {
+      let newCheckmark = [...checkmark];
+      newCheckmark.push(ingredientIndex);
+      setCheckmark(newCheckmark);
+    }
   };
 
   const handleUserClick = (value) => {
@@ -101,6 +114,7 @@ const Recipe = ({ location, history }) => {
                 <Icon
                   secondRegularIcon={farCheckCircle}
                   secondClassName={"recipe-checkmark"}
+                  onClick={() => toggleCheckmark(index)}
                 />
                 <p className="recipe-ingredients" key={index}>
                   {ingredient}
