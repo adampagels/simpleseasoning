@@ -108,23 +108,25 @@ const Recipe = ({ location, history }) => {
               alt={recipe.title}
               src={recipe.photo}
             />
-            <h2 className="recipe-ingredients-header">Ingredients:</h2>
-            {recipe.ingredients.map((ingredient, index) => (
-              <div className="recipe-icon-ingredient-wrapper">
-                <Icon
-                  secondRegularIcon={farCheckCircle}
-                  secondClassName={
-                    checkmark.includes(index)
-                      ? "recipe-checkmark-checked"
-                      : "recipe-checkmark-unchecked"
-                  }
-                  onClick={() => toggleCheckmark(index)}
-                />
-                <p className="recipe-ingredients" key={index}>
-                  {ingredient}
-                </p>
-              </div>
-            ))}
+            <div className="recipe-ingredients-wrapper">
+              <h2 className="recipe-ingredients-header">Ingredients:</h2>
+              {recipe.ingredients.map((ingredient, index) => (
+                <div className="recipe-icon-ingredient-wrapper">
+                  <Icon
+                    secondRegularIcon={farCheckCircle}
+                    secondClassName={
+                      checkmark.includes(index)
+                        ? "recipe-checkmark-checked"
+                        : "recipe-checkmark-unchecked"
+                    }
+                    onClick={() => toggleCheckmark(index)}
+                  />
+                  <p className="recipe-ingredients" key={index}>
+                    {ingredient}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
