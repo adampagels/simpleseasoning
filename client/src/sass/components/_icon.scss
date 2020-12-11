@@ -4,13 +4,22 @@
   margin-right: 5px;
 }
 
-.recipe-checkmark {
+.recipe-checkmark-unchecked {
   font-size: 20px;
   border-radius: 50%;
+  transition: 0.3s;
 }
 
-.recipe-checkmark:hover {
+.recipe-checkmark-unchecked:hover {
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recipe-checkmark-checked {
+  font-size: 20px;
   background: green;
+  border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
 }
