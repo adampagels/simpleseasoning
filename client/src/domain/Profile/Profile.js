@@ -46,8 +46,7 @@ const Profile = ({ location, history, userId }) => {
 
   return (
     <>
-      <h1>Profile</h1>
-      <h2>{user.username}</h2>
+      <h1 className="profile-username">{user.username}</h1>
       <RecipeCard recipes={user.recipes} handleImageClick={handleImageClick} />
     </>
   );
