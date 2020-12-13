@@ -48,12 +48,12 @@ const Profile = ({ location, history, userId }) => {
     <>
       <h1 className="profile-username">{user.username}</h1>
       <div className="profile-recipes-favorites-toggle-wrapper">
-        <p className="profile-recipes">
+        <button className="profile-recipes">
           {user && user.recipes.length + " Recipes"}
-        </p>
-        <p className="profile-favorite-recipes">
+        </button>
+        <button className="profile-favorite-recipes">
           {user && user.favoriteRecipes.length + " Favorites"}
-        </p>
+        </button>
       </div>
       <RecipeCard recipes={user.recipes} handleImageClick={handleImageClick} />
     </>
