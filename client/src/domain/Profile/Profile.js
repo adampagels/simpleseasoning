@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 
 const Profile = ({ location, history, userId }) => {
   const [user, setUser] = useState("");
+  const [toggleStatus, setToggleStatus] = useState(true);
+
   const getOtherUser = () => {
     const accessToken = localStorage.getItem("auth-token");
     axios
@@ -48,14 +50,31 @@ const Profile = ({ location, history, userId }) => {
     <>
       <h1 className="profile-username">{user.username}</h1>
       <div className="profile-recipes-favorites-toggle-wrapper">
-        <button className="profile-recipes">
+        <button
+          className="profile-recipes"
+          onClick={() => setToggleStatus(!toggleStatus)}
+        >
           {user && user.recipes.length + " Recipes"}
         </button>
-        <button className="profile-favorite-recipes">
+        <button
+          className="profile-favorite-recipes"
+          onClick={() => setToggleStatus(!toggleStatus)}
+        >
           {user && user.favoriteRecipes.length + " Favorites"}
         </button>
       </div>
-      <RecipeCard recipes={user.recipes} handleImageClick={handleImageClick} />
+      {toggleStatus && (
+        <RecipeCard
+          recipes={user.recipes}
+          handleImageClick={handleImageClick}
+        />
+      )}
+      {!toggleStatus && (
+        <RecipeCard
+          recipes={user.favoriteRecipes}
+          handleImageClick={handleImageClick}
+        />
+      )}
     </>
   );
 };
