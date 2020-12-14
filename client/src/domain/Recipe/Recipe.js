@@ -104,10 +104,12 @@ const Recipe = ({ location, history }) => {
           </div>
           <div className="recipe-right-div">
             <div className="recipe-image-wrapper">
+              <div className="heart-icon-wrapper">
                 <Icon
                   thirdClassName={"recipe-heart"}
                   thirdRegularIcon={faHeart}
                 />
+              </div>
               <img
                 className="recipe-image"
                 alt={recipe.title}
