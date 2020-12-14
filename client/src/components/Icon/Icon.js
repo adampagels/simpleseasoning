@@ -9,6 +9,8 @@ const Icon = ({
   secondRegularIcon,
   secondClassName,
   onClick,
+  thirdClassName,
+  thirdRegularIcon,
 }) => {
   const averageRatings =
     ratings && ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
@@ -51,6 +53,7 @@ const Icon = ({
           onClick={() => onClick()}
         />
       )}
+      <FontAwesomeIcon className={thirdClassName} icon={thirdRegularIcon} />
     </>
   );
 };
