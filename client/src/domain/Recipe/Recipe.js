@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import {
   faStar as farStar,
   faCheckCircle as farCheckCircle,
@@ -103,11 +103,18 @@ const Recipe = ({ location, history }) => {
             ))}
           </div>
           <div className="recipe-right-div">
-            <img
-              className="recipe-image"
-              alt={recipe.title}
-              src={recipe.photo}
-            />
+            <div className="recipe-image-wrapper">
+              <Icon
+                className={"recipe-heart"}
+                regularIcon={faHeart}
+                ratings={recipe.ratings}
+              />
+              <img
+                className="recipe-image"
+                alt={recipe.title}
+                src={recipe.photo}
+              />
+            </div>
             <div className="recipe-ingredients-wrapper">
               <h2 className="recipe-ingredients-header">Ingredients:</h2>
               {recipe.ingredients.map((ingredient, index) => (
