@@ -104,6 +104,23 @@
 .recipe-ingredients-wrapper {
   background-color: #e0e0e0;
   margin-top: 20px;
-  padding: 25px;
   max-width: 350px;
+  padding: 25px;
+}
+
+.recipe-image-wrapper {
+  position: relative;
+}
+
+.heart-icon-wrapper {
+  align-items: center;
+  background-color: #ffffff99;
+  border-radius: 50px;
+  bottom: 10px;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  width: 70px;
 }
