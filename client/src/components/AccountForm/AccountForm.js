@@ -3,12 +3,16 @@ import axios from "axios";
 import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../redux/slices/user";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const { loading, hasErrors, user } = useSelector((state) => state.fetchUsers);
+  const dispatch = useDispatch();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -23,19 +27,7 @@ const AccountForm = ({ page }) => {
   };
 
   const handleLogin = () => {
-    axios
-      .post("http://localhost:5000/users/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        const data = response.data;
-        localStorage.setItem("auth-token", data);
-        history.push("/");
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
+    dispatch(fetchUsers({ email: email, password: password }));
   };
 
   const handleRegister = () => {
@@ -61,6 +53,7 @@ const AccountForm = ({ page }) => {
 
   return (
     <div className="accountform-container">
+      {localStorage.getItem("auth-token") && history.push("/")}
       <div className="accountform-left-block"></div>
       <div className="accountform-form-container">
         <AccountFormHeader page={page} />
