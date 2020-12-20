@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow"
-import { fetchRecentRecipes } from "../../api/GET/fetchRecentRecipes";
+import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRecipes } from "../../redux/slices/recipe";
 
 const Home = ({ history }) => {
-  const [recipes, setRecipes] = useState(null);
-
-  const accessToken = localStorage.getItem("auth-token");
+  const { loading, hasErrors, recipes } = useSelector(
+    (state) => state.fetchRecipes
+  );
+  const dispatch = useDispatch();
 
   const handleUserClick = (value) => {
     history.push({
@@ -27,15 +29,10 @@ const Home = ({ history }) => {
     });
   };
 
+  const accessToken = localStorage.getItem("auth-token");
+
   useEffect(() => {
-    fetchRecentRecipes(accessToken).then(
-      (response) => {
-        setRecipes(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    dispatch(fetchRecipes(accessToken));
   }, []);
 
   return (
@@ -43,11 +40,13 @@ const Home = ({ history }) => {
       {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
       <CategoryCardRow />
-      <RecipeCard
-        recipes={recipes}
-        onClick={handleUserClick}
-        handleImageClick={handleImageClick}
-      />
+      {!loading && (
+        <RecipeCard
+          recipes={recipes}
+          onClick={handleUserClick}
+          handleImageClick={handleImageClick}
+        />
+      )}
     </>
   );
 };
