@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipes } from "../../redux/slices/recipe";
+import { fetchRecipes } from "../../redux/slices/recipe/recipe";
 
 const Home = ({ history }) => {
   const { loading, hasErrors, recipes } = useSelector(
