@@ -53,7 +53,9 @@ const Icon = ({
           onClick={() => onClick()}
         />
       )}
-      <FontAwesomeIcon className={thirdClassName} icon={thirdRegularIcon} />
+      {thirdRegularIcon && (
+        <FontAwesomeIcon className={thirdClassName} icon={thirdRegularIcon} />
+      )}
     </>
   );
 };
