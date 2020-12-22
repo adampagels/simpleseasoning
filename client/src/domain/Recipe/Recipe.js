@@ -112,7 +112,7 @@ const Recipe = ({ location, history }) => {
             <div className="recipe-ingredients-wrapper">
               <h2 className="recipe-ingredients-header">Ingredients:</h2>
               {recipe.ingredients.map((ingredient, index) => (
-                <div className="recipe-icon-ingredient-wrapper">
+                <div className="recipe-icon-ingredient-wrapper" key={index}>
                   <Icon
                     secondRegularIcon={farCheckCircle}
                     secondClassName={
