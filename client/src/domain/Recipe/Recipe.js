@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import {
   faStar as farStar,
   faCheckCircle as farCheckCircle,
+  faHeart as farHeart,
 } from "@fortawesome/free-regular-svg-icons";
 import Icon from "../../components/Icon/Icon";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleRecipe } from "../../redux/slices/recipe/fetchSingleRecipe";
 
 const Recipe = ({ location, history }) => {
   const [checkmark, setCheckmark] = useState([]);
-  const [recipe, setRecipe] = useState("");
-  const getRecipe = () => {
-    const accessToken = localStorage.getItem("auth-token");
-    axios
-      .get(`http://localhost:5000/recipes/${location.state.recipe}`, {
-        headers: {
-          "auth-token": `${accessToken}`,
-        },
-      })
-      .then((userData) => {
-        setRecipe(userData.data);
-      });
-  };
+  const { loading, hasErrors, recipe } = useSelector(
+    (state) => state.fetchSingleRecipe
+  );
+  const dispatch = useDispatch();
 
   const toggleCheckmark = (ingredientIndex) => {
     if (checkmark.includes(ingredientIndex)) {
@@ -46,13 +39,13 @@ const Recipe = ({ location, history }) => {
   };
 
   useEffect(() => {
-    getRecipe();
+    dispatch(fetchSingleRecipe(location.state.recipe));
   }, []);
 
   return (
     <>
       <div className="recipe-background"></div>
-      {recipe && (
+      {!loading && recipe.length !== 0 && (
         <div className="recipe-container">
           <div className="recipe-left-div">
             <h1 className="recipe-title">{recipe.title}</h1>
@@ -107,7 +100,7 @@ const Recipe = ({ location, history }) => {
               <div className="heart-icon-wrapper">
                 <Icon
                   thirdClassName={"recipe-heart"}
-                  thirdRegularIcon={faHeart}
+                  thirdRegularIcon={farHeart}
                 />
               </div>
               <img
