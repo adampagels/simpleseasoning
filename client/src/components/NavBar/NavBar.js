@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
+import { fetchUserId } from "../../redux/slices/user/fetchUserId";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
-  const [user, setUser] = useState("");
+  const { loading, hasErrors, userId } = useSelector(
+    (state) => state.fetchUserId
+  );
+  const dispatch = useDispatch();
 
   const logOut = () => {
     localStorage.removeItem("auth-token");
   };
 
-  const getUserId = () => {
-    const accessToken = localStorage.getItem("auth-token");
-    axios
-      .get(`http://localhost:5000/users/`, {
-        headers: {
-          "auth-token": `${accessToken}`,
-        },
-      })
-      .then((userData) => {
-        setUser(userData.data._id);
-      });
-  };
+  const accessToken = localStorage.getItem("auth-token");
 
   useEffect(() => {
-    getUserId();
+    dispatch(fetchUserId(accessToken));
   }, []);
 
   return (
@@ -36,7 +29,7 @@ const NavBar = () => {
         <NavLink to="/add-recipe">
           <li className="navbar-item">Add Recipe</li>
         </NavLink>
-        <NavLink to={{ pathname: `/user/${user}`, userId: user }}>
+        <NavLink to={{ pathname: `/user/${userId && userId}`, userId: userId }}>
           <li className="navbar-item">View Profile</li>
         </NavLink>
         <SearchBar />
