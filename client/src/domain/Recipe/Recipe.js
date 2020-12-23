@@ -8,7 +8,10 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import Icon from "../../components/Icon/Icon";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleRecipe } from "../../redux/slices/recipe/fetchSingleRecipe";
+import {
+  fetchSingleRecipe,
+  resetRecipeState,
+} from "../../redux/slices/recipe/fetchSingleRecipe";
 
 const Recipe = ({ location, history }) => {
   const [checkmark, setCheckmark] = useState([]);
@@ -40,12 +43,16 @@ const Recipe = ({ location, history }) => {
 
   useEffect(() => {
     dispatch(fetchSingleRecipe(location.state.recipe));
+
+    return () => {
+      dispatch(resetRecipeState());
+    };
   }, []);
 
   return (
     <>
       <div className="recipe-background"></div>
-      {!loading && recipe.length !== 0 && (
+      {recipe && !loading && recipe.length !== 0 && (
         <div className="recipe-container">
           <div className="recipe-left-div">
             <h1 className="recipe-title">{recipe.title}</h1>
