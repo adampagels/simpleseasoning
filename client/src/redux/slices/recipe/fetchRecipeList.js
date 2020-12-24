@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchRecipes = createAsyncThunk(
+export const fetchRecipeList = createAsyncThunk(
   "recipes/fetchRecipesStatus",
   async (token, thunkAPI) => {
     const response = await axios.get(
@@ -16,8 +16,8 @@ export const fetchRecipes = createAsyncThunk(
   }
 );
 
-const recipeSlice = createSlice({
-  name: "recipes",
+const fetchRecipeListSlice = createSlice({
+  name: "recipeListFetch",
   initialState: {
     loading: false,
     hasErrors: false,
@@ -25,19 +25,19 @@ const recipeSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [fetchRecipes.pending]: (state) => {
+    [fetchRecipeList.pending]: (state) => {
       state.loading = true;
     },
-    [fetchRecipes.fulfilled]: (state, { payload }) => {
+    [fetchRecipeList.fulfilled]: (state, { payload }) => {
       state.recipes = payload;
       state.loading = false;
       state.hasErrors = false;
     },
-    [fetchRecipes.rejected]: (state) => {
+    [fetchRecipeList.rejected]: (state) => {
       state.loading = false;
       state.hasErrors = true;
     },
   },
 });
 
-export default recipeSlice.reducer;
+export default fetchRecipeListSlice.reducer;
