@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { useDispatch } from "react-redux";
+import { addNewRecipe } from "../../redux/slices/recipe/addNewRecipe";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -14,6 +15,7 @@ const RecipeForm = () => {
     prepTime: "",
   });
   const [diet, setDiet] = useState([]);
+  const dispatch = useDispatch();
 
   const options = [
     { value: "high-protein", label: "High-Protein" },
@@ -38,38 +40,22 @@ const RecipeForm = () => {
   };
 
   const handleRecipeSubmit = (event) => {
+    event.preventDefault();
     const dietArray = diet.map((diet) => diet.label);
     const ingredientArray = values.ingredients.split("\n");
     const instructionArray = values.instructions.split("\n");
-    event.preventDefault();
-    const token = localStorage.getItem("auth-token");
-    axios
-      .post(
-        "http://localhost:5000/recipes",
-        {
-          title: values.title,
-          photo: values.image,
-          description: values.description,
-          ingredients: ingredientArray,
-          instructions: instructionArray,
-          cookTime: values.cookTime,
-          prepTime: values.prepTime,
-          diet: dietArray,
-        },
-        {
-          headers: {
-            "auth-token": `${token}`,
-            "Content-type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
+    dispatch(
+      addNewRecipe({
+        title: values.title,
+        photo: values.image,
+        description: values.description,
+        ingredients: ingredientArray,
+        instructions: instructionArray,
+        cookTime: values.cookTime,
+        prepTime: values.prepTime,
+        diet: dietArray,
       })
-      .catch((error) => {
-        console.log(error.response);
-      });
+    );
   };
 
   const handleImageUpload = async (file) => {
