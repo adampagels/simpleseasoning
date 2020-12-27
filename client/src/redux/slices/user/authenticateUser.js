@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const authenicateUser = createAsyncThunk(
-  "userAuthentication/authenicateUserStatus",
+export const authenticateUser = createAsyncThunk(
+  "userAuthentication/authenticateUserStatus",
   async (form, thunkAPI) => {
     // If form contains username, then it is for registration
     const authEndpoint = form.username ? "register" : "login";
@@ -30,16 +30,16 @@ const userAuthenticationSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [authenicateUser.pending]: (state) => {
+    [authenticateUser.pending]: (state) => {
       state.loading = true;
     },
-    [authenicateUser.fulfilled]: (state, { payload }) => {
+    [authenticateUser.fulfilled]: (state, { payload }) => {
       state.user = payload;
       state.loading = false;
       state.hasErrors = false;
       localStorage.setItem("auth-token", payload);
     },
-    [authenicateUser.rejected]: (state) => {
+    [authenticateUser.rejected]: (state) => {
       state.loading = false;
       state.hasErrors = true;
     },

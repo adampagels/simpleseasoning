@@ -3,7 +3,7 @@ import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { authenicateUser } from "../../redux/slices/user/authenticateUser";
+import { authenticateUser } from "../../redux/slices/user/authenticateUser";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
@@ -11,7 +11,7 @@ const AccountForm = ({ page }) => {
   const [password, setPassword] = useState("");
   const history = useHistory();
   const { loading, hasErrors, user } = useSelector(
-    (state) => state.authenicateUser
+    (state) => state.authenticateUser
   );
   const dispatch = useDispatch();
 
@@ -28,12 +28,12 @@ const AccountForm = ({ page }) => {
   };
 
   const handleLogin = () => {
-    dispatch(authenicateUser({ email: email, password: password }));
+    dispatch(authenticateUser({ email: email, password: password }));
   };
 
   const handleRegister = () => {
     dispatch(
-      authenicateUser({ email: email, password: password, username: username })
+      authenticateUser({ email: email, password: password, username: username })
     );
   };
 
