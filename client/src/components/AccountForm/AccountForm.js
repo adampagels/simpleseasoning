@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
 import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../redux/slices/user";
+import { authenicateUser } from "../../redux/slices/user/authenticateUser";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { loading, hasErrors, user } = useSelector((state) => state.fetchUsers);
+  const { loading, hasErrors, user } = useSelector(
+    (state) => state.authenicateUser
+  );
   const dispatch = useDispatch();
 
   const handleUsernameChange = (e) => {
@@ -27,23 +28,13 @@ const AccountForm = ({ page }) => {
   };
 
   const handleLogin = () => {
-    dispatch(fetchUsers({ email: email, password: password }));
+    dispatch(authenicateUser({ email: email, password: password }));
   };
 
   const handleRegister = () => {
-    axios
-      .post("http://localhost:5000/users/register", {
-        username: username,
-        password: password,
-        email: email,
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+    dispatch(
+      authenicateUser({ email: email, password: password, username: username })
+    );
   };
 
   const handleClick = (event) => {
