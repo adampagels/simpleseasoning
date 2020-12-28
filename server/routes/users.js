@@ -54,7 +54,7 @@ router.get("/:userID", verify, async (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send("Request error: " + err);
+      res.status(500).send("Request error: " + error);
     });
 });
 
