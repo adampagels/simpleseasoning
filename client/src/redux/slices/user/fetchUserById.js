@@ -3,13 +3,19 @@ import axios from "axios";
 
 export const fetchUserById = createAsyncThunk(
   "userAuthentication/fetchUserByIdStatus",
-  async (accessToken, { getState }) => {
-    const { userId } = getState().fetchUserId;
-    const response = await axios.get(`http://localhost:5000/users/${userId}`, {
-      headers: {
-        "auth-token": `${accessToken}`,
-      },
-    });
+  async (userIdFromRecipe, { getState }) => {
+    const accessToken = localStorage.getItem("auth-token");
+    const { currentUserId } = getState().fetchUserId;
+    const userIdParameter = userIdFromRecipe ? userIdFromRecipe : currentUserId;
+    console.log(userIdParameter);
+    const response = await axios.get(
+      `http://localhost:5000/users/${userIdParameter}`,
+      {
+        headers: {
+          "auth-token": `${accessToken}`,
+        },
+      }
+    );
     return response.data;
   }
 );
