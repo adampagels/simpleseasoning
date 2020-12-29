@@ -29,7 +29,9 @@ const NavBar = () => {
         <NavLink to="/add-recipe">
           <li className="navbar-item">Add Recipe</li>
         </NavLink>
-        <NavLink to={{ pathname: `/user/${userId && userId}`, userId: userId }}>
+        <NavLink
+          to={{ pathname: `/user/${userId && userId}`, state: { isIdFromNav: true } }}
+        >
           <li className="navbar-item">View Profile</li>
         </NavLink>
         <SearchBar />

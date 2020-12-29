@@ -1,37 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserById } from "../../redux/slices/user/fetchUserById";
 
-const Profile = ({ location, history, userId }) => {
-  const [user, setUser] = useState("");
+const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
-
-  const getOtherUser = () => {
-    const accessToken = localStorage.getItem("auth-token");
-    axios
-      .get(`http://localhost:5000/users/${location.state.user}`, {
-        headers: {
-          "auth-token": `${accessToken}`,
-        },
-      })
-      .then((userData) => {
-        setUser(userData.data);
-      });
-  };
-
-  const getCurrentUser = () => {
-    const accessToken = localStorage.getItem("auth-token");
-    axios
-      .get(`http://localhost:5000/users/${location.userId}`, {
-        headers: {
-          "auth-token": `${accessToken}`,
-        },
-      })
-      .then((userData) => {
-        setUser(userData.data);
-      });
-  };
+  const { loading, hasErrors, user } = useSelector(
+    (state) => state.fetchUserById
+  );
+  const dispatch = useDispatch();
 
   const handleImageClick = (value) => {
     history.push({
@@ -43,7 +21,18 @@ const Profile = ({ location, history, userId }) => {
   };
 
   useEffect(() => {
-    location.state ? getOtherUser() : getCurrentUser();
+    let userIdFromRecipe = location.state && location.state.user;
+    let isIdFromNav = location.state && location.state.isIdFromNav;
+    const userIdAndIdLocation = {
+      isIdFromNav: isIdFromNav,
+      userIdFromRecipe: userIdFromRecipe,
+    };
+    dispatch(fetchUserById(userIdAndIdLocation));
+
+    return () => {
+      isIdFromNav = null;
+      userIdFromRecipe = null;
+    };
   }, []);
 
   return (
