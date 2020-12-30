@@ -15,7 +15,12 @@ const Routes = () => {
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
-        <Route path="/user/:userid" exact component={Profile} />
+        <Route
+          path="/user/:userid"
+          exact
+          component={Profile}
+          key={window.location.pathname}
+        />
         <Route path="/recipe/:recipeid" exact component={Recipe} />
         <Route path="/search/:searchresults" exact component={SearchResults} />
         <Route path="/add-recipe" exact component={RecipeForm} />
