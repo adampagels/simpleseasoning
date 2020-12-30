@@ -8,6 +8,7 @@ const RecipeForm = () => {
   const [values, setValues] = useState({
     title: "",
     image: "",
+    imageURL: "",
     description: "",
     ingredients: "",
     instructions: "",
@@ -41,27 +42,17 @@ const RecipeForm = () => {
 
   const handleRecipeSubmit = (event) => {
     event.preventDefault();
+    handleAddRecipe();
+  };
+
+  const handleAddRecipe = async () => {
     const dietArray = diet.map((diet) => diet.label);
     const ingredientArray = values.ingredients.split("\n");
     const instructionArray = values.instructions.split("\n");
-    dispatch(
-      addNewRecipe({
-        title: values.title,
-        photo: values.image,
-        description: values.description,
-        ingredients: ingredientArray,
-        instructions: instructionArray,
-        cookTime: values.cookTime,
-        prepTime: values.prepTime,
-        diet: dietArray,
-      })
-    );
-  };
 
-  const handleImageUpload = async (file) => {
     const token = localStorage.getItem("auth-token");
     const imageData = new FormData();
-    imageData.append("image", file);
+    imageData.append("image", values.image);
     const url = "http://localhost:5000/recipes/image-upload";
 
     const config = {
@@ -76,7 +67,18 @@ const RecipeForm = () => {
       const req = await fetch(url, config);
       if (req.ok) {
         const res = await req.json();
-        setValues({ ...values, image: res.imageUrl });
+        dispatch(
+          addNewRecipe({
+            title: values.title,
+            photo: res.imageUrl,
+            description: values.description,
+            ingredients: ingredientArray,
+            instructions: instructionArray,
+            cookTime: values.cookTime,
+            prepTime: values.prepTime,
+            diet: dietArray,
+          })
+        );
       }
     } catch (err) {
       console.log(err);
@@ -85,13 +87,17 @@ const RecipeForm = () => {
 
   return (
     <div className="recipeform-container">
+      {console.log(values.image)}
       <form className="recipeform-form">
         <div className="recipeform-left-div">
           <label
             className="recipeform-image-label"
             htmlFor="recipeform-input-photo"
           >
-            <img src={values.image && values.image} id="recipeform-image" />
+            <img
+              src={values.imageURL && values.imageURL}
+              id="recipeform-image"
+            />
           </label>
           <input
             id="recipeform-input-photo"
@@ -99,8 +105,12 @@ const RecipeForm = () => {
             name="image-upload"
             className="recipeform-input"
             accept="image/png, image/jpeg"
-            onChange={(e) => {
-              handleImageUpload(e.target.files[0]);
+            onChange={(event) => {
+              setValues({
+                ...values,
+                image: event.target.files[0],
+                imageURL: URL.createObjectURL(event.target.files[0]),
+              });
             }}
           />
           <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
