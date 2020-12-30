@@ -15,7 +15,7 @@ export const addNewRecipe = createAsyncThunk(
       prepTime,
       dietArray,
     } = recipeForm;
-    axios.post(
+    await axios.post(
       "http://localhost:5000/recipes",
       {
         title: title,
