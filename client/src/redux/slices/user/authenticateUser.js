@@ -34,10 +34,10 @@ const userAuthenticationSlice = createSlice({
       state.loading = true;
     },
     [authenticateUser.fulfilled]: (state, { payload }) => {
-      state.user = payload;
+      state.user = payload.user;
       state.loading = false;
       state.hasErrors = false;
-      localStorage.setItem("auth-token", payload);
+      localStorage.setItem("auth-token", payload.token);
     },
     [authenticateUser.rejected]: (state) => {
       state.loading = false;
