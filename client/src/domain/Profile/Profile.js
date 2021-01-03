@@ -6,9 +6,11 @@ import { fetchUserById } from "../../redux/slices/user/fetchUserById";
 
 const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
-  const { loading, hasErrors, user } = useSelector(
+  const { loading, hasErrors, user: otherUser } = useSelector(
     (state) => state.fetchUserById
   );
+  const { user: currentUser } = useSelector((state) => state.authenticateUser);
+
   const dispatch = useDispatch();
 
   const handleImageClick = (value) => {
@@ -20,14 +22,13 @@ const Profile = ({ location, history }) => {
     });
   };
 
+  let isIdFromNav = location.state && location.state.isIdFromNav;
+  let userIdFromRecipe = location.state && location.state.user;
+
+  const user = isIdFromNav ? currentUser : otherUser;
+
   useEffect(() => {
-    let userIdFromRecipe = location.state && location.state.user;
-    let isIdFromNav = location.state && location.state.isIdFromNav;
-    const userIdAndIdLocation = {
-      isIdFromNav: isIdFromNav,
-      userIdFromRecipe: userIdFromRecipe,
-    };
-    dispatch(fetchUserById(userIdAndIdLocation));
+    !isIdFromNav && dispatch(fetchUserById(userIdFromRecipe));
 
     return () => {
       isIdFromNav = null;
