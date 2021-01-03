@@ -118,17 +118,20 @@ router.post("/login", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   // Check if email exists
-  const registeredUser = await User.findOne({ email: req.body.email });
+  const registeredUser = await User.findOne({ email: req.body.email }).populate(
+    "recipes favoriteRecipes"
+  );
   if (!registeredUser) return res.status(400).send("Email is wrong");
 
   const validPassword = await bcrypt.compare(
     req.body.password,
     registeredUser.password
   );
+
   if (!validPassword) return res.status(400).send("password is wrong");
 
   const token = jwt.sign({ _id: registeredUser._id }, secret);
-  res.header("auth-token", token).send(token);
+  res.header("auth-token", token).json({ token: token, user: registeredUser });
 });
 
 module.exports = router;
