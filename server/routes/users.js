@@ -98,15 +98,15 @@ router.post("/register", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const user = new User({
+  const newUser = new User({
     username: username,
     email: email,
     password: hashedPassword,
   });
   try {
-    const savedUser = await user.save();
+    const savedUser = await newUser.save();
     const token = jwt.sign({ _id: savedUser._id }, secret);
-    res.header("auth-token", token).send(token);
+    res.header("auth-token", token).json({ token: token, user: savedUser });
   } catch (err) {
     res.status(400).send(err);
   }
