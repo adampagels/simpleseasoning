@@ -1,17 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Icon = ({
-  solidIcon,
-  regularIcon,
-  ratings,
-  className,
-  secondRegularIcon,
-  secondClassName,
-  onClick,
-  thirdClassName,
-  thirdRegularIcon,
-}) => {
+const StarIcon = ({ solidIcon, regularIcon, ratings, className }) => {
   const averageRatings =
     ratings && ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
 
@@ -43,21 +33,7 @@ const Icon = ({
       )}
     </>
   );
-  return (
-    <>
-      {ratingStars}
-      {secondRegularIcon && (
-        <FontAwesomeIcon
-          className={secondClassName}
-          icon={secondRegularIcon}
-          onClick={() => onClick()}
-        />
-      )}
-      {thirdRegularIcon && (
-        <FontAwesomeIcon className={thirdClassName} icon={thirdRegularIcon} />
-      )}
-    </>
-  );
+  return <>{ratingStars}</>;
 };
 
-export default Icon;
+export default StarIcon;

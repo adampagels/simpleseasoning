@@ -6,7 +6,9 @@ import {
   faCheckCircle as farCheckCircle,
   faHeart as farHeart,
 } from "@fortawesome/free-regular-svg-icons";
-import Icon from "../../components/Icon/Icon";
+import StarIcon from "../../components/Icon/StarIcon";
+import CheckMarkIcon from "../../components/Icon/CheckMarkIcon";
+import HeartIcon from "../../components/Icon/HeartIcon";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSingleRecipe,
@@ -81,7 +83,7 @@ const Recipe = ({ location, history }) => {
                 <p className="recipe-ratings-header">
                   {recipe.ratings.length} ratings
                 </p>
-                <Icon
+                <StarIcon
                   className={"recipe-star"}
                   solidIcon={faStar}
                   regularIcon={farStar}
@@ -105,9 +107,9 @@ const Recipe = ({ location, history }) => {
           <div className="recipe-right-div">
             <div className="recipe-image-wrapper">
               <div className="heart-icon-wrapper">
-                <Icon
+                <HeartIcon
                   thirdClassName={"recipe-heart"}
-                  thirdRegularIcon={farHeart}
+                  regularIcon={farHeart}
                 />
               </div>
               <img
@@ -120,9 +122,9 @@ const Recipe = ({ location, history }) => {
               <h2 className="recipe-ingredients-header">Ingredients:</h2>
               {recipe.ingredients.map((ingredient, index) => (
                 <div className="recipe-icon-ingredient-wrapper" key={index}>
-                  <Icon
-                    secondRegularIcon={farCheckCircle}
-                    secondClassName={
+                  <CheckMarkIcon
+                    regularIcon={farCheckCircle}
+                    className={
                       checkmark.includes(index)
                         ? "recipe-checkmark-checked"
                         : "recipe-checkmark-unchecked"
