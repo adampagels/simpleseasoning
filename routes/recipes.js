@@ -32,7 +32,6 @@ router.post("/", verify, async (req, res) => {
   });
   try {
     const savedRecipe = await recipe.save();
-    res.send(recipe._id);
   } catch (err) {
     res.status(400).send(err);
   }
@@ -41,7 +40,7 @@ router.post("/", verify, async (req, res) => {
     { $push: { recipes: recipe._id } },
     function (err, data) {
       if (data) {
-        console.log(data);
+        res.send(data);
       } else {
         console.log(err);
       }
