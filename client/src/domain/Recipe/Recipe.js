@@ -14,12 +14,14 @@ import {
   fetchSingleRecipe,
   resetRecipeState,
 } from "../../redux/slices/recipe/fetchSingleRecipe";
+import axios from "axios";
 
 const Recipe = ({ location, history }) => {
   const [checkmark, setCheckmark] = useState([]);
   const { loading, hasErrors, recipe } = useSelector(
     (state) => state.fetchSingleRecipe
   );
+  const { user: currentUser } = useSelector((state) => state.authenticateUser);
   const dispatch = useDispatch();
 
   const toggleCheckmark = (ingredientIndex) => {
@@ -41,6 +43,27 @@ const Recipe = ({ location, history }) => {
         user: `${value}`,
       },
     });
+  };
+
+  const addFavoriteRecipe = async () => {
+    const accessToken = localStorage.getItem("auth-token");
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
+        {
+          username: `${currentUser.username}`,
+        },
+        {
+          headers: {
+            "auth-token": accessToken,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -107,7 +130,11 @@ const Recipe = ({ location, history }) => {
           <div className="recipe-right-div">
             <div className="recipe-image-wrapper">
               <div className="heart-icon-wrapper">
-                <HeartIcon className={"recipe-heart"} regularIcon={farHeart} />
+                <HeartIcon
+                  className={"recipe-heart"}
+                  regularIcon={farHeart}
+                  onClick={() => addFavoriteRecipe()}
+                />
               </div>
               <img
                 className="recipe-image"
