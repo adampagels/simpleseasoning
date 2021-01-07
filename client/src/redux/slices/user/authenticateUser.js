@@ -28,7 +28,11 @@ const userAuthenticationSlice = createSlice({
     hasErrors: false,
     user: null,
   },
-  reducers: {},
+  reducers: {
+    updateUser: (state, { payload }) => {
+      state.user = payload;
+    },
+  },
   extraReducers: {
     [authenticateUser.pending]: (state) => {
       state.loading = true;
@@ -45,5 +49,7 @@ const userAuthenticationSlice = createSlice({
     },
   },
 });
+
+export const { updateUser } = userAuthenticationSlice.actions;
 
 export default userAuthenticationSlice.reducer;
