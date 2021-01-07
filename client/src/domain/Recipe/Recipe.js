@@ -15,12 +15,14 @@ import {
   resetRecipeState,
 } from "../../redux/slices/recipe/fetchSingleRecipe";
 import axios from "axios";
+import { updateUser } from "../../redux/slices/user/authenticateUser";
 
 const Recipe = ({ location, history }) => {
   const [checkmark, setCheckmark] = useState([]);
   const { loading, hasErrors, recipe } = useSelector(
     (state) => state.fetchSingleRecipe
   );
+
   const { user: currentUser } = useSelector((state) => state.authenticateUser);
   const dispatch = useDispatch();
 
@@ -60,7 +62,7 @@ const Recipe = ({ location, history }) => {
           },
         }
       );
-      console.log(response.data);
+      dispatch(updateUser(response.data));
     } catch (error) {
       console.log(error);
     }
