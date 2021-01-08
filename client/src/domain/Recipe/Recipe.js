@@ -19,7 +19,7 @@ import { updateUser } from "../../redux/slices/user/authenticateUser";
 
 const Recipe = ({ location, history }) => {
   const [checkmark, setCheckmark] = useState([]);
-  const [isFavorited, setFavorited] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
   const { loading, hasErrors, recipe } = useSelector(
     (state) => state.fetchSingleRecipe
   );
@@ -64,20 +64,21 @@ const Recipe = ({ location, history }) => {
         }
       );
       dispatch(updateUser(response.data));
+      setFavorite(true);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const checkIfFavorited = () => {
+  const checkIfFavorite = () => {
     currentUser.favoriteRecipes.map(
       (recipe) =>
-        recipe._id.includes(location.state.recipe) && setFavorited(true)
+        recipe._id.includes(location.state.recipe) && setFavorite(true)
     );
   };
 
   useEffect(() => {
-    checkIfFavorited();
+    checkIfFavorite();
     dispatch(fetchSingleRecipe(location.state.recipe));
 
     return () => {
@@ -143,7 +144,7 @@ const Recipe = ({ location, history }) => {
               <div className="heart-icon-wrapper">
                 <HeartIcon
                   className={
-                    isFavorited
+                    isFavorite
                       ? "recipe-heart-favorited"
                       : "recipe-heart-unfavorited"
                   }
