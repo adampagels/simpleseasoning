@@ -1,5 +1,13 @@
-.recipe-heart {
+.recipe-heart-favorited {
   color: red;
+  cursor: pointer;
+  font-size: 50px;
+  margin-top: 1px;
+}
+
+.recipe-heart-unfavorited {
+  color: black;
+  cursor: pointer;
   font-size: 50px;
   margin-top: 1px;
 }
