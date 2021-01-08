@@ -96,16 +96,42 @@ router.delete(
           favoriteRecipes: req.params.RecipeID,
         },
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
-        } else {
-          res.json(updatedUser);
-        }
-      }
-    );
+      { new: true }
+    )
+      .populate({
+        path: "recipes",
+        populate: [
+          {
+            path: "creator",
+            select: { username: 1 },
+          },
+          {
+            path: "ratings",
+            select: { stars: 1, user: 1 },
+          },
+        ],
+      })
+      .populate({
+        path: "favoriteRecipes",
+        populate: [
+          {
+            path: "creator",
+            select: { username: 1 },
+          },
+          {
+            path: "ratings",
+            select: { stars: 1, user: 1 },
+          },
+        ],
+      })
+
+      .then((updatedUser) => {
+        res.json(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Request error: " + error);
+      });
   }
 );
 
