@@ -153,7 +153,7 @@ const Recipe = ({ location, history }) => {
                       : "recipe-heart-unfavorited"
                   }
                   regularIcon={faHeart}
-                  onClick={() => addFavoriteRecipe()}
+                  onClick={() => !loadingFavoriteRecipe && addFavoriteRecipe()}
                 />
               </div>
               <img
