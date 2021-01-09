@@ -176,7 +176,9 @@ const Recipe = ({ location, history }) => {
                   }
                   regularIcon={faHeart}
                   onClick={() =>
-                    !loadingFavoriteRecipe && removeFavoriteRecipe()
+                    !loadingFavoriteRecipe && !isFavorite
+                      ? addFavoriteRecipe()
+                      : removeFavoriteRecipe()
                   }
                 />
               </div>
