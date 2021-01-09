@@ -50,7 +50,7 @@ const Recipe = ({ location, history }) => {
   };
 
   const addFavoriteRecipe = async () => {
-    setloadingFavoriteRecipe(true);
+    setLoadingFavoriteRecipe(true);
     const accessToken = localStorage.getItem("auth-token");
     try {
       const response = await axios.post(
@@ -67,6 +67,28 @@ const Recipe = ({ location, history }) => {
       );
       dispatch(updateUser(response.data));
       setFavorite(true);
+      setLoadingFavoriteRecipe(false);
+    } catch (error) {
+      setLoadingFavoriteRecipe(false);
+      console.log(error);
+    }
+  };
+
+  const removeFavoriteRecipe = async () => {
+    setLoadingFavoriteRecipe(true);
+    const accessToken = localStorage.getItem("auth-token");
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
+        {
+          headers: {
+            "auth-token": accessToken,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      dispatch(updateUser(response.data));
+      setFavorite(false);
       setLoadingFavoriteRecipe(false);
     } catch (error) {
       setLoadingFavoriteRecipe(false);
@@ -153,7 +175,9 @@ const Recipe = ({ location, history }) => {
                       : "recipe-heart-unfavorited"
                   }
                   regularIcon={faHeart}
-                  onClick={() => !loadingFavoriteRecipe && addFavoriteRecipe()}
+                  onClick={() =>
+                    !loadingFavoriteRecipe && removeFavoriteRecipe()
+                  }
                 />
               </div>
               <img
