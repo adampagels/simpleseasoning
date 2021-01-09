@@ -18,6 +18,7 @@ import axios from "axios";
 import { updateUser } from "../../redux/slices/user/authenticateUser";
 
 const Recipe = ({ location, history }) => {
+  const [loadingFavoriteRecipe, setLoadingFavoriteRecipe] = useState(false);
   const [checkmark, setCheckmark] = useState([]);
   const [isFavorite, setFavorite] = useState(false);
   const { loading, hasErrors, recipe } = useSelector(
@@ -49,6 +50,7 @@ const Recipe = ({ location, history }) => {
   };
 
   const addFavoriteRecipe = async () => {
+    setloadingFavoriteRecipe(true);
     const accessToken = localStorage.getItem("auth-token");
     try {
       const response = await axios.post(
@@ -65,7 +67,9 @@ const Recipe = ({ location, history }) => {
       );
       dispatch(updateUser(response.data));
       setFavorite(true);
+      setLoadingFavoriteRecipe(false);
     } catch (error) {
+      setLoadingFavoriteRecipe(false);
       console.log(error);
     }
   };
