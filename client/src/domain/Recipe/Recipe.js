@@ -125,6 +125,28 @@ const Recipe = ({ location, history }) => {
             >
               By: {recipe.creator.username}
             </p>
+            <div className="recipe-image-wrapper-small">
+              <div className="heart-icon-wrapper">
+                <HeartIcon
+                  className={
+                    isFavorite
+                      ? "recipe-heart-favorited"
+                      : "recipe-heart-unfavorited"
+                  }
+                  regularIcon={faHeart}
+                  onClick={() =>
+                    !loadingFavoriteRecipe && !isFavorite
+                      ? addFavoriteRecipe()
+                      : removeFavoriteRecipe()
+                  }
+                />
+              </div>
+              <img
+                className="recipe-image"
+                alt={recipe.title}
+                src={recipe.photo}
+              />
+            </div>
             <div className="recipe-timing-rating-wrapper">
               <div className="recipe-preptime-wrapper">
                 <p className="recipe-preptime-header">Prep Time:</p>
@@ -158,6 +180,25 @@ const Recipe = ({ location, history }) => {
                 {diet}
               </p>
             ))}
+            <div className="recipe-ingredients-wrapper-small">
+              <h2 className="recipe-ingredients-header">Ingredients:</h2>
+              {recipe.ingredients.map((ingredient, index) => (
+                <div className="recipe-icon-ingredient-wrapper" key={index}>
+                  <CheckMarkIcon
+                    regularIcon={farCheckCircle}
+                    className={
+                      checkmark.includes(index)
+                        ? "recipe-checkmark-checked"
+                        : "recipe-checkmark-unchecked"
+                    }
+                    onClick={() => toggleCheckmark(index)}
+                  />
+                  <p className="recipe-ingredients" key={index}>
+                    {ingredient}
+                  </p>
+                </div>
+              ))}
+            </div>
             <h2 className="recipe-instructions-header">Instructions: </h2>
             {recipe.instructions.map((instruction, index) => (
               <p className="recipe-instructions" key={index}>
@@ -166,7 +207,7 @@ const Recipe = ({ location, history }) => {
             ))}
           </div>
           <div className="recipe-right-div">
-            <div className="recipe-image-wrapper">
+            <div className="recipe-image-wrapper-big">
               <div className="heart-icon-wrapper">
                 <HeartIcon
                   className={
@@ -188,7 +229,7 @@ const Recipe = ({ location, history }) => {
                 src={recipe.photo}
               />
             </div>
-            <div className="recipe-ingredients-wrapper">
+            <div className="recipe-ingredients-wrapper-big">
               <h2 className="recipe-ingredients-header">Ingredients:</h2>
               {recipe.ingredients.map((ingredient, index) => (
                 <div className="recipe-icon-ingredient-wrapper" key={index}>
