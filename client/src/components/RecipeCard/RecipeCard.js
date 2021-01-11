@@ -5,6 +5,7 @@ import StarIcon from "../../components/Icon/StarIcon";
 
 const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
   const imagePlaceholder = process.env.PUBLIC_URL + "/imagePlaceholder.jpg";
+  const descriptionPlaceholder = "No recipe description available.";
   return (
     <div className="recipecard-container">
       {recipes &&
@@ -24,7 +25,11 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               >
                 {recipes.creator.username}
               </h3>
-              <p class="recipecard-description">{recipes.description}</p>
+              <p class="recipecard-description">
+                {recipes.description
+                  ? recipes.description
+                  : descriptionPlaceholder}
+              </p>
               <div className="recipecard-ratings-wrapper">
                 <StarIcon
                   className={"recipe-star"}
