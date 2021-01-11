@@ -16,10 +16,14 @@
   border: 1px solid blue;
   margin: 10px 10px;
   max-width: 300px;
+  position: relative;
+  height: 470px;
 }
 
 .recipecard-ratings-wrapper {
   display: flex;
+  position: absolute;
+  bottom: 0px;
 }
 
 .recipecard-ratings {
@@ -53,5 +57,9 @@
   -webkit-line-clamp: 3;
   display: -webkit-box;
   overflow: hidden;
-  width: 300px;
+  width: 290px;
+}
+
+.recipecard-info {
+  padding: 10px;
 }
