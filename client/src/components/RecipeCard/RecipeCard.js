@@ -16,7 +16,10 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               onClick={() => handleImageClick(recipes._id)}
             />
             <h2>{recipes.title}</h2>
-            <h3 onClick={() => onClick(recipes.creator._id)}>
+            <h3
+              className="recipecard-creator"
+              onClick={() => onClick(recipes.creator._id)}
+            >
               {recipes.creator.username}
             </h3>
             <p>{recipes.description}</p>
