@@ -48,6 +48,7 @@ input[type="file"] {
 
 #recipeform-image {
   height: 350px;
+  object-fit: cover;
   width: 350px;
 }
 
