@@ -19,12 +19,15 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
             />
             <div class="recipecard-info">
               <h2>{recipes.title}</h2>
-              <h3
-                className="recipecard-creator"
-                onClick={() => onClick(recipes.creator._id)}
-              >
-                {recipes.creator.username}
-              </h3>
+              <div class="recipecard-creator-wrapper">
+                <p>By:</p>
+                <h3
+                  className="recipecard-creator"
+                  onClick={() => onClick(recipes.creator._id)}
+                >
+                  {recipes.creator.username}
+                </h3>
+              </div>
               <p class="recipecard-description">
                 {recipes.description
                   ? recipes.description
