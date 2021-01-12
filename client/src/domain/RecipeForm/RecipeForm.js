@@ -17,6 +17,8 @@ const RecipeForm = () => {
   });
   const [diet, setDiet] = useState([]);
   const dispatch = useDispatch();
+  const addImagePlaceholder =
+    process.env.PUBLIC_URL + "/addImagePlaceholder.png";
 
   const options = [
     { value: "high-protein", label: "High-Protein" },
@@ -95,7 +97,7 @@ const RecipeForm = () => {
             htmlFor="recipeform-input-photo"
           >
             <img
-              src={values.imageURL && values.imageURL}
+              src={values.imageURL  ? values.imageURL : addImagePlaceholder}
               id="recipeform-image"
             />
           </label>
