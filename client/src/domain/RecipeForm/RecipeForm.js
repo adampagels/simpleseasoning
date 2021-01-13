@@ -97,7 +97,7 @@ const RecipeForm = () => {
             htmlFor="recipeform-input-photo"
           >
             <img
-              src={values.imageURL  ? values.imageURL : addImagePlaceholder}
+              src={values.imageURL ? values.imageURL : addImagePlaceholder}
               id="recipeform-image"
             />
           </label>
@@ -115,24 +115,30 @@ const RecipeForm = () => {
               });
             }}
           />
-          <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
-          <input
-            id="recipeform-input-preptime"
-            type="text"
-            name="prepTime"
-            className="recipeform-input"
-            onChange={handleInputChange}
-            value={values.prepTime}
-          />
-          <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
-          <input
-            id="recipeform-input-cooktime"
-            type="text"
-            name="cookTime"
-            className="recipeform-input"
-            onChange={handleInputChange}
-            value={values.cookTime}
-          />
+          <div className="recipeform-preptime-cooktime-container">
+            <div className="recipeform-timing-wrapper">
+              <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
+              <input
+                id="recipeform-input-preptime"
+                type="text"
+                name="prepTime"
+                className="recipeform-input"
+                onChange={handleInputChange}
+                value={values.prepTime}
+              />
+            </div>
+            <div className="recipeform-timing-wrapper">
+              <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
+              <input
+                id="recipeform-input-cooktime"
+                type="text"
+                name="cookTime"
+                className="recipeform-input"
+                onChange={handleInputChange}
+                value={values.cookTime}
+              />
+            </div>
+          </div>
         </div>
         <div className="recipeform-right-div">
           <label htmlFor="recipeform-input-title">Title:</label>
