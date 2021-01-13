@@ -139,6 +139,16 @@ const RecipeForm = () => {
               />
             </div>
           </div>
+          <label htmlFor="recipeform-input-diet">Diet:</label>
+          <Select
+            id="recipeform-input-diet"
+            components={animatedComponents}
+            name="diet"
+            isMulti
+            value={diet}
+            onChange={handleSelectChange}
+            options={options}
+          />
         </div>
         <div className="recipeform-right-div">
           <label htmlFor="recipeform-input-title">Title:</label>
@@ -174,16 +184,6 @@ const RecipeForm = () => {
             className="recipeform-textarea"
             onChange={handleInputChange}
             value={values.instructions}
-          />
-          <label htmlFor="recipeform-input-diet">Diet:</label>
-          <Select
-            id="recipeform-input-diet"
-            components={animatedComponents}
-            name="diet"
-            isMulti
-            value={diet}
-            onChange={handleSelectChange}
-            options={options}
           />
           <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
         </div>
