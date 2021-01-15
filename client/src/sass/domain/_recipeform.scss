@@ -79,15 +79,21 @@ input[type="file"] {
   justify-content: center;
 }
 
+.recipeform-header {
+  font-size: 70px;
+  margin-top: 100px;
+  margin-bottom: 4vw;
+  text-align: center;
+}
+
 @media only screen and (min-width: 800px) {
   .recipeform-form {
     display: flex;
     flex-direction: initial;
-    margin-top: 12vw;
     width: 100%;
     justify-content: space-evenly;
     max-width: 1000px;
-    margin: 12vw auto 2vw auto;
+    margin: 0vw auto 2vw auto;
   }
   .recipeform-textarea {
     height: 110px;
