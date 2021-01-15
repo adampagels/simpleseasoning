@@ -88,107 +88,110 @@ const RecipeForm = () => {
   };
 
   return (
-    <div className="recipeform-container">
-      {console.log(values.image)}
-      <form className="recipeform-form">
-        <div className="recipeform-left-div">
-          <label
-            className="recipeform-image-label"
-            htmlFor="recipeform-input-photo"
-          >
-            <img
-              src={values.imageURL ? values.imageURL : addImagePlaceholder}
-              id="recipeform-image"
+    <>
+      <div className="recipeform-container">
+        <form className="recipeform-form">
+          <div className="recipeform-left-div">
+            <label
+              className="recipeform-image-label"
+              htmlFor="recipeform-input-photo"
+            >
+              <img
+                src={values.imageURL ? values.imageURL : addImagePlaceholder}
+                id="recipeform-image"
+              />
+            </label>
+            <input
+              id="recipeform-input-photo"
+              type="file"
+              name="image-upload"
+              className="recipeform-input"
+              accept="image/png, image/jpeg"
+              onChange={(event) => {
+                setValues({
+                  ...values,
+                  image: event.target.files[0],
+                  imageURL: URL.createObjectURL(event.target.files[0]),
+                });
+              }}
             />
-          </label>
-          <input
-            id="recipeform-input-photo"
-            type="file"
-            name="image-upload"
-            className="recipeform-input"
-            accept="image/png, image/jpeg"
-            onChange={(event) => {
-              setValues({
-                ...values,
-                image: event.target.files[0],
-                imageURL: URL.createObjectURL(event.target.files[0]),
-              });
-            }}
-          />
-          <div className="recipeform-preptime-cooktime-container">
-            <div className="recipeform-timing-wrapper">
-              <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
-              <input
-                id="recipeform-input-preptime"
-                type="text"
-                name="prepTime"
-                className="recipeform-input"
-                onChange={handleInputChange}
-                value={values.prepTime}
-              />
+            <div className="recipeform-preptime-cooktime-container">
+              <div className="recipeform-timing-wrapper">
+                <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
+                <input
+                  id="recipeform-input-preptime"
+                  type="text"
+                  name="prepTime"
+                  className="recipeform-input"
+                  onChange={handleInputChange}
+                  value={values.prepTime}
+                />
+              </div>
+              <div className="recipeform-timing-wrapper">
+                <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
+                <input
+                  id="recipeform-input-cooktime"
+                  type="text"
+                  name="cookTime"
+                  className="recipeform-input"
+                  onChange={handleInputChange}
+                  value={values.cookTime}
+                />
+              </div>
             </div>
-            <div className="recipeform-timing-wrapper">
-              <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
-              <input
-                id="recipeform-input-cooktime"
-                type="text"
-                name="cookTime"
-                className="recipeform-input"
-                onChange={handleInputChange}
-                value={values.cookTime}
-              />
-            </div>
+            <label htmlFor="recipeform-input-diet">Diet:</label>
+            <Select
+              id="recipeform-input-diet"
+              components={animatedComponents}
+              name="diet"
+              isMulti
+              value={diet}
+              onChange={handleSelectChange}
+              options={options}
+            />
           </div>
-          <label htmlFor="recipeform-input-diet">Diet:</label>
-          <Select
-            id="recipeform-input-diet"
-            components={animatedComponents}
-            name="diet"
-            isMulti
-            value={diet}
-            onChange={handleSelectChange}
-            options={options}
-          />
-        </div>
-        <div className="recipeform-right-div">
-          <label htmlFor="recipeform-input-title">Title:</label>
-          <input
-            id="recipeform-input-title"
-            type="text"
-            name="title"
-            className="recipeform-input"
-            onChange={handleInputChange}
-            value={values.title}
-          />
-          <label htmlFor="recipeform-input-description">Description:</label>
-          <textarea
-            id="recipeform-input-description"
-            type="text"
-            name="description"
-            className="recipeform-textarea"
-            onChange={handleInputChange}
-            value={values.description}
-          />
-          <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
-          <textarea
-            id="recipeform-input-ingredients"
-            name="ingredients"
-            className="recipeform-textarea"
-            onChange={handleInputChange}
-            value={values.ingredients}
-          />
-          <label htmlFor="recipeform-input-instructions">Instructions:</label>
-          <textarea
-            id="recipeform-input-instructions"
-            name="instructions"
-            className="recipeform-textarea"
-            onChange={handleInputChange}
-            value={values.instructions}
-          />
-          <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
-        </div>
-      </form>
-    </div>
+          <div className="recipeform-right-div">
+            <label htmlFor="recipeform-input-title">Title:</label>
+            <input
+              id="recipeform-input-title"
+              type="text"
+              name="title"
+              className="recipeform-input"
+              onChange={handleInputChange}
+              value={values.title}
+            />
+            <label htmlFor="recipeform-input-description">Description:</label>
+            <textarea
+              id="recipeform-input-description"
+              type="text"
+              name="description"
+              className="recipeform-textarea"
+              onChange={handleInputChange}
+              value={values.description}
+            />
+            <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
+            <textarea
+              id="recipeform-input-ingredients"
+              name="ingredients"
+              className="recipeform-textarea"
+              onChange={handleInputChange}
+              value={values.ingredients}
+            />
+            <label htmlFor="recipeform-input-instructions">Instructions:</label>
+            <textarea
+              id="recipeform-input-instructions"
+              name="instructions"
+              className="recipeform-textarea"
+              onChange={handleInputChange}
+              value={values.instructions}
+            />
+          </div>
+        </form>
+      </div>
+      <div id="recipeform-button-wrapper">
+        <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
+      </div>
+    </>
   );
 };
 
