@@ -4,8 +4,10 @@
 }
 
 .recipeform-form {
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: normal;
   margin-top: 12vw;
   width: 100%;
 }
@@ -13,19 +15,20 @@
 .recipeform-left-div {
   display: flex;
   flex-direction: column;
-  margin-right: 4vw;
+  margin-right: 0vw;
+  width: 50vw;
 }
 
 .recipeform-right-div {
   display: flex;
   flex-direction: column;
+  width: 50vw;
 }
 
 .recipeform-input {
   height: 35px;
   margin-bottom: 20px;
   max-width: 450px;
-  width: 30vw;
 }
 
 input[type="file"] {
@@ -35,25 +38,106 @@ input[type="file"] {
 .recipeform-image-label {
   cursor: pointer;
   border: 1px solid;
-  height: 350px;
-  width: 350px;
+  height: 100%;
+  width: 50vw;
 }
 
 .recipeform-textarea {
   height: 100px;
   margin-bottom: 20px;
-  max-width: 450px;
-  width: 30vw;
 }
 
 #recipeform-image {
-  height: 350px;
+  height: 100%;
   object-fit: cover;
-  width: 350px;
+  width: 100%;
 }
 
 #recipeform-input-preptime,
 #recipeform-input-cooktime {
   margin-bottom: 20px;
-  width: 15vw;
+  width: 22vw;
+}
+
+#recipeform-input-diet {
+  max-width: 450px;
+}
+
+.recipeform-timing-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipeform-preptime-cooktime-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#recipeform-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 800px) {
+  .recipeform-form {
+    display: flex;
+    flex-direction: initial;
+    margin-top: 12vw;
+    width: 100%;
+    justify-content: space-evenly;
+    max-width: 1000px;
+    margin: 12vw auto 2vw auto;
+  }
+  .recipeform-textarea {
+    height: 110px;
+    margin-bottom: 20px;
+    max-width: 450px;
+    width: 35vw;
+  }
+
+  .recipeform-right-div {
+    max-width: 450px;
+    width: auto;
+  }
+
+  .recipeform-input {
+    width: 35vw;
+  }
+
+  #recipeform-image {
+    height: 350px;
+    object-fit: cover;
+    width: 350px;
+  }
+
+  .recipeform-image-label {
+    cursor: pointer;
+    border: 1px solid;
+    height: 350px;
+    width: 350px;
+  }
+
+  .recipeform-left-div {
+    display: flex;
+    height: 100%;
+    width: auto;
+  }
+
+  #recipeform-input-preptime,
+  #recipeform-input-cooktime {
+    width: 15vw;
+    max-width: 150px;
+  }
+
+  .recipeform-preptime-cooktime-container {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    max-width: 350px;
+  }
+
+  #recipeform-input-diet {
+    max-width: 350px;
+  }
 }
