@@ -89,6 +89,7 @@ const RecipeForm = () => {
 
   return (
     <>
+      <h1 className="recipeform-header">Add a Recipe</h1>
       <div className="recipeform-container">
         <form className="recipeform-form">
           <div className="recipeform-left-div">
