@@ -8,27 +8,26 @@
   display: flex;
   flex-direction: column;
   justify-content: normal;
-  margin-top: 12vw;
   width: 100%;
+  margin-top: 2vw;
 }
 
 .recipeform-left-div {
   display: flex;
   flex-direction: column;
   margin-right: 0vw;
-  width: 50vw;
+  width: 70vw;
 }
 
 .recipeform-right-div {
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  width: 70vw;
 }
 
 .recipeform-input {
   height: 35px;
   margin-bottom: 20px;
-  max-width: 450px;
 }
 
 input[type="file"] {
@@ -39,7 +38,7 @@ input[type="file"] {
   cursor: pointer;
   border: 1px solid;
   height: 100%;
-  width: 50vw;
+  width: 70vw;
 }
 
 .recipeform-textarea {
@@ -53,14 +52,14 @@ input[type="file"] {
   width: 100%;
 }
 
+#recipeform-input-diet {
+  margin-bottom: 20px;
+}
+
 #recipeform-input-preptime,
 #recipeform-input-cooktime {
   margin-bottom: 20px;
-  width: 22vw;
-}
-
-#recipeform-input-diet {
-  max-width: 450px;
+  width: 26vw;
 }
 
 .recipeform-timing-wrapper {
@@ -108,6 +107,7 @@ input[type="file"] {
   }
 
   .recipeform-input {
+    max-width: 450px;
     width: 35vw;
   }
 
