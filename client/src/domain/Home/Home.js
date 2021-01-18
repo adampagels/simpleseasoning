@@ -3,7 +3,10 @@ import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipeList } from "../../redux/slices/recipe/fetchRecipeList";
+import {
+  fetchRecipeList,
+  resetRecipeListState,
+} from "../../redux/slices/recipe/fetchRecipeList";
 
 const Home = ({ history }) => {
   const { loading, hasErrors, recipes } = useSelector(
@@ -32,6 +35,10 @@ const Home = ({ history }) => {
   useEffect(() => {
     const accessToken = localStorage.getItem("auth-token");
     dispatch(fetchRecipeList(accessToken));
+
+    return () => {
+      dispatch(resetRecipeListState());
+    };
   }, []);
 
   return (
