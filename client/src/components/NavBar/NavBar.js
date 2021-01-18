@@ -1,45 +1,43 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
-import { fetchUserId } from "../../redux/slices/user/fetchUserId";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
-  const { loading, hasErrors, userId } = useSelector(
-    (state) => state.fetchUserId
-  );
-  const dispatch = useDispatch();
-
+  const accessToken = localStorage.getItem("auth-token");
+  let history = useHistory();
   const logOut = () => {
     localStorage.removeItem("auth-token");
+    history.push("/login");
   };
-
-  const accessToken = localStorage.getItem("auth-token");
-
-  useEffect(() => {
-    dispatch(fetchUserId(accessToken));
-  }, []);
+  const { user } = useSelector((state) => state.authenticateUser);
 
   return (
-    <div className="navbar-container">
-      <ul className="navbar-item-list">
-        <NavLink to="/">
-          <li className="navbar-item">Home</li>
-        </NavLink>
-        <NavLink to="/add-recipe">
-          <li className="navbar-item">Add Recipe</li>
-        </NavLink>
-        <NavLink
-          to={{ pathname: `/user/${userId && userId}`, state: { isIdFromNav: true } }}
-        >
-          <li className="navbar-item">View Profile</li>
-        </NavLink>
-        <SearchBar />
-        <li className="navbar-item" onClick={() => logOut()}>
-          Logout
-        </li>
-      </ul>
-    </div>
+    <>
+      {!accessToken && <Redirect to="/login" />}
+      <div className="navbar-container">
+        <ul className="navbar-item-list">
+          <NavLink to="/">
+            <li className="navbar-item">Home</li>
+          </NavLink>
+          <NavLink to="/add-recipe">
+            <li className="navbar-item">Add Recipe</li>
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: `/user/${user && user._id}`,
+              state: { isIdFromNav: true },
+            }}
+          >
+            <li className="navbar-item">View Profile</li>
+          </NavLink>
+          <SearchBar />
+          <li className="navbar-item" onClick={() => logOut()}>
+            Logout
+          </li>
+        </ul>
+      </div>
+    </>
   );
 };
 
