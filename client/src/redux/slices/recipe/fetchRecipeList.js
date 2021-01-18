@@ -23,7 +23,11 @@ const fetchRecipeListSlice = createSlice({
     hasErrors: false,
     recipes: [],
   },
-  reducers: {},
+  reducers: {
+    resetRecipeListState: (state) => {
+      state.recipes = null;
+    },
+  },
   extraReducers: {
     [fetchRecipeList.pending]: (state) => {
       state.loading = true;
@@ -39,5 +43,7 @@ const fetchRecipeListSlice = createSlice({
     },
   },
 });
+
+export const { resetRecipeListState } = fetchRecipeListSlice.actions;
 
 export default fetchRecipeListSlice.reducer;
