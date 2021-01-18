@@ -29,15 +29,13 @@ const Home = ({ history }) => {
     });
   };
 
-  const accessToken = localStorage.getItem("auth-token");
-
   useEffect(() => {
+    const accessToken = localStorage.getItem("auth-token");
     dispatch(fetchRecipeList(accessToken));
   }, []);
 
   return (
     <>
-      {!accessToken && <Redirect to="/login" />}
       <h1>Home</h1>
       <CategoryCardRow />
       {!loading && (
