@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserById } from "../../redux/slices/user/fetchUserById";
+import {
+  fetchUserById,
+  resetUserState,
+} from "../../redux/slices/user/fetchUserById";
 
 const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
@@ -33,37 +36,44 @@ const Profile = ({ location, history }) => {
     return () => {
       isIdFromNav = null;
       userIdFromRecipe = null;
+      dispatch(resetUserState());
     };
   }, []);
 
   return (
     <>
-      <h1 className="profile-username">{user.username}</h1>
-      <div className="profile-recipes-favorites-toggle-wrapper">
-        <button
-          className="profile-recipes"
-          onClick={() => setToggleStatus(!toggleStatus)}
-        >
-          {user && user.recipes.length + " Recipes"}
-        </button>
-        <button
-          className="profile-favorite-recipes"
-          onClick={() => setToggleStatus(!toggleStatus)}
-        >
-          {user && user.favoriteRecipes.length + " Favorites"}
-        </button>
-      </div>
-      {toggleStatus && (
-        <RecipeCard
-          recipes={user.recipes}
-          handleImageClick={handleImageClick}
-        />
-      )}
-      {!toggleStatus && (
-        <RecipeCard
-          recipes={user.favoriteRecipes}
-          handleImageClick={handleImageClick}
-        />
+      {user && !loading && (
+        <>
+          <h1 className="profile-username">{user.username}</h1>
+          <div className="profile-recipes-favorites-toggle-wrapper">
+            <button
+              className="profile-recipes"
+              onClick={() => setToggleStatus(!toggleStatus)}
+            >
+              {user && user.recipes.length + " Recipes"}
+            </button>
+            <button
+              className="profile-favorite-recipes"
+              onClick={() => setToggleStatus(!toggleStatus)}
+            >
+              {user && user.favoriteRecipes.length + " Favorites"}
+            </button>
+          </div>
+          <>
+            {toggleStatus && (
+              <RecipeCard
+                recipes={user.recipes}
+                handleImageClick={handleImageClick}
+              />
+            )}
+            {!toggleStatus && (
+              <RecipeCard
+                recipes={user.favoriteRecipes}
+                handleImageClick={handleImageClick}
+              />
+            )}
+          </>
+        </>
       )}
     </>
   );
