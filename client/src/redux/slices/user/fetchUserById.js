@@ -21,7 +21,11 @@ const userByIdFetchSlice = createSlice({
     hasErrors: false,
     user: null,
   },
-  reducers: {},
+  reducers: {
+    resetUserState: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: {
     [fetchUserById.pending]: (state) => {
       state.loading = true;
@@ -37,5 +41,7 @@ const userByIdFetchSlice = createSlice({
     },
   },
 });
+
+export const { resetUserState } = userByIdFetchSlice.actions;
 
 export default userByIdFetchSlice.reducer;
