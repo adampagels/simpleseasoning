@@ -96,16 +96,19 @@ const Recipe = ({ location, history }) => {
     }
   };
 
+  const recipeID = location.state
+    ? location.state.recipe
+    : window.location.pathname.slice(8);
+
   const checkIfFavorite = () => {
     currentUser.favoriteRecipes.map(
-      (recipe) =>
-        recipe._id.includes(location.state.recipe) && setFavorite(true)
+      (recipe) => recipe._id.includes(recipeID) && setFavorite(true)
     );
   };
 
   useEffect(() => {
     checkIfFavorite();
-    dispatch(fetchSingleRecipe(location.state.recipe));
+    dispatch(fetchSingleRecipe(recipeID));
 
     return () => {
       dispatch(resetRecipeState());
@@ -118,60 +121,62 @@ const Recipe = ({ location, history }) => {
       {recipe && !loading && recipe.length !== 0 && (
         <div className="recipe-container">
           <div className="recipe-left-div">
-            <h1 className="recipe-title">{recipe.title}</h1>
-            <p
-              className="recipe-creator"
-              onClick={() => handleUserClick(recipe.creator._id)}
-            >
-              By: {recipe.creator.username}
-            </p>
-            <div className="recipe-image-wrapper-small">
-              <div className="heart-icon-wrapper">
-                <HeartIcon
-                  className={
-                    isFavorite
-                      ? "recipe-heart-favorited"
-                      : "recipe-heart-unfavorited"
-                  }
-                  regularIcon={faHeart}
-                  onClick={() =>
-                    !loadingFavoriteRecipe && !isFavorite
-                      ? addFavoriteRecipe()
-                      : removeFavoriteRecipe()
-                  }
+            <div className="recipe-basic-info">
+              <h1 className="recipe-title">{recipe.title}</h1>
+              <p
+                className="recipe-creator"
+                onClick={() => handleUserClick(recipe.creator._id)}
+              >
+                By: {recipe.creator.username}
+              </p>
+              <div className="recipe-image-wrapper-small">
+                <div className="heart-icon-wrapper">
+                  <HeartIcon
+                    className={
+                      isFavorite
+                        ? "recipe-heart-favorited"
+                        : "recipe-heart-unfavorited"
+                    }
+                    regularIcon={faHeart}
+                    onClick={() =>
+                      !loadingFavoriteRecipe && !isFavorite
+                        ? addFavoriteRecipe()
+                        : removeFavoriteRecipe()
+                    }
+                  />
+                </div>
+                <img
+                  className="recipe-image"
+                  alt={recipe.title}
+                  src={recipe.photo}
                 />
               </div>
-              <img
-                className="recipe-image"
-                alt={recipe.title}
-                src={recipe.photo}
-              />
-            </div>
-            <div className="recipe-timing-rating-wrapper">
-              <div className="recipe-preptime-wrapper">
-                <p className="recipe-preptime-header">Prep Time:</p>
-                <p className="recipe-preptime">{recipe.prepTime}</p>
-              </div>
-              <div className="recipe-cooktime-wrapper">
-                <p className="recipe-cooktime-header">Cook Time:</p>
-                <p className="recipe-cooktime">{recipe.cookTime}</p>
-              </div>
-              <div className="recipe-totaltime-wrapper">
-                <p className="recipe-totaltime-header">Total Time:</p>
-                <p className="recipe-totaltime">
-                  {Number(recipe.prepTime) + Number(recipe.cookTime)}
-                </p>
-              </div>
-              <div className="recipe-ratings-wrapper">
-                <p className="recipe-ratings-header">
-                  {recipe.ratings.length} ratings
-                </p>
-                <StarIcon
-                  className={"recipe-star"}
-                  solidIcon={faStar}
-                  regularIcon={farStar}
-                  ratings={recipe.ratings}
-                />
+              <div className="recipe-timing-rating-wrapper">
+                <div className="recipe-preptime-wrapper">
+                  <p className="recipe-preptime-header">Prep Time:</p>
+                  <p className="recipe-preptime">{recipe.prepTime}</p>
+                </div>
+                <div className="recipe-cooktime-wrapper">
+                  <p className="recipe-cooktime-header">Cook Time:</p>
+                  <p className="recipe-cooktime">{recipe.cookTime}</p>
+                </div>
+                <div className="recipe-totaltime-wrapper">
+                  <p className="recipe-totaltime-header">Total Time:</p>
+                  <p className="recipe-totaltime">
+                    {Number(recipe.prepTime) + Number(recipe.cookTime)}
+                  </p>
+                </div>
+                <div className="recipe-ratings-wrapper">
+                  <p className="recipe-ratings-header">
+                    {recipe.ratings.length} ratings
+                  </p>
+                  <StarIcon
+                    className={"recipe-star"}
+                    solidIcon={faStar}
+                    regularIcon={farStar}
+                    ratings={recipe.ratings}
+                  />
+                </div>
               </div>
             </div>
             <p className="recipe-description">{recipe.description}</p>
