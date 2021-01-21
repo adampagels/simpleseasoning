@@ -30,8 +30,15 @@ const Profile = ({ location, history }) => {
 
   const user = isIdFromNav ? currentUser : otherUser;
 
+  const userIdfromURL =
+    !isIdFromNav && !userIdFromRecipe && window.location.pathname.slice(6);
+
   useEffect(() => {
-    !isIdFromNav && dispatch(fetchUserById(userIdFromRecipe));
+    !isIdFromNav &&
+      userIdFromRecipe &&
+      dispatch(fetchUserById(userIdFromRecipe));
+
+    userIdfromURL && dispatch(fetchUserById(userIdfromURL));
 
     return () => {
       isIdFromNav = null;
