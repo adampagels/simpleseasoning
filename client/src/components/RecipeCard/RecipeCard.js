@@ -11,12 +11,14 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
       {recipes &&
         recipes.map((recipes) => (
           <div className="recipecard-wrapper" key={recipes._id}>
-            <img
-              alt={recipes.title}
-              className="recipecard-image"
-              src={recipes.photo ? recipes.photo : imagePlaceholder}
-              onClick={() => handleImageClick(recipes._id)}
-            />
+            <div className="recipecard-image-wrapper">
+              <img
+                alt={recipes.title}
+                className="recipecard-image"
+                src={recipes.photo ? recipes.photo : imagePlaceholder}
+                onClick={() => handleImageClick(recipes._id)}
+              />
+            </div>
             <div class="recipecard-info">
               <h2 class="recipecard-title">{recipes.title}</h2>
               <div class="recipecard-creator-wrapper">
