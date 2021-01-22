@@ -10,13 +10,16 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
     <div className="recipecard-container">
       {recipes &&
         recipes.map((recipes) => (
-          <div className="recipecard-wrapper" key={recipes._id}>
+          <div
+            className="recipecard-wrapper"
+            key={recipes._id}
+            onClick={() => handleImageClick(recipes._id)}
+          >
             <div className="recipecard-image-wrapper">
               <img
                 alt={recipes.title}
                 className="recipecard-image"
                 src={recipes.photo ? recipes.photo : imagePlaceholder}
-                onClick={() => handleImageClick(recipes._id)}
               />
             </div>
             <div class="recipecard-info">
@@ -25,7 +28,7 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
                 <p>By:</p>
                 <h3
                   className="recipecard-creator"
-                  onClick={() => onClick(recipes.creator._id)}
+                  onClick={(event) => onClick(recipes.creator._id, event)}
                 >
                   {recipes.creator.username}
                 </h3>
