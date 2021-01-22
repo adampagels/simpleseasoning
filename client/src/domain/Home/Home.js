@@ -14,7 +14,8 @@ const Home = ({ history }) => {
   );
   const dispatch = useDispatch();
 
-  const handleUserClick = (value) => {
+  const handleUserClick = (value, event) => {
+    event.stopPropagation();
     history.push({
       pathname: `/user/${value}`,
       state: {
