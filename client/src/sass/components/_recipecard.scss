@@ -2,7 +2,7 @@
   width: 300px;
   height: 300px;
   object-fit: cover;
-  border-bottom: 1px solid #7b7b7bab;
+  transition: transform 0.3s;
 }
 
 .recipecard-container {
@@ -15,10 +15,30 @@
 
 .recipecard-wrapper {
   border: 1px solid #7b7b7bab;
+  cursor: pointer;
   margin: 10px 10px;
   max-width: 300px;
   position: relative;
   height: 505px;
+  transition: border 0.3s;
+}
+.recipecard-image-wrapper {
+  border-bottom: 1px solid #7b7b7bab;
+  overflow: hidden;
+  height: 300px;
+  transition: border-bottom 0.3s;
+}
+
+.recipecard-wrapper:hover .recipecard-image {
+  transform: scale(1.05);
+}
+
+.recipecard-wrapper:hover .recipecard-image-wrapper {
+  border-bottom: 1px solid #111;
+}
+
+.recipecard-wrapper:hover {
+  border: 1px solid #111;
 }
 
 .recipecard-ratings-wrapper {
