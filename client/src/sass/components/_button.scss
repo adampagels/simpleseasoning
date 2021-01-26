@@ -2,3 +2,20 @@
   display: flex;
   justify-content: center;
 }
+
+#recipeform-button {
+  cursor: pointer;
+  width: 70vw;
+}
+
+@media only screen and (min-width: 800px) {
+  #recipeform-button {
+    max-width: 250px;
+    width: 40vw;
+  }
+}
+
+#accountform-button {
+  cursor: pointer;
+  width: 100%;
+}
