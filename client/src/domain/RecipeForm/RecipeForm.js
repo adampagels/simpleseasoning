@@ -3,6 +3,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useDispatch } from "react-redux";
 import { addNewRecipe } from "../../redux/slices/recipe/addNewRecipe";
+import Button from "../../components/Button/Button";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -189,9 +190,12 @@ const RecipeForm = () => {
           </div>
         </form>
       </div>
-      <div id="recipeform-button-wrapper">
-        <button onClick={(event) => handleRecipeSubmit(event)}>Submit</button>
-      </div>
+      <Button
+        onClick={(event) => handleRecipeSubmit(event)}
+        text="Submit"
+        wrapperID="recipeform-button-wrapper"
+        buttonID="recipeform-button"
+      />
     </>
   );
 };

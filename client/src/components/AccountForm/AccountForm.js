@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "../../redux/slices/user/authenticateUser";
+import Button from "../Button/Button";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
@@ -85,9 +86,11 @@ const AccountForm = ({ page }) => {
             />
           </>
         </form>
-        <button onClick={(event) => handleClick(event)}>
-          {page === "register" ? "Register" : "Login"}
-        </button>
+        <Button
+          onClick={(event) => handleClick(event)}
+          text={page === "register" ? "Register" : "Login"}
+          buttonID="accountform-button"
+        />
       </div>
     </div>
   );
