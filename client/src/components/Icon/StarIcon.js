@@ -1,9 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const StarIcon = ({ solidIcon, regularIcon, ratings, className }) => {
+const StarIcon = ({ icon, ratings, solidClassName, regularClassName }) => {
   const averageRatings =
-    ratings && ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
+    ratings &&
+    ratings.length > 0 &&
+    ratings.reduce((x, y) => x + y.stars, 0) / ratings.length;
 
   const starIconArray = [];
   for (let i = 0; i < 5; i++) {
@@ -16,20 +18,14 @@ const StarIcon = ({ solidIcon, regularIcon, ratings, className }) => {
 
   const ratingStars = (
     <>
-      {starIconArray.map((star) =>
-        star === "solid"
-          ? solidIcon && (
-              <FontAwesomeIcon
-                className={className}
-                icon={solidIcon && solidIcon}
-              />
-            )
-          : regularIcon && (
-              <FontAwesomeIcon
-                className={className}
-                icon={regularIcon && regularIcon}
-              />
-            )
+      {starIconArray.map(
+        (star) =>
+          icon && (
+            <FontAwesomeIcon
+              className={star === "solid" ? solidClassName : regularClassName}
+              icon={icon}
+            />
+          )
       )}
     </>
   );
