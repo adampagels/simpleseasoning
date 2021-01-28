@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import StarIcon from "../Icon/StarIcon";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const customStyles = {
   content: {
@@ -42,6 +44,7 @@ const RatingModal = () => {
         contentLabel="Rating Modal"
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <StarIcon className={"ratingmodal-star"} icon={faStar} />
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
       </Modal>
