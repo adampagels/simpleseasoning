@@ -1,6 +1,5 @@
 import React from "react";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import StarIcon from "../../components/Icon/StarIcon";
 
 const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
@@ -40,9 +39,9 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
               </p>
               <div className="recipecard-ratings-wrapper">
                 <StarIcon
-                  className={"recipe-star"}
-                  solidIcon={faStar}
-                  regularIcon={farStar}
+                  solidClassName={"recipe-solid-star"}
+                  regularClassName={"recipe-regular-star"}
+                  icon={faStar}
                   ratings={recipes.ratings}
                 />
                 <p className="recipecard-ratings">{`${recipes.ratings.length}`}</p>

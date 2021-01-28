@@ -16,6 +16,7 @@ import {
 } from "../../redux/slices/recipe/fetchSingleRecipe";
 import axios from "axios";
 import { updateUser } from "../../redux/slices/user/authenticateUser";
+import RatingModal from "../../components/RatingModal/RatingModal";
 
 const Recipe = ({ location, history }) => {
   const [loadingFavoriteRecipe, setLoadingFavoriteRecipe] = useState(false);
@@ -171,9 +172,9 @@ const Recipe = ({ location, history }) => {
                     {recipe.ratings.length} ratings
                   </p>
                   <StarIcon
-                    className={"recipe-star"}
-                    solidIcon={faStar}
-                    regularIcon={farStar}
+                    solidClassName={"recipe-solid-star"}
+                    regularClassName={"recipe-regular-star"}
+                    icon={faStar}
                     ratings={recipe.ratings}
                   />
                 </div>
@@ -256,6 +257,7 @@ const Recipe = ({ location, history }) => {
           </div>
         </div>
       )}
+      <RatingModal />
     </>
   );
 };
