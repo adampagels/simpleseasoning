@@ -44,7 +44,9 @@ const RatingModal = () => {
         contentLabel="Rating Modal"
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <StarIcon className={"ratingmodal-star"} icon={faStar} />
+        <div style={{ display: "flex", flexFlow: "row-reverse" }}>
+          <StarIcon regularClassName={"ratingmodal-star"} icon={faStar} />
+        </div>
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
       </Modal>
