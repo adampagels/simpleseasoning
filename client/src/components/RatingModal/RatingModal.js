@@ -22,6 +22,7 @@ Modal.setAppElement("#root");
 const RatingModal = () => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [recipeRating, setRecipeRating] = useState(null);
 
   const openModal = () => {
     setIsOpen(true);
@@ -38,6 +39,7 @@ const RatingModal = () => {
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
+      {console.log(recipeRating)}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -50,6 +52,8 @@ const RatingModal = () => {
           <Rating
             emptySymbol={<FontAwesomeIcon icon={farStar} />}
             fullSymbol={<FontAwesomeIcon icon={faStar} />}
+            initialRating={recipeRating}
+            onClick={(value) => setRecipeRating(value)}
           />
         </div>
         <button onClick={closeModal}>close</button>
