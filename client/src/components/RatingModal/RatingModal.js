@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const customStyles = {
   content: {
@@ -45,7 +47,10 @@ const RatingModal = () => {
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <div style={{ display: "flex", flexFlow: "row-reverse" }}>
-          <Rating />
+          <Rating
+            emptySymbol={<FontAwesomeIcon icon={farStar} />}
+            fullSymbol={<FontAwesomeIcon icon={faStar} />}
+          />
         </div>
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
