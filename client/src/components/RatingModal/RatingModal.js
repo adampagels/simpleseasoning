@@ -4,6 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const customStyles = {
   content: {
@@ -19,7 +20,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const RatingModal = () => {
+const RatingModal = ({ recipeID }) => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [recipeRating, setRecipeRating] = useState(null);
@@ -36,9 +37,30 @@ const RatingModal = () => {
     setIsOpen(false);
   };
 
+  const postRating = async () => {
+    const accessToken = localStorage.getItem("auth-token");
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/rating/${recipeID}`,
+        { stars: recipeRating },
+        {
+          headers: {
+            "auth-token": `${accessToken}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      <button onClick={openModal}>Open Modal</button>
+      <button onClick={openModal} style={{ zIndex: 999 }}>
+        Open Modal
+      </button>
       {console.log(recipeRating)}
       <Modal
         isOpen={modalIsOpen}
@@ -57,6 +79,7 @@ const RatingModal = () => {
           />
         </div>
         <button onClick={closeModal}>close</button>
+        <button onClick={() => postRating()}>Submit</button>
         <div>I am a modal</div>
       </Modal>
     </>
