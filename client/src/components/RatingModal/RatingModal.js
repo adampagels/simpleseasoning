@@ -5,6 +5,8 @@ import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { fetchSingleRecipe } from "../../redux/slices/recipe/fetchSingleRecipe";
+import { useDispatch, useSelector } from "react-redux";
 
 const customStyles = {
   content: {
@@ -24,6 +26,10 @@ const RatingModal = ({ recipeID }) => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [recipeRating, setRecipeRating] = useState(null);
+  const { loading, hasErrors } = useSelector(
+    (state) => state.fetchSingleRecipe
+  );
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setIsOpen(true);
@@ -50,9 +56,9 @@ const RatingModal = ({ recipeID }) => {
           },
         }
       );
-      return response;
-    } catch (err) {
-      console.log(err);
+      dispatch(fetchSingleRecipe(recipeID));
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -61,7 +67,6 @@ const RatingModal = ({ recipeID }) => {
       <button onClick={openModal} style={{ zIndex: 999 }}>
         Open Modal
       </button>
-      {console.log(recipeRating)}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

@@ -255,7 +255,7 @@ const Recipe = ({ location, history }) => {
               ))}
             </div>
           </div>
-          <RatingModal recipeID={recipe._id}/>
+          <RatingModal recipeID={recipe._id} />
         </div>
       )}
     </>
