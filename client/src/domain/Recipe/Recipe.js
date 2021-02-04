@@ -189,6 +189,20 @@ const Recipe = ({ location, history }) => {
                     icon={faStar}
                     ratings={recipe.ratings}
                   />
+                  {recipe.ratings.filter((x) => x.user === currentUser._id)
+                    .length === 0 ? (
+                    <p>Click here to rate this recipe!</p>
+                  ) : (
+                    <p>
+                      You rated this recipe{" "}
+                      {
+                        recipe.ratings.filter(
+                          (x) => x.user === currentUser._id
+                        )[0].stars
+                      }{" "}
+                      stars
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
