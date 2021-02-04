@@ -22,25 +22,16 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const RatingModal = ({ recipeID }) => {
+const RatingModal = ({ recipeID, modalIsOpen, closeModal }) => {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
   const [recipeRating, setRecipeRating] = useState(null);
   const { loading, hasErrors } = useSelector(
     (state) => state.fetchSingleRecipe
   );
   const dispatch = useDispatch();
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
   const afterOpenModal = () => {
     subtitle.style.color = "#f00";
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
   };
 
   const postRating = async () => {
@@ -57,6 +48,7 @@ const RatingModal = ({ recipeID }) => {
         }
       );
       dispatch(fetchSingleRecipe(recipeID));
+      closeModal();
     } catch (error) {
       console.log(error);
     }
@@ -64,9 +56,6 @@ const RatingModal = ({ recipeID }) => {
 
   return (
     <>
-      <button onClick={openModal} style={{ zIndex: 999 }}>
-        Open Modal
-      </button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

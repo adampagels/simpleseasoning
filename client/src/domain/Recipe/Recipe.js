@@ -25,6 +25,7 @@ const Recipe = ({ location, history }) => {
   const { loading, hasErrors, recipe } = useSelector(
     (state) => state.fetchSingleRecipe
   );
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const { user: currentUser } = useSelector((state) => state.authenticateUser);
   const dispatch = useDispatch();
@@ -39,6 +40,14 @@ const Recipe = ({ location, history }) => {
       newCheckmark.push(ingredientIndex);
       setCheckmark(newCheckmark);
     }
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   const handleUserClick = (value) => {
@@ -167,7 +176,10 @@ const Recipe = ({ location, history }) => {
                     {Number(recipe.prepTime) + Number(recipe.cookTime)}
                   </p>
                 </div>
-                <div className="recipe-ratings-wrapper">
+                <div
+                  className="recipe-ratings-wrapper"
+                  onClick={() => openModal()}
+                >
                   <p className="recipe-ratings-header">
                     {recipe.ratings.length} ratings
                   </p>
@@ -255,7 +267,11 @@ const Recipe = ({ location, history }) => {
               ))}
             </div>
           </div>
-          <RatingModal recipeID={recipe._id} />
+          <RatingModal
+            recipeID={recipe._id}
+            modalIsOpen={modalIsOpen}
+            closeModal={() => closeModal()}
+          />
         </div>
       )}
     </>
