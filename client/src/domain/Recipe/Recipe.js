@@ -22,6 +22,7 @@ const Recipe = ({ location, history }) => {
   const [loadingFavoriteRecipe, setLoadingFavoriteRecipe] = useState(false);
   const [checkmark, setCheckmark] = useState([]);
   const [isFavorite, setFavorite] = useState(false);
+  const [isRated, setIsRated] = useState(false);
   const { loading, hasErrors, recipe } = useSelector(
     (state) => state.fetchSingleRecipe
   );
@@ -29,6 +30,8 @@ const Recipe = ({ location, history }) => {
 
   const { user: currentUser } = useSelector((state) => state.authenticateUser);
   const dispatch = useDispatch();
+  const filteredUserRating =
+    recipe && recipe.ratings.filter((x) => x.user === currentUser._id);
 
   const toggleCheckmark = (ingredientIndex) => {
     if (checkmark.includes(ingredientIndex)) {
@@ -116,14 +119,22 @@ const Recipe = ({ location, history }) => {
     );
   };
 
+  const checkIfRated = () => {
+    console.log(filteredUserRating);
+    filteredUserRating && filteredUserRating.length !== 0 && setIsRated(true);
+  };
+
   useEffect(() => {
     checkIfFavorite();
     dispatch(fetchSingleRecipe(recipeID));
-
     return () => {
       dispatch(resetRecipeState());
     };
   }, []);
+
+  useEffect(() => {
+    checkIfRated();
+  }, [recipe]);
 
   return (
     <>
@@ -189,18 +200,12 @@ const Recipe = ({ location, history }) => {
                     icon={faStar}
                     ratings={recipe.ratings}
                   />
-                  {recipe.ratings.filter((x) => x.user === currentUser._id)
-                    .length === 0 ? (
+                  {!isRated ? (
                     <p>Click here to rate this recipe!</p>
                   ) : (
                     <p>
                       You rated this recipe{" "}
-                      {
-                        recipe.ratings.filter(
-                          (x) => x.user === currentUser._id
-                        )[0].stars
-                      }{" "}
-                      stars
+                      {filteredUserRating && filteredUserRating[0].stars} stars
                     </p>
                   )}
                 </div>
