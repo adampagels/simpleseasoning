@@ -189,7 +189,7 @@ const Recipe = ({ location, history }) => {
                 </div>
                 <div
                   className="recipe-ratings-wrapper"
-                  onClick={() => openModal()}
+                  onClick={() => !isRated && openModal()}
                 >
                   <p className="recipe-ratings-header">
                     {recipe.ratings.length} ratings
