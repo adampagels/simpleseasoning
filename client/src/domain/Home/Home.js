@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import CategoryCardRow from "../../components/CategoryCardRow/CategoryCardRow";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchRecipeList,
@@ -45,7 +43,6 @@ const Home = ({ history }) => {
   return (
     <>
       <h1>Home</h1>
-      <CategoryCardRow />
       {!loading && (
         <RecipeCard
           recipes={recipes}
