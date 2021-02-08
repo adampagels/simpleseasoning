@@ -5,6 +5,7 @@ import {
   fetchRecipeList,
   resetRecipeListState,
 } from "../../redux/slices/recipe/fetchRecipeList";
+import Header from "../../components/Header/Header";
 
 const Home = ({ history }) => {
   const { loading, hasErrors, recipes } = useSelector(
@@ -42,7 +43,7 @@ const Home = ({ history }) => {
 
   return (
     <>
-      <h1>Home</h1>
+      <Header headerText={"Recently Added Recipes"} ID={"page-header"} />
       {!loading && (
         <RecipeCard
           recipes={recipes}
