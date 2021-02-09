@@ -46,7 +46,24 @@ const AccountForm = ({ page }) => {
   return (
     <div className="accountform-container">
       {localStorage.getItem("auth-token") && history.push("/")}
-      <div className="accountform-left-block"></div>
+      <div className="accountform-left-block">
+        {page === "login" ? (
+          <>
+            <p className="accountform-greeting-message">Welcome back, chef!</p>
+            <p className="accountform-greeting-message">
+              What new recipes are up your sleeve?
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="accountform-greeting-message">
+              Tired of ads and overly long descriptions?
+            </p>
+            <p className="accountform-greeting-message">Yeah, so are we.</p>
+            <p className="accountform-greeting-message">Let's make recipes simple.</p>
+          </>
+        )}
+      </div>
       <div className="accountform-form-container">
         <AccountFormHeader page={page} />
         <form className="accountform-form">
