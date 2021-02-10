@@ -11,13 +11,34 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
-  max-width: 1300px;
+  max-width: 1340px;
   padding: 15px 0px;
   margin: auto;
 }
 
+.navbar-item-navlink {
+  margin: 10px 20px 10px 20px;
+  font-size: 12px;
+  padding: 10px;
+  text-decoration: none;
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    color: white;
+  }
+}
+
 .navbar-item {
-  margin: 10px;
+  align-self: center;
+}
+
+.navbar-item-logout {
+  align-self: center;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 20px;
+  padding: 10px;
 }
 
 .navbar-item-navlink-container {
