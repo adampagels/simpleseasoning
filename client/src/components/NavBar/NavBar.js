@@ -18,23 +18,30 @@ const NavBar = () => {
       <div className="navbar-container">
         <ul className="navbar-item-list">
           <div className="navbar-item-navlink-container">
-            <NavLink to="/">
-              <li className="navbar-item">Home</li>
-            </NavLink>
-            <NavLink to="/add-recipe">
-              <li className="navbar-item">Add Recipe</li>
-            </NavLink>
-            <NavLink
-              to={{
-                pathname: `/user/${user && user._id}`,
-                state: { isIdFromNav: true },
-              }}
-            >
-              <li className="navbar-item">View Profile</li>
-            </NavLink>
+            <li className="navbar-item">
+              <NavLink to="/" className="navbar-item-navlink">Home </NavLink>
+            </li>
+
+            <li className="navbar-item">
+              {" "}
+              <NavLink to="/add-recipe" className="navbar-item-navlink">Add Recipe</NavLink>
+            </li>
+
+            <li className="navbar-item">
+              {" "}
+              <NavLink
+                to={{
+                  pathname: `/user/${user && user._id}`,
+                  state: { isIdFromNav: true },
+                }}
+                className="navbar-item-navlink"
+              >
+                View Profile
+              </NavLink>
+            </li>
           </div>
           <SearchBar />
-          <li className="navbar-item" onClick={() => logOut()}>
+          <li className="navbar-item-logout" onClick={() => logOut()}>
             Logout
           </li>
         </ul>
