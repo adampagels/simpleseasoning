@@ -17,20 +17,22 @@ const NavBar = () => {
       {!accessToken && <Redirect to="/login" />}
       <div className="navbar-container">
         <ul className="navbar-item-list">
-          <NavLink to="/">
-            <li className="navbar-item">Home</li>
-          </NavLink>
-          <NavLink to="/add-recipe">
-            <li className="navbar-item">Add Recipe</li>
-          </NavLink>
-          <NavLink
-            to={{
-              pathname: `/user/${user && user._id}`,
-              state: { isIdFromNav: true },
-            }}
-          >
-            <li className="navbar-item">View Profile</li>
-          </NavLink>
+          <div className="navbar-item-navlink-container">
+            <NavLink to="/">
+              <li className="navbar-item">Home</li>
+            </NavLink>
+            <NavLink to="/add-recipe">
+              <li className="navbar-item">Add Recipe</li>
+            </NavLink>
+            <NavLink
+              to={{
+                pathname: `/user/${user && user._id}`,
+                state: { isIdFromNav: true },
+              }}
+            >
+              <li className="navbar-item">View Profile</li>
+            </NavLink>
+          </div>
           <SearchBar />
           <li className="navbar-item" onClick={() => logOut()}>
             Logout
