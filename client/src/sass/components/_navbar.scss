@@ -9,9 +9,17 @@
 
 .navbar-item-list {
   display: flex;
+  justify-content: space-between;
   list-style: none;
+  max-width: 1300px;
+  padding: 15px 0px;
+  margin: auto;
 }
 
 .navbar-item {
   margin: 10px;
+}
+
+.navbar-item-navlink-container {
+  display: flex;
 }
