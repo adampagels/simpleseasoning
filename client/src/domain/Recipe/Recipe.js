@@ -239,7 +239,7 @@ const Recipe = ({ location, history }) => {
               ))}
             </div>
           </div>
-          <div class="recipe-instructions-wrapper">
+          <div className="recipe-instructions-wrapper">
             <h2 className="recipe-instructions-header">Instructions: </h2>
             {recipe.instructions.map((instruction, index) => (
               <p className="recipe-instructions" key={index}>
