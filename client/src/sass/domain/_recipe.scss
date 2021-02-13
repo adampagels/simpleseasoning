@@ -7,6 +7,8 @@
 
 .recipe-instructions-wrapper {
   justify-self: center;
+  width: 90vw;
+  max-width: 400px;
 }
 
 .recipe-background {
@@ -26,7 +28,7 @@
 
 .recipe-title {
   color: #fefefe;
-  font-size: calc(min(7vw, 70px));
+  font-size: calc(max(40px, 10vw));
   margin-bottom: 0px;
   margin-top: 0px;
 }
@@ -66,10 +68,12 @@
 
 .recipe-instructions-header {
   font-size: 25px;
+  padding: 25px 25px 0px;
 }
 
 .recipe-instructions {
   font-size: 14px;
+  padding-left: 25px;
 }
 
 .recipe-diet {
@@ -88,11 +92,11 @@
 
 .recipe-right-div {
   z-index: 9;
-  width: 400px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-self: center;
+  width: 90vw;
 }
 
 .recipe-timing-rating-wrapper {
@@ -124,8 +128,8 @@
 
 .recipe-image-wrapper-big {
   align-self: center;
-  width: 400px;
-  height: 400px;
+  width: 90vw;
+  height: 90vw;
   position: relative;
 }
 
@@ -144,6 +148,18 @@
   position: absolute;
   right: 10px;
   width: 70px;
+}
+
+@media only screen and (min-width: 450px) {
+  .recipe-image-wrapper-big {
+    width: 400px;
+    height: 400px;
+    max-width: 400px;
+    max-height: 400px;
+  }
+  .recipe-right-div {
+    width: 400px;
+  }
 }
 
 @media only screen and (min-width: 800px) {
@@ -165,13 +181,16 @@
     justify-content: center;
   }
   .recipe-image-wrapper-big {
-    max-width: 400px;
-    max-height: 400px;
     width: 30vw;
     height: 30vw;
   }
   .recipe-instructions-wrapper {
     justify-self: left;
     margin-left: 20px;
+    width: auto;
+    padding: 0px;
+  }
+  .recipe-title {
+    font-size: calc(min(7vw, 70px));
   }
 }
