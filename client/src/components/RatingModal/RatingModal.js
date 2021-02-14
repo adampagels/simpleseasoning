@@ -24,17 +24,9 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const RatingModal = ({ recipeID, modalIsOpen, closeModal }) => {
-  let subtitle;
+const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
   const [recipeRating, setRecipeRating] = useState(null);
-  const { loading, hasErrors } = useSelector(
-    (state) => state.fetchSingleRecipe
-  );
   const dispatch = useDispatch();
-
-  const afterOpenModal = () => {
-    subtitle.style.color = "#f00";
-  };
 
   const postRating = async () => {
     const accessToken = localStorage.getItem("auth-token");
@@ -60,12 +52,19 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal }) => {
     <>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Rating Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <h2
+          style={{
+            fontSize: "calc(min(12vw, 65px))",
+            margin: "30px 0px",
+            textAlign: "center",
+          }}
+        >
+          {recipeTitle}
+        </h2>
         <div
           style={{
             display: "flex",
@@ -78,7 +77,7 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal }) => {
             fullSymbol={<FontAwesomeIcon icon={faStar} />}
             initialRating={recipeRating}
             onClick={(value) => setRecipeRating(value)}
-            style={{ color: "#d54217", fontSize: "calc(min(8vw, 85px))" }}
+            style={{ color: "#d54217", fontSize: "calc(min(8vw, 50px))" }}
           />
         </div>
         <button onClick={closeModal}>close</button>
