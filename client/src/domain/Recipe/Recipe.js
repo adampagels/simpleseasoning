@@ -251,6 +251,7 @@ const Recipe = ({ location, history }) => {
             recipeID={recipe._id}
             modalIsOpen={modalIsOpen}
             closeModal={() => closeModal()}
+            recipeTitle={recipe.title}
           />
         </div>
       )}
