@@ -15,7 +15,9 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    maxWidth: "500px",
     transform: "translate(-50%, -50%)",
+    width: "50%",
   },
   overlay: { zIndex: 1000 },
 };
@@ -64,12 +66,19 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal }) => {
         contentLabel="Rating Modal"
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <div style={{ display: "flex", flexFlow: "row-reverse" }}>
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row-reverse",
+            justifyContent: "center",
+          }}
+        >
           <Rating
             emptySymbol={<FontAwesomeIcon icon={farStar} />}
             fullSymbol={<FontAwesomeIcon icon={faStar} />}
             initialRating={recipeRating}
             onClick={(value) => setRecipeRating(value)}
+            style={{ color: "#d54217", fontSize: "calc(min(8vw, 85px))" }}
           />
         </div>
         <button onClick={closeModal}>close</button>
