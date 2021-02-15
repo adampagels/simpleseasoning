@@ -105,7 +105,7 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
         />
         <p class="ratingmodal-rating-description">{ratingDescription}</p>
         <Button
-          onClick={() => postRating()}
+          onClick={() => recipeRating && postRating()}
           text={"Submit"}
           buttonID={"ratingmodal-button"}
           wrapperID={"ratingmodal-button-wrapper"}
