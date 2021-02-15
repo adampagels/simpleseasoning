@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { fetchSingleRecipe } from "../../redux/slices/recipe/fetchSingleRecipe";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const customStyles = {
   content: {
@@ -80,9 +80,12 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
             style={{ color: "#d54217", fontSize: "calc(min(8vw, 50px))" }}
           />
         </div>
-        <button onClick={closeModal}>close</button>
+        <FontAwesomeIcon
+          icon={faTimes}
+          onClick={closeModal}
+          className="ratingmodal-close-icon"
+        />
         <button onClick={() => postRating()}>Submit</button>
-        <div>I am a modal</div>
       </Modal>
     </>
   );
