@@ -1,4 +1,5 @@
-#recipeform-button-wrapper {
+#recipeform-button-wrapper,
+#ratingmodal-button-wrapper {
   display: flex;
   justify-content: center;
 }
@@ -18,4 +19,10 @@
 #accountform-button {
   cursor: pointer;
   width: 100%;
+}
+
+#ratingmodal-button {
+  cursor: pointer;
+  font-size: calc(min(4vw, 14px));
+  width: calc(min(26vw, 150px));
 }

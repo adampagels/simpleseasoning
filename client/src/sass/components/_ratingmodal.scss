@@ -3,7 +3,6 @@
   position: absolute;
   top: 15px;
   font-size: calc(min(5vw, 30px));
-  transition: all 0.5s;
 
   &:hover {
     color: black;
@@ -22,4 +21,9 @@
   100% {
     transform: scale(1);
   }
+}
+
+.ratingmodal-rating-description {
+  font-size: calc(min(5vw, 18px));
+  text-align: center;
 }
