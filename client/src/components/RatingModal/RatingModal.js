@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
@@ -26,6 +26,7 @@ Modal.setAppElement("#root");
 
 const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
   const [recipeRating, setRecipeRating] = useState(null);
+  const [ratingDescription, setRatingDescription] = useState(null);
   const dispatch = useDispatch();
 
   const postRating = async () => {
@@ -47,6 +48,22 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (recipeRating === 5) {
+      setRatingDescription("It was amazing!");
+    } else if (recipeRating === 4) {
+      setRatingDescription("It was very good.");
+    } else if (recipeRating === 3) {
+      setRatingDescription("It was just okay.");
+    } else if (recipeRating === 2) {
+      setRatingDescription("It was medicore.");
+    } else if (recipeRating === 1) {
+      setRatingDescription("It was inedible.");
+    } else {
+      setRatingDescription(null);
+    }
+  }, [recipeRating]);
 
   return (
     <>
@@ -85,6 +102,7 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
           onClick={closeModal}
           className="ratingmodal-close-icon"
         />
+        <p class="ratingmodal-rating-description">{ratingDescription}</p>
         <button onClick={() => postRating()}>Submit</button>
       </Modal>
     </>
