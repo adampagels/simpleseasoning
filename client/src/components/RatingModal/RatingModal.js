@@ -109,6 +109,7 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
           text={"Submit"}
           buttonID={"ratingmodal-button"}
           wrapperID={"ratingmodal-button-wrapper"}
+          disabled={!recipeRating ? true : false}
         />
       </Modal>
     </>
