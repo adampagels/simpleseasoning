@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { fetchSingleRecipe } from "../../redux/slices/recipe/fetchSingleRecipe";
 import { useDispatch } from "react-redux";
+import Button from "../../components/Button/Button";
 
 const customStyles = {
   content: {
@@ -103,7 +104,12 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
           className="ratingmodal-close-icon"
         />
         <p class="ratingmodal-rating-description">{ratingDescription}</p>
-        <button onClick={() => postRating()}>Submit</button>
+        <Button
+          onClick={() => postRating()}
+          text={"Submit"}
+          buttonID={"ratingmodal-button"}
+          wrapperID={"ratingmodal-button-wrapper"}
+        />
       </Modal>
     </>
   );
