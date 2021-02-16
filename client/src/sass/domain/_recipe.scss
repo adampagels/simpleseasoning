@@ -103,7 +103,7 @@
   display: flex;
   justify-content: space-between;
   max-width: 700px;
-  width: 65vw;
+  width: 90vw;
 }
 
 .recipe-icon-ingredient-wrapper {
@@ -150,6 +150,10 @@
   width: 70px;
 }
 
+.recipe-basic-info {
+  text-align: center;
+}
+
 @media only screen and (min-width: 450px) {
   .recipe-image-wrapper-big {
     width: 400px;
@@ -192,5 +196,12 @@
   }
   .recipe-title {
     font-size: calc(min(7vw, 70px));
+  }
+
+  .recipe-timing-rating-wrapper {
+    width: 65vw;
+  }
+  .recipe-basic-info {
+    text-align: left;
   }
 }
