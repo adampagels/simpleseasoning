@@ -1,7 +1,7 @@
 .recipe-container {
   display: grid;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 130px;
   max-width: 1300px;
 }
 
@@ -175,6 +175,12 @@
 
 .recipe-rating-message {
   color: white;
+  font-size: 11px;
+}
+
+.recipe-ratings-wrapper {
+  cursor: pointer;
+  text-align: center;
 }
 
 @media only screen and (min-width: 450px) {
