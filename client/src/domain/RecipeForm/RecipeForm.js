@@ -79,7 +79,7 @@ const RecipeForm = () => {
             instructions: instructionArray,
             cookTime: values.cookTime,
             prepTime: values.prepTime,
-            diet: dietArray,
+            dietArray: dietArray,
           })
         );
       }
