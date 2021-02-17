@@ -74,7 +74,32 @@ router.post(
 router.get("/:userID", verify, async (req, res) => {
   User.findOne({ _id: req.params.userID })
     .select("username recipes favoriteRecipes")
-    .populate("recipes favoriteRecipes")
+    .populate({
+      path: "recipes",
+      populate: [
+        {
+          path: "creator",
+          select: { username: 1 },
+        },
+        {
+          path: "ratings",
+          select: { stars: 1, user: 1 },
+        },
+      ],
+    })
+    .populate({
+      path: "favoriteRecipes",
+      populate: [
+        {
+          path: "creator",
+          select: { username: 1 },
+        },
+        {
+          path: "ratings",
+          select: { stars: 1, user: 1 },
+        },
+      ],
+    })
     .then((user) => {
       res.status(201).json(user);
     })
