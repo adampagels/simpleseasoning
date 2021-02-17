@@ -190,11 +190,13 @@ const Recipe = ({ location, history }) => {
               </div>
             </div>
             <p className="recipe-description">{recipe.description}</p>
-            {recipe.diet.map((diet, index) => (
-              <p className="recipe-diet" key={index}>
-                {diet}
-              </p>
-            ))}
+            <ul className="recipe-diet-wrapper">
+              {recipe.diet.map((diet, index) => (
+                <li className="recipe-diet" key={index}>
+                  {diet}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="recipe-right-div">
             <div className="recipe-image-wrapper-big">
