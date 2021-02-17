@@ -24,13 +24,18 @@ const RecipeCard = ({ recipes, onClick, handleImageClick }) => {
             <div class="recipecard-info">
               <h2 class="recipecard-title">{recipes.title}</h2>
               <div class="recipecard-creator-wrapper">
-                <p>By:</p>
-                <h3
-                  className="recipecard-creator"
-                  onClick={(event) => onClick(recipes.creator._id, event)}
-                >
-                  {recipes.creator.username}
-                </h3>
+                {/* If there is no onClick prop, don't show creator */}
+                {onClick && (
+                  <>
+                    <p>By:</p>
+                    <h3
+                      className="recipecard-creator"
+                      onClick={(event) => onClick(recipes.creator._id, event)}
+                    >
+                      {recipes.creator.username}
+                    </h3>
+                  </>
+                )}
               </div>
               <p class="recipecard-description">
                 {recipes.description
