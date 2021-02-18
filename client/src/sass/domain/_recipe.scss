@@ -161,6 +161,7 @@
   padding-left: 0px;
   list-style: none;
   margin-top: 20px;
+  margin-bottom: 38px;
 }
 
 .recipe-diet {
@@ -202,6 +203,7 @@
     margin-left: 10px;
     justify-self: flex-end;
     width: 30vw;
+    grid-row-end: span 2;
   }
   .recipe-left-div {
     align-items: normal;
@@ -210,7 +212,6 @@
     justify-self: left;
   }
   .recipe-container {
-    grid-auto-rows: 400px;
     justify-content: center;
   }
   .recipe-image-wrapper-big {
@@ -221,7 +222,9 @@
     justify-self: left;
     width: auto;
     padding: 0px;
+    margin-top: -50px;
   }
+
   .recipe-title {
     font-size: calc(min(7vw, 70px));
   }
