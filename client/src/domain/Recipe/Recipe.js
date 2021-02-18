@@ -152,15 +152,15 @@ const Recipe = ({ location, history }) => {
               </p>
               <div className="recipe-timing-rating-wrapper">
                 <div className="recipe-preptime-wrapper">
-                  <p className="recipe-preptime-header">Prep Time:</p>
+                  <p className="recipe-preptime-header">Prep Time (Mins):</p>
                   <p className="recipe-preptime">{recipe.prepTime}</p>
                 </div>
                 <div className="recipe-cooktime-wrapper">
-                  <p className="recipe-cooktime-header">Cook Time:</p>
+                  <p className="recipe-cooktime-header">Cook Time (Mins):</p>
                   <p className="recipe-cooktime">{recipe.cookTime}</p>
                 </div>
                 <div className="recipe-totaltime-wrapper">
-                  <p className="recipe-totaltime-header">Total Time:</p>
+                  <p className="recipe-totaltime-header">Total Time (Mins):</p>
                   <p className="recipe-totaltime">
                     {Number(recipe.prepTime) + Number(recipe.cookTime)}
                   </p>
@@ -179,9 +179,11 @@ const Recipe = ({ location, history }) => {
                     ratings={recipe.ratings}
                   />
                   {!isRated ? (
-                    <p>Click here to rate this recipe!</p>
+                    <p className="recipe-rating-message">
+                      Click here to rate this recipe!
+                    </p>
                   ) : (
-                    <p>
+                    <p className="recipe-rating-message">
                       You rated this recipe{" "}
                       {filteredUserRating && filteredUserRating[0].stars} stars
                     </p>
@@ -189,7 +191,11 @@ const Recipe = ({ location, history }) => {
                 </div>
               </div>
             </div>
-            <p className="recipe-description">{recipe.description}</p>
+            <p className="recipe-description">
+              {recipe.description
+                ? recipe.description
+                : "No description has been added for this recipe."}
+            </p>
             <ul className="recipe-diet-wrapper">
               {recipe.diet.map((diet, index) => (
                 <li className="recipe-diet" key={index}>
