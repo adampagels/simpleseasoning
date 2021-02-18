@@ -6,6 +6,7 @@ import {
   fetchUserById,
   resetUserState,
 } from "../../redux/slices/user/fetchUserById";
+import Header from "../../components/Header/Header";
 
 const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
@@ -51,7 +52,7 @@ const Profile = ({ location, history }) => {
     <>
       {user && !loading && (
         <>
-          <h1 className="profile-username">{user.username}</h1>
+          <Header headerText={`Chef ${user.username}`} />
           <div className="profile-recipes-favorites-toggle-wrapper">
             <button
               className="profile-recipes"
