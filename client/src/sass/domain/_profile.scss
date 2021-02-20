@@ -8,11 +8,59 @@
   justify-content: space-around;
   margin: auto;
   max-width: 700px;
+  height: 100px;
 }
 
 .profile-recipes,
 .profile-favorite-recipes {
   border: 1px solid;
+  cursor: pointer;
   font-size: 30px;
   padding: 10px;
+
+  &:hover + svg path {
+    animation: draw 1s forwards;
+  }
+}
+
+.profile-button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-button-wrapper .profile-recipes,
+.profile-favorite-recipes {
+  cursor: pointer;
+  padding: 30px 16px;
+  border: none;
+  background: none;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-button-wrapper svg {
+  position: absolute;
+  top: -3px;
+  left: -11px;
+  width: 110%;
+  height: 65%;
+  pointer-events: none;
+}
+
+.profile-button-wrapper path {
+  stroke: #db3157;
+  stroke-width: 8px;
+  stroke-dasharray: 0 1500;
+}
+
+@keyframes draw {
+  from {
+    stroke-dasharray: 0 1500;
+  }
+
+  to {
+    stroke-dasharray: 1500 1500;
+  }
 }
