@@ -11,6 +11,13 @@
   height: 100px;
 }
 
+.profile-recipes-active {
+  border: 1px solid;
+  cursor: pointer;
+  font-size: 30px;
+  padding: 10px;
+}
+
 .profile-recipes,
 .profile-favorite-recipes {
   border: 1px solid;
@@ -29,7 +36,8 @@
 }
 
 .profile-button-wrapper .profile-recipes,
-.profile-favorite-recipes {
+.profile-favorite-recipes,
+.profile-recipes-active {
   cursor: pointer;
   padding: 30px 16px;
   border: none;
@@ -38,6 +46,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.profile-recipes {
+  opacity: 0.5;
 }
 
 .profile-button-wrapper svg {
@@ -53,6 +65,11 @@
   stroke: #db3157;
   stroke-width: 8px;
   stroke-dasharray: 0 1500;
+}
+
+.profile-recipes-active + svg path {
+  background-color: red;
+  stroke-dasharray: 1500 1500;
 }
 
 @keyframes draw {
