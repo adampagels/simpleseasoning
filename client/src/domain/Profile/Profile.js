@@ -65,7 +65,9 @@ const Profile = ({ location, history }) => {
           <div className="profile-recipes-favorites-toggle-wrapper">
             <div className="profile-button-wrapper">
               <button
-                className="profile-recipes"
+                className={
+                  toggleStatus ? "profile-recipes-active" : "profile-recipes"
+                }
                 onClick={() => !toggleStatus && setToggleStatus(!toggleStatus)}
               >
                 {user && user.recipes.length + " Recipes"}
@@ -74,7 +76,9 @@ const Profile = ({ location, history }) => {
             </div>
             <div className="profile-button-wrapper">
               <button
-                className="profile-favorite-recipes"
+                className={
+                  !toggleStatus ? "profile-recipes-active" : "profile-recipes"
+                }
                 onClick={() => toggleStatus && setToggleStatus(!toggleStatus)}
               >
                 {user && user.favoriteRecipes.length + " Favorites"}
