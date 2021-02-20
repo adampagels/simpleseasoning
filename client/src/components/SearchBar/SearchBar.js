@@ -19,6 +19,7 @@ const SearchBar = ({ history }) => {
           pathname: `/search/${searchValue}`,
           state: {
             searchResults: response.data,
+            inputValue: inputValue,
           },
         });
       })
@@ -34,6 +35,7 @@ const SearchBar = ({ history }) => {
         placeholder="Find recipes"
         className="searchbar-input"
         value={inputValue}
+        id="searchbar-input"
         onChange={(event) => setInputValue(event.target.value)}
       ></input>
       <button
