@@ -182,6 +182,7 @@ router.post("/register", async (req, res) => {
   });
   try {
     const savedUser = await newUser.save();
+    savedUser.password = null;
     const token = jwt.sign({ _id: savedUser._id }, secret);
     res.header("auth-token", token).json({ token: token, user: savedUser });
   } catch (err) {
@@ -228,6 +229,8 @@ router.post("/login", async (req, res) => {
     req.body.password,
     registeredUser.password
   );
+
+  registeredUser.password = null;
 
   if (!validPassword) return res.status(400).send("password is wrong");
 
