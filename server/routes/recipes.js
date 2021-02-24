@@ -5,6 +5,7 @@ const User = require("../models/User");
 const verify = require("./verifyToken");
 const upload = require("../services/ImageUpload");
 const singleUpload = upload.single("image");
+const { addRecipeValidation } = require("../validation");
 
 // Add recipe
 router.post("/", verify, async (req, res) => {
@@ -30,6 +31,9 @@ router.post("/", verify, async (req, res) => {
     diet: diet,
     creator: req.user,
   });
+
+  const { error } = addRecipeValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
   try {
     const savedRecipe = await recipe.save();
   } catch (err) {
