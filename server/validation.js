@@ -15,15 +15,21 @@ const registerValidation = (data) => {
       "string.min": "Email must be at least 6 characters",
       "string.empty": "An email is required!",
     }),
-  });
+  }).options({ abortEarly: false });
   return schema.validate(data);
 };
 
 const loginValidation = (data) => {
   const schema = Joi.object({
-    email: Joi.string().min(6).required().email(),
-    password: Joi.string().min(6).required(),
-  });
+    email: Joi.string().min(6).required().email().messages({
+      "string.min": "Email must be at least 6 characters",
+      "string.empty": "An email is required!",
+    }),
+    password: Joi.string().min(6).required().messages({
+      "string.min": "Password must be at least 6 characters.",
+      "string.empty": "A password is required!",
+    }),
+  }).options({ abortEarly: false });
   return schema.validate(data);
 };
 
