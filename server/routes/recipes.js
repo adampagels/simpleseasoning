@@ -33,7 +33,7 @@ router.post("/", verify, async (req, res) => {
   });
 
   const { error } = addRecipeValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send(error.details.map((x) => x.message));
   try {
     const savedRecipe = await recipe.save();
   } catch (err) {
