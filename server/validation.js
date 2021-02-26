@@ -2,9 +2,19 @@ const Joi = require("@hapi/joi");
 
 const registerValidation = (data) => {
   const schema = Joi.object({
-    username: Joi.string().min(4).required(),
-    password: Joi.string().min(6).required(),
-    email: Joi.string().min(6).required().email(),
+    username: Joi.string().min(4).max(15).required().messages({
+      "string.min": "Username must be between 4 and 30 characters.",
+      "string.max": "Username must be between 4 and 30 characters.",
+      "string.empty": "A username is required!",
+    }),
+    password: Joi.string().min(6).required().messages({
+      "string.min": "Password must be at least 6 characters.",
+      "string.empty": "A password is required!",
+    }),
+    email: Joi.string().min(6).required().email().messages({
+      "string.min": "Email must be at least 6 characters",
+      "string.empty": "An email is required!",
+    }),
   });
   return schema.validate(data);
 };
@@ -31,14 +41,14 @@ const addRecipeValidation = (data) => {
     }),
     photo: Joi.string().optional(),
     ingredients: Joi.array().min(1).max(30).required().messages({
-      "array.min": "Must have between 1 and 30 instructions",
-      "array.max": "Must have between 1 and 30 instructions",
-      "array.empty": "Please add some instructions!",
+      "array.min": "Must have between 1 and 30 ingredients.",
+      "array.max": "Must have between 1 and 30 ingredients.",
+      "array.empty": "Please add some ingredients!",
     }),
     instructions: Joi.array().min(1).max(30).required().messages({
-      "array.min": "Must have between 1 and 30 ingredients",
-      "array.max": "Must have between 1 and 30 ingredients",
-      "array.empty": "Please add some ingredients!",
+      "array.min": "Must have between 1 and 30 instructions.",
+      "array.max": "Must have between 1 and 30 instructions.",
+      "array.empty": "Please add some instructions!",
     }),
     cookTime: Joi.number().max(3).required().messages({
       "number.max": "Cook time cannnot be longer than 3 numbers",
