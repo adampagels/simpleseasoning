@@ -193,7 +193,7 @@ router.post("/register", async (req, res) => {
 // Login User
 router.post("/login", async (req, res) => {
   const { error } = loginValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send(error.details.map((x) => x.message));
 
   // Check if email exists
   const registeredUser = await User.findOne({ email: req.body.email })
