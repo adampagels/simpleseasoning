@@ -19,15 +19,37 @@ const loginValidation = (data) => {
 
 const addRecipeValidation = (data) => {
   const schema = Joi.object({
-    title: Joi.string().max(20).required(),
-    description: Joi.string().max(200).optional(),
+    title: Joi.string().min(4).max(20).required().messages({
+      "string.min": "Title must be between 4 and 30 characters.",
+      "string.max": "Title must be between 4 and 30 characters.",
+      "string.empty": "Don't forget a title!",
+    }),
+    description: Joi.string().min(10).max(200).required().messages({
+      "string.min": "Description must be between 10 and 30 characters.",
+      "string.max": "Description must be between 10 and 30 characters.",
+      "string.empty": "Please add a quick description!",
+    }),
     photo: Joi.string().optional(),
-    ingredients: Joi.array().max(30).optional(),
-    instructions: Joi.array().max(30).optional(),
-    cookTime: Joi.number().max(3).optional(),
-    prepTime: Joi.number().max(3).optional(),
+    ingredients: Joi.array().min(1).max(30).required().messages({
+      "array.min": "Must have between 1 and 30 instructions",
+      "array.max": "Must have between 1 and 30 instructions",
+      "array.empty": "Please add some instructions!",
+    }),
+    instructions: Joi.array().min(1).max(30).required().messages({
+      "array.min": "Must have between 1 and 30 ingredients",
+      "array.max": "Must have between 1 and 30 ingredients",
+      "array.empty": "Please add some ingredients!",
+    }),
+    cookTime: Joi.number().max(3).required().messages({
+      "number.max": "Cook time cannnot be longer than 3 numbers",
+      "number.empty": "Please add a cook time!",
+    }),
+    prepTime: Joi.number().max(3).required().messages({
+      "number.max": "Prep time cannnot be longer than 3 numbers",
+      "number.empty": "Please add a prep time!",
+    }),
     diet: Joi.array().max(20).optional(),
-  });
+  }).options({ abortEarly: false });
   return schema.validate(data);
 };
 
