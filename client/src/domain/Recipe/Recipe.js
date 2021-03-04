@@ -170,7 +170,10 @@ const Recipe = ({ location, history }) => {
                   onClick={() => !isRated && openModal()}
                 >
                   <p className="recipe-ratings-header">
-                    {recipe.ratings.length} ratings
+                    {recipe.ratings.length}{" "}
+                    {recipe.ratings.length > 1 || recipe.ratings.length === 0
+                      ? "ratings"
+                      : "rating"}
                   </p>
                   <StarIcon
                     solidClassName={"recipe-solid-star"}
