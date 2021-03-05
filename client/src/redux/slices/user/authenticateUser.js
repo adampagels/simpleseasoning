@@ -1,6 +1,44 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const userAuthenticationSlice = createSlice({
+  name: "userAuthentication",
+  initialState: {
+    loading: false,
+    hasErrors: false,
+    errorMessage: null,
+    user: null,
+  },
+  reducers: {
+    updateUser: (state, { payload }) => {
+      state.user = payload;
+    },
+    verifyUser: (state) => {
+      state.loading = true;
+      state.hasErrors = false;
+    },
+    verifyUserSuccess: (state, { payload }) => {
+      state.user = payload;
+      localStorage.setItem("auth-token", payload.token);
+    },
+    verifyUserFailure: (state, { payload }) => {
+      state.loading = false;
+      state.hasErrors = true;
+      state.errorMessage = payload;
+    },
+  },
+  extraReducers: {},
+});
+
+export const {
+  updateUser,
+  verifyUser,
+  verifyUserFailure,
+  verifyUserSuccess,
+} = userAuthenticationSlice.actions;
+
+export default userAuthenticationSlice.reducer;
+
 export const authenticateUser = createAsyncThunk(
   "userAuthentication/authenticateUserStatus",
   async (form, thunkAPI) => {
@@ -13,43 +51,15 @@ export const authenticateUser = createAsyncThunk(
       password: form.password,
       username: form.username,
     };
-    const response = await axios.post(
-      `http://localhost:5000/users/${authEndpoint}`,
-      authEndpoint === "register" ? userRegisterForm : userLoginForm
-    );
-    return response.data;
+    thunkAPI.dispatch(verifyUser());
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/users/${authEndpoint}`,
+        authEndpoint === "register" ? userRegisterForm : userLoginForm
+      );
+      thunkAPI.dispatch(verifyUserSuccess(response.data));
+    } catch (error) {
+      thunkAPI.dispatch(verifyUserFailure(error.response.data));
+    }
   }
 );
-
-const userAuthenticationSlice = createSlice({
-  name: "userAuthentication",
-  initialState: {
-    loading: false,
-    hasErrors: false,
-    user: null,
-  },
-  reducers: {
-    updateUser: (state, { payload }) => {
-      state.user = payload;
-    },
-  },
-  extraReducers: {
-    [authenticateUser.pending]: (state) => {
-      state.loading = true;
-    },
-    [authenticateUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
-      state.loading = false;
-      state.hasErrors = false;
-      localStorage.setItem("auth-token", payload.token);
-    },
-    [authenticateUser.rejected]: (state) => {
-      state.loading = false;
-      state.hasErrors = true;
-    },
-  },
-});
-
-export const { updateUser } = userAuthenticationSlice.actions;
-
-export default userAuthenticationSlice.reducer;
