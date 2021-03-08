@@ -6,12 +6,15 @@ const userAuthenticationSlice = createSlice({
   initialState: {
     loading: false,
     hasErrors: false,
-    errorMessage: null,
+    errorMessage: [],
     user: null,
   },
   reducers: {
     updateUser: (state, { payload }) => {
       state.user = payload;
+    },
+    removeErrorMessage: (state) => {
+      state.errorMessage = [];
     },
     verifyUser: (state) => {
       state.loading = true;
@@ -32,6 +35,7 @@ const userAuthenticationSlice = createSlice({
 
 export const {
   updateUser,
+  removeErrorMessage,
   verifyUser,
   verifyUserFailure,
   verifyUserSuccess,
@@ -43,7 +47,7 @@ export const authenticateUser = createAsyncThunk(
   "userAuthentication/authenticateUserStatus",
   async (form, thunkAPI) => {
     // If form contains username, then it is for registration
-    const authEndpoint = form.username ? "register" : "login";
+    const authEndpoint = form.page === "register" ? "register" : "login";
 
     const userLoginForm = { email: form.email, password: form.password };
     const userRegisterForm = {
