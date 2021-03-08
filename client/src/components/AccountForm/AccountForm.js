@@ -3,17 +3,22 @@ import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { authenticateUser } from "../../redux/slices/user/authenticateUser";
+import {
+  authenticateUser,
+  removeErrorMessage,
+} from "../../redux/slices/user/authenticateUser";
 import Button from "../Button/Button";
 
 const AccountForm = ({ page }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formErrors, setFormErrors] = useState({});
   const history = useHistory();
-  const { loading, hasErrors, user } = useSelector(
+  const { loading, hasErrors, user, errorMessage } = useSelector(
     (state) => state.authenticateUser
   );
+
   const dispatch = useDispatch();
 
   const handleUsernameChange = (e) => {
@@ -30,12 +35,14 @@ const AccountForm = ({ page }) => {
 
   const handleLogin = () => {
     dispatch(authenticateUser({ email: email, password: password }));
+    dispatch(removeErrorMessage());
   };
 
   const handleRegister = () => {
     dispatch(
       authenticateUser({ email: email, password: password, username: username })
     );
+    dispatch(removeErrorMessage());
   };
 
   const handleClick = (event) => {
@@ -49,7 +56,7 @@ const AccountForm = ({ page }) => {
       <div className="accountform-left-block">
         {page === "login" ? (
           <>
-            <p className="accountform-greeting-message">Welcome back, chef!</p>
+            <p className="accountform-greeting-message">Welcome back, Chef!</p>
             <p className="accountform-greeting-message">
               What new recipes are up your sleeve?
             </p>
@@ -57,10 +64,12 @@ const AccountForm = ({ page }) => {
         ) : (
           <>
             <p className="accountform-greeting-message">
-              Tired of ads and overly long descriptions?
+              Tired of ads and lengthy descriptions?
             </p>
             <p className="accountform-greeting-message">Yeah, so are we.</p>
-            <p className="accountform-greeting-message">Let's make recipes simple.</p>
+            <p className="accountform-greeting-message">
+              Let's make recipes simple.
+            </p>
           </>
         )}
       </div>
@@ -78,8 +87,14 @@ const AccountForm = ({ page }) => {
               placeholder="Email"
             />
           </>
+          <p>
+            {errorMessage.length > 0 &&
+              errorMessage.filter((x) => x.toLowerCase().includes("email"))}
+          </p>
+
           {page === "register" && (
             <>
+              {errorMessage.length > 0 && console.log(errorMessage)}
               <label className="accountform-label">Username:</label>
               <input
                 type="text"
@@ -89,6 +104,12 @@ const AccountForm = ({ page }) => {
                 value={username}
                 placeholder="Username"
               />
+              <p>
+                {errorMessage.length > 0 &&
+                  errorMessage.filter((x) =>
+                    x.toLowerCase().includes("username")
+                  )}
+              </p>
             </>
           )}
           <>
@@ -102,6 +123,10 @@ const AccountForm = ({ page }) => {
               placeholder="Password"
             />
           </>
+          <p>
+            {errorMessage.length > 0 &&
+              errorMessage.filter((x) => x.toLowerCase().includes("password"))}
+          </p>
         </form>
         <Button
           onClick={(event) => handleClick(event)}
