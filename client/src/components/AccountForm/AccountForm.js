@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AccountFormHeader from "../AccountFormHeader/AccountFormHeader";
 import { useHistory } from "react-router-dom";
 import "../../sass/main.scss";
@@ -14,11 +14,11 @@ const AccountForm = ({ page }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  const history = useHistory();
+
   const { loading, hasErrors, user, errorMessage } = useSelector(
     (state) => state.authenticateUser
   );
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleUsernameChange = (e) => {
@@ -34,13 +34,20 @@ const AccountForm = ({ page }) => {
   };
 
   const handleLogin = () => {
-    dispatch(authenticateUser({ email: email, password: password }));
+    dispatch(
+      authenticateUser({ page: page, email: email, password: password })
+    );
     dispatch(removeErrorMessage());
   };
 
   const handleRegister = () => {
     dispatch(
-      authenticateUser({ email: email, password: password, username: username })
+      authenticateUser({
+        page: page,
+        email: email,
+        password: password,
+        username: username,
+      })
     );
     dispatch(removeErrorMessage());
   };
@@ -50,6 +57,10 @@ const AccountForm = ({ page }) => {
     page === "register" ? handleRegister() : handleLogin();
   };
 
+  useEffect(() => {
+    dispatch(removeErrorMessage());
+  }, []);
+
   return (
     <div className="accountform-container">
       {localStorage.getItem("auth-token") && history.push("/")}
@@ -58,7 +69,7 @@ const AccountForm = ({ page }) => {
           <>
             <p className="accountform-greeting-message">Welcome back, Chef!</p>
             <p className="accountform-greeting-message">
-              What new recipes are up your sleeve?
+              What have you been cooking?
             </p>
           </>
         ) : (
@@ -94,7 +105,6 @@ const AccountForm = ({ page }) => {
 
           {page === "register" && (
             <>
-              {errorMessage.length > 0 && console.log(errorMessage)}
               <label className="accountform-label">Username:</label>
               <input
                 type="text"
