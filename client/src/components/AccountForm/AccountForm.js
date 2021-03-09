@@ -98,10 +98,10 @@ const AccountForm = ({ page }) => {
               placeholder="Email"
             />
           </>
-          <p>
-            {errorMessage.length > 0 &&
-              errorMessage.filter((x) => x.toLowerCase().includes("email"))}
-          </p>
+          {errorMessage.length > 0 &&
+            errorMessage
+              .filter((x) => x.toLowerCase().includes("email"))
+              .map((x) => <p> {x} </p>)}
 
           {page === "register" && (
             <>
