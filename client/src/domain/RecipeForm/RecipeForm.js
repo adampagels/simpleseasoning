@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewRecipe } from "../../redux/slices/recipe/addNewRecipe";
 import Button from "../../components/Button/Button";
 
@@ -18,6 +18,9 @@ const RecipeForm = () => {
   });
   const [diet, setDiet] = useState([]);
   const dispatch = useDispatch();
+  const { loading, hasErrors, recipeFormErrorMessage } = useSelector(
+    (state) => state.addNewRecipe
+  );
   const addImagePlaceholder =
     process.env.PUBLIC_URL + "/addImagePlaceholder.png";
 
@@ -50,8 +53,10 @@ const RecipeForm = () => {
 
   const handleAddRecipe = async () => {
     const dietArray = diet.map((diet) => diet.label);
-    const ingredientArray = values.ingredients.split("\n");
-    const instructionArray = values.instructions.split("\n");
+    const ingredientArray =
+      values.ingredients.length === 0 ? [] : values.ingredients.split("\n");
+    const instructionArray =
+      values.instructions.length === 0 ? [] : values.instructions.split("\n");
 
     const token = localStorage.getItem("auth-token");
     const imageData = new FormData();
@@ -128,6 +133,10 @@ const RecipeForm = () => {
                   onChange={handleInputChange}
                   value={values.prepTime}
                 />
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("prep")
+                  )}
               </div>
               <div className="recipeform-timing-wrapper">
                 <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
@@ -139,6 +148,10 @@ const RecipeForm = () => {
                   onChange={handleInputChange}
                   value={values.cookTime}
                 />
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("cook")
+                  )}
               </div>
             </div>
             <label htmlFor="recipeform-input-diet">Diet:</label>
@@ -162,6 +175,10 @@ const RecipeForm = () => {
               onChange={handleInputChange}
               value={values.title}
             />
+            {recipeFormErrorMessage.length > 0 &&
+              recipeFormErrorMessage.filter((x) =>
+                x.toLowerCase().includes("title")
+              )}
             <label htmlFor="recipeform-input-description">Description:</label>
             <textarea
               id="recipeform-input-description"
@@ -171,6 +188,10 @@ const RecipeForm = () => {
               onChange={handleInputChange}
               value={values.description}
             />
+            {recipeFormErrorMessage.length > 0 &&
+              recipeFormErrorMessage.filter((x) =>
+                x.toLowerCase().includes("description")
+              )}
             <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
             <textarea
               id="recipeform-input-ingredients"
@@ -179,6 +200,10 @@ const RecipeForm = () => {
               onChange={handleInputChange}
               value={values.ingredients}
             />
+            {recipeFormErrorMessage.length > 0 &&
+              recipeFormErrorMessage.filter((x) =>
+                x.toLowerCase().includes("ingredients")
+              )}
             <label htmlFor="recipeform-input-instructions">Instructions:</label>
             <textarea
               id="recipeform-input-instructions"
@@ -187,6 +212,10 @@ const RecipeForm = () => {
               onChange={handleInputChange}
               value={values.instructions}
             />
+            {recipeFormErrorMessage.length > 0 &&
+              recipeFormErrorMessage.filter((x) =>
+                x.toLowerCase().includes("instructions")
+              )}
           </div>
         </form>
       </div>
