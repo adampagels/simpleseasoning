@@ -132,6 +132,7 @@ const RecipeForm = () => {
                   className="recipeform-input"
                   onChange={handleInputChange}
                   value={values.prepTime}
+                  placeholder="0"
                 />
                 {recipeFormErrorMessage.length > 0 &&
                   recipeFormErrorMessage.filter((x) =>
@@ -147,6 +148,7 @@ const RecipeForm = () => {
                   className="recipeform-input"
                   onChange={handleInputChange}
                   value={values.cookTime}
+                  placeholder="0"
                 />
                 {recipeFormErrorMessage.length > 0 &&
                   recipeFormErrorMessage.filter((x) =>
@@ -174,6 +176,7 @@ const RecipeForm = () => {
               className="recipeform-input"
               onChange={handleInputChange}
               value={values.title}
+              placeholder="What do you call this?"
             />
             {recipeFormErrorMessage.length > 0 &&
               recipeFormErrorMessage.filter((x) =>
@@ -187,6 +190,7 @@ const RecipeForm = () => {
               className="recipeform-textarea"
               onChange={handleInputChange}
               value={values.description}
+              placeholder="Why is this so tasty?"
             />
             {recipeFormErrorMessage.length > 0 &&
               recipeFormErrorMessage.filter((x) =>
@@ -199,6 +203,7 @@ const RecipeForm = () => {
               className="recipeform-textarea"
               onChange={handleInputChange}
               value={values.ingredients}
+              placeholder="Enter each ingredient on a new line."
             />
             {recipeFormErrorMessage.length > 0 &&
               recipeFormErrorMessage.filter((x) =>
@@ -211,6 +216,7 @@ const RecipeForm = () => {
               className="recipeform-textarea"
               onChange={handleInputChange}
               value={values.instructions}
+              placeholder="Enter each instruction on a new line."
             />
             {recipeFormErrorMessage.length > 0 &&
               recipeFormErrorMessage.filter((x) =>
