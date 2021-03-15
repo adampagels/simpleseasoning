@@ -56,11 +56,11 @@ const addRecipeValidation = (data) => {
       "array.max": "Must have between 1 and 30 instructions.",
       "array.empty": "Please add some instructions!",
     }),
-    cookTime: Joi.number().max(3).required().messages({
+    cookTime: Joi.number().max(999).required().messages({
       "number.max": "Cook time cannnot be longer than 3 numbers",
       "number.empty": "Please add a cook time!",
     }),
-    prepTime: Joi.number().max(3).required().messages({
+    prepTime: Joi.number().max(999).required().messages({
       "number.max": "Prep time cannnot be longer than 3 numbers",
       "number.empty": "Please add a prep time!",
     }),
