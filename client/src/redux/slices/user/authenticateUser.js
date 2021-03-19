@@ -11,7 +11,7 @@ const userAuthenticationSlice = createSlice({
   },
   reducers: {
     updateUser: (state, { payload }) => {
-      state.user = payload;
+      state.user = payload.user;
     },
     removeErrorMessage: (state) => {
       state.errorMessage = [];
@@ -21,7 +21,7 @@ const userAuthenticationSlice = createSlice({
       state.hasErrors = false;
     },
     verifyUserSuccess: (state, { payload }) => {
-      state.user = payload;
+      state.user = payload.user;
       localStorage.setItem("auth-token", payload.token);
     },
     verifyUserFailure: (state, { payload }) => {
