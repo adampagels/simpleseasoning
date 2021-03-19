@@ -57,7 +57,18 @@ const RecipeForm = () => {
       values.ingredients.length === 0 ? [] : values.ingredients.split("\n");
     const instructionArray =
       values.instructions.length === 0 ? [] : values.instructions.split("\n");
-
+    const recipeForm = {
+      title: values.title,
+      description: values.description,
+      ingredients: ingredientArray,
+      instructions: instructionArray,
+      cookTime: values.cookTime.length > 0 ? values.cookTime : 0,
+      prepTime: values.prepTime.length > 0 ? values.prepTime : 0,
+      dietArray: dietArray,
+    };
+    if (values.imageURL.length < 1) {
+      return dispatch(addNewRecipe(recipeForm));
+    }
     const token = localStorage.getItem("auth-token");
     const imageData = new FormData();
     imageData.append("image", values.image);
@@ -75,18 +86,8 @@ const RecipeForm = () => {
       const req = await fetch(url, config);
       if (req.ok) {
         const res = await req.json();
-        dispatch(
-          addNewRecipe({
-            title: values.title,
-            photo: res.imageUrl,
-            description: values.description,
-            ingredients: ingredientArray,
-            instructions: instructionArray,
-            cookTime: values.cookTime,
-            prepTime: values.prepTime,
-            dietArray: dietArray,
-          })
-        );
+        recipeForm["photo"] = res.imageUrl;
+        dispatch(addNewRecipe(recipeForm));
       }
     } catch (err) {
       console.log(err);
