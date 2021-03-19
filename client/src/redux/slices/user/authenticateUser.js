@@ -11,7 +11,7 @@ const userAuthenticationSlice = createSlice({
   },
   reducers: {
     updateUser: (state, { payload }) => {
-      state.user = payload.user;
+      state.user = payload;
     },
     removeErrorMessage: (state) => {
       state.errorMessage = [];
