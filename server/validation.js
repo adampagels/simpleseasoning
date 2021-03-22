@@ -36,13 +36,13 @@ const loginValidation = (data) => {
 const addRecipeValidation = (data) => {
   const schema = Joi.object({
     title: Joi.string().min(4).max(20).required().messages({
-      "string.min": "Title must be between 4 and 30 characters.",
-      "string.max": "Title must be between 4 and 30 characters.",
+      "string.min": "Title must be between 4 and 20 characters.",
+      "string.max": "Title must be between 4 and 20 characters.",
       "string.empty": "Don't forget a title!",
     }),
     description: Joi.string().min(10).max(200).required().messages({
-      "string.min": "Description must be between 10 and 30 characters.",
-      "string.max": "Description must be between 10 and 30 characters.",
+      "string.min": "Description must be between 10 and 200 characters.",
+      "string.max": "Description must be between 10 and 200 characters.",
       "string.empty": "Please add a quick description!",
     }),
     photo: Joi.string().optional(),
