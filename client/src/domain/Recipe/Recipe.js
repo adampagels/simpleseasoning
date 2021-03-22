@@ -27,6 +27,7 @@ const Recipe = ({ location, history }) => {
     (state) => state.fetchSingleRecipe
   );
   const [modalIsOpen, setIsOpen] = useState(false);
+  const imagePlaceholder = process.env.PUBLIC_URL + "/imagePlaceholder.jpg";
 
   const { user: currentUser } = useSelector((state) => state.authenticateUser);
   const dispatch = useDispatch();
@@ -227,7 +228,7 @@ const Recipe = ({ location, history }) => {
               <img
                 className="recipe-image"
                 alt={recipe.title}
-                src={recipe.photo}
+                src={recipe.photo ? recipe.photo : imagePlaceholder}
               />
             </div>
             <div className="recipe-ingredients-wrapper-big">
