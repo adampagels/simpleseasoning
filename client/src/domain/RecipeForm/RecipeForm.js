@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewRecipe } from "../../redux/slices/recipe/addNewRecipe";
+import {
+  addNewRecipe,
+  removeRecipeFormErrorMessage,
+} from "../../redux/slices/recipe/addNewRecipe";
 import Button from "../../components/Button/Button";
 
 const RecipeForm = () => {
@@ -93,6 +96,10 @@ const RecipeForm = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    dispatch(removeRecipeFormErrorMessage());
+  }, []);
 
   return (
     <>
