@@ -142,10 +142,12 @@ const RecipeForm = () => {
                   value={values.prepTime}
                   placeholder="0"
                 />
-                {recipeFormErrorMessage.length > 0 &&
-                  recipeFormErrorMessage.filter((x) =>
-                    x.toLowerCase().includes("prep")
-                  )}
+                <p class="recipeform-error-message">
+                  {recipeFormErrorMessage.length > 0 &&
+                    recipeFormErrorMessage.filter((x) =>
+                      x.toLowerCase().includes("prep")
+                    )}
+                </p>
               </div>
               <div className="recipeform-timing-wrapper">
                 <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
@@ -158,10 +160,12 @@ const RecipeForm = () => {
                   value={values.cookTime}
                   placeholder="0"
                 />
-                {recipeFormErrorMessage.length > 0 &&
-                  recipeFormErrorMessage.filter((x) =>
-                    x.toLowerCase().includes("cook")
-                  )}
+                <p class="recipeform-error-message">
+                  {recipeFormErrorMessage.length > 0 &&
+                    recipeFormErrorMessage.filter((x) =>
+                      x.toLowerCase().includes("cook")
+                    )}
+                </p>
               </div>
             </div>
             <label htmlFor="recipeform-input-diet">Diet:</label>
@@ -186,10 +190,12 @@ const RecipeForm = () => {
               value={values.title}
               placeholder="What do you call this?"
             />
-            {recipeFormErrorMessage.length > 0 &&
-              recipeFormErrorMessage.filter((x) =>
-                x.toLowerCase().includes("title")
-              )}
+            <p class="recipeform-error-message">
+              {recipeFormErrorMessage.length > 0 &&
+                recipeFormErrorMessage.filter((x) =>
+                  x.toLowerCase().includes("title")
+                )}
+            </p>
             <label htmlFor="recipeform-input-description">Description:</label>
             <textarea
               id="recipeform-input-description"
@@ -200,10 +206,12 @@ const RecipeForm = () => {
               value={values.description}
               placeholder="Why is this so tasty?"
             />
-            {recipeFormErrorMessage.length > 0 &&
-              recipeFormErrorMessage.filter((x) =>
-                x.toLowerCase().includes("description")
-              )}
+            <p class="recipeform-error-message">
+              {recipeFormErrorMessage.length > 0 &&
+                recipeFormErrorMessage.filter((x) =>
+                  x.toLowerCase().includes("description")
+                )}
+            </p>
             <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
             <textarea
               id="recipeform-input-ingredients"
@@ -213,10 +221,12 @@ const RecipeForm = () => {
               value={values.ingredients}
               placeholder="Enter each ingredient on a new line."
             />
-            {recipeFormErrorMessage.length > 0 &&
-              recipeFormErrorMessage.filter((x) =>
-                x.toLowerCase().includes("ingredients")
-              )}
+            <p class="recipeform-error-message">
+              {recipeFormErrorMessage.length > 0 &&
+                recipeFormErrorMessage.filter((x) =>
+                  x.toLowerCase().includes("ingredients")
+                )}
+            </p>
             <label htmlFor="recipeform-input-instructions">Instructions:</label>
             <textarea
               id="recipeform-input-instructions"
@@ -226,10 +236,12 @@ const RecipeForm = () => {
               value={values.instructions}
               placeholder="Enter each instruction on a new line."
             />
-            {recipeFormErrorMessage.length > 0 &&
-              recipeFormErrorMessage.filter((x) =>
-                x.toLowerCase().includes("instructions")
-              )}
+            <p class="recipeform-error-message">
+              {recipeFormErrorMessage.length > 0 &&
+                recipeFormErrorMessage.filter((x) =>
+                  x.toLowerCase().includes("instructions")
+                )}
+            </p>
           </div>
         </form>
       </div>

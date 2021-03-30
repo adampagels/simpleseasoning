@@ -80,6 +80,13 @@ input[type="file"] {
   text-align: center;
 }
 
+.recipeform-error-message {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  max-width: fit-content;
+}
+
 @media only screen and (min-width: 800px) {
   .recipeform-form {
     display: flex;
