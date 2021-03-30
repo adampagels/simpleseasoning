@@ -101,7 +101,7 @@ const AccountForm = ({ page }) => {
           {errorMessage.length > 0 &&
             errorMessage
               .filter((x) => x.toLowerCase().includes("email"))
-              .map((x) => <p> {x} </p>)}
+              .map((x) => <p className="accountform-error-message"> {x} </p>)}
 
           {page === "register" && (
             <>
@@ -114,12 +114,13 @@ const AccountForm = ({ page }) => {
                 value={username}
                 placeholder="Username"
               />
-              <p>
-                {errorMessage.length > 0 &&
-                  errorMessage.filter((x) =>
+              {errorMessage.length > 0 && (
+                <p className="accountform-error-message">
+                  {errorMessage.filter((x) =>
                     x.toLowerCase().includes("username")
                   )}
-              </p>
+                </p>
+              )}
             </>
           )}
           <>
@@ -133,7 +134,7 @@ const AccountForm = ({ page }) => {
               placeholder="Password"
             />
           </>
-          <p>
+          <p className="accountform-error-message">
             {errorMessage.length > 0 &&
               errorMessage.filter((x) => x.toLowerCase().includes("password"))}
           </p>

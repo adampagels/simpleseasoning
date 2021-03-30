@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   height: 100vh;
+  margin-bottom: -50px;
 }
 
 .accountform-form {
@@ -40,6 +41,17 @@
 
 button {
   height: 40px;
+}
+
+.accountform-greeting-message {
+  color: white;
+  font-size: 72px;
+}
+
+.accountform-error-message {
+  color: red;
+  margin-bottom: 20px;
+  max-width: fit-content;
 }
 
 @media only screen and (min-width: 1000px) {
