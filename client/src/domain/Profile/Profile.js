@@ -7,6 +7,7 @@ import {
   resetUserState,
 } from "../../redux/slices/user/fetchUserById";
 import Header from "../../components/Header/Header";
+import { motion } from "framer-motion";
 
 const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
@@ -57,49 +58,80 @@ const Profile = ({ location, history }) => {
     </svg>
   );
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    in: {
+      opacity: 1,
+      scale: 1,
+    },
+    out: {
+      opacity: 0,
+      scale: 1.2,
+    },
+  };
+
+  const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.5,
+  };
+
   return (
     <>
       {user && !loading && (
         <>
-          <Header headerText={`Chef ${user.username}`} />
-          <div className="profile-recipes-favorites-toggle-wrapper">
-            <div className="profile-button-wrapper">
-              <button
-                className={
-                  toggleStatus ? "profile-recipes-active" : "profile-recipes"
-                }
-                onClick={() => !toggleStatus && setToggleStatus(!toggleStatus)}
-              >
-                {user && user.recipes.length + " Recipes"}
-              </button>
-              {circleSVG}
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <Header headerText={`Chef ${user.username}`} />
+            <div className="profile-recipes-favorites-toggle-wrapper">
+              <div className="profile-button-wrapper">
+                <button
+                  className={
+                    toggleStatus ? "profile-recipes-active" : "profile-recipes"
+                  }
+                  onClick={() =>
+                    !toggleStatus && setToggleStatus(!toggleStatus)
+                  }
+                >
+                  {user && user.recipes.length + " Recipes"}
+                </button>
+                {circleSVG}
+              </div>
+              <div className="profile-button-wrapper">
+                <button
+                  className={
+                    !toggleStatus ? "profile-recipes-active" : "profile-recipes"
+                  }
+                  onClick={() => toggleStatus && setToggleStatus(!toggleStatus)}
+                >
+                  {user && user.favoriteRecipes.length + " Favorites"}
+                </button>
+                {circleSVG}
+              </div>
             </div>
-            <div className="profile-button-wrapper">
-              <button
-                className={
-                  !toggleStatus ? "profile-recipes-active" : "profile-recipes"
-                }
-                onClick={() => toggleStatus && setToggleStatus(!toggleStatus)}
-              >
-                {user && user.favoriteRecipes.length + " Favorites"}
-              </button>
-              {circleSVG}
-            </div>
-          </div>
-          <>
-            {toggleStatus && (
-              <RecipeCard
-                recipes={user.recipes}
-                handleImageClick={handleImageClick}
-              />
-            )}
-            {!toggleStatus && (
-              <RecipeCard
-                recipes={user.favoriteRecipes}
-                handleImageClick={handleImageClick}
-              />
-            )}
-          </>
+            <>
+              {toggleStatus && (
+                <RecipeCard
+                  recipes={user.recipes}
+                  handleImageClick={handleImageClick}
+                />
+              )}
+              {!toggleStatus && (
+                <RecipeCard
+                  recipes={user.favoriteRecipes}
+                  handleImageClick={handleImageClick}
+                />
+              )}
+            </>
+          </motion.div>
         </>
       )}
     </>

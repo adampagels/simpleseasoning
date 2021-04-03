@@ -7,6 +7,8 @@ import {
   removeRecipeFormErrorMessage,
 } from "../../redux/slices/recipe/addNewRecipe";
 import Button from "../../components/Button/Button";
+import Header from "../../components/Header/Header";
+import { motion } from "framer-motion";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -101,156 +103,187 @@ const RecipeForm = () => {
     dispatch(removeRecipeFormErrorMessage());
   }, []);
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    in: {
+      opacity: 1,
+      scale: 1,
+    },
+    out: {
+      opacity: 0,
+      scale: 1.2,
+    },
+  };
+
+  const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.5,
+  };
+
   return (
     <>
-      <h1 className="recipeform-header">Add a Recipe</h1>
-      <div className="recipeform-container">
-        <form className="recipeform-form">
-          <div className="recipeform-left-div">
-            <label
-              className="recipeform-image-label"
-              htmlFor="recipeform-input-photo"
-            >
-              <img
-                src={values.imageURL ? values.imageURL : addImagePlaceholder}
-                id="recipeform-image"
+      <motion.div
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        <Header headerText={"Add a recipe"} ID={"page-header"} />
+        <div className="recipeform-container">
+          <form className="recipeform-form">
+            <div className="recipeform-left-div">
+              <label
+                className="recipeform-image-label"
+                htmlFor="recipeform-input-photo"
+              >
+                <img
+                  src={values.imageURL ? values.imageURL : addImagePlaceholder}
+                  id="recipeform-image"
+                />
+              </label>
+              <input
+                id="recipeform-input-photo"
+                type="file"
+                name="image-upload"
+                className="recipeform-input"
+                accept="image/png, image/jpeg"
+                onChange={(event) => {
+                  setValues({
+                    ...values,
+                    image: event.target.files[0],
+                    imageURL: URL.createObjectURL(event.target.files[0]),
+                  });
+                }}
               />
-            </label>
-            <input
-              id="recipeform-input-photo"
-              type="file"
-              name="image-upload"
-              className="recipeform-input"
-              accept="image/png, image/jpeg"
-              onChange={(event) => {
-                setValues({
-                  ...values,
-                  image: event.target.files[0],
-                  imageURL: URL.createObjectURL(event.target.files[0]),
-                });
-              }}
-            />
-            <div className="recipeform-preptime-cooktime-container">
-              <div className="recipeform-timing-wrapper">
-                <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
-                <input
-                  id="recipeform-input-preptime"
-                  type="text"
-                  name="prepTime"
-                  className="recipeform-input"
-                  onChange={handleInputChange}
-                  value={values.prepTime}
-                  placeholder="0"
-                />
-                <p class="recipeform-error-message">
-                  {recipeFormErrorMessage.length > 0 &&
-                    recipeFormErrorMessage.filter((x) =>
-                      x.toLowerCase().includes("prep")
-                    )}
-                </p>
+              <div className="recipeform-preptime-cooktime-container">
+                <div className="recipeform-timing-wrapper">
+                  <label htmlFor="recipeform-input-preptime">Prep-Time:</label>
+                  <input
+                    id="recipeform-input-preptime"
+                    type="text"
+                    name="prepTime"
+                    className="recipeform-input"
+                    onChange={handleInputChange}
+                    value={values.prepTime}
+                    placeholder="0"
+                  />
+                  <p class="recipeform-error-message">
+                    {recipeFormErrorMessage.length > 0 &&
+                      recipeFormErrorMessage.filter((x) =>
+                        x.toLowerCase().includes("prep")
+                      )}
+                  </p>
+                </div>
+                <div className="recipeform-timing-wrapper">
+                  <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
+                  <input
+                    id="recipeform-input-cooktime"
+                    type="text"
+                    name="cookTime"
+                    className="recipeform-input"
+                    onChange={handleInputChange}
+                    value={values.cookTime}
+                    placeholder="0"
+                  />
+                  <p class="recipeform-error-message">
+                    {recipeFormErrorMessage.length > 0 &&
+                      recipeFormErrorMessage.filter((x) =>
+                        x.toLowerCase().includes("cook")
+                      )}
+                  </p>
+                </div>
               </div>
-              <div className="recipeform-timing-wrapper">
-                <label htmlFor="recipeform-input-cooktime">Cook-Time:</label>
-                <input
-                  id="recipeform-input-cooktime"
-                  type="text"
-                  name="cookTime"
-                  className="recipeform-input"
-                  onChange={handleInputChange}
-                  value={values.cookTime}
-                  placeholder="0"
-                />
-                <p class="recipeform-error-message">
-                  {recipeFormErrorMessage.length > 0 &&
-                    recipeFormErrorMessage.filter((x) =>
-                      x.toLowerCase().includes("cook")
-                    )}
-                </p>
-              </div>
+              <label htmlFor="recipeform-input-diet">Diet:</label>
+              <Select
+                id="recipeform-input-diet"
+                components={animatedComponents}
+                name="diet"
+                isMulti
+                value={diet}
+                onChange={handleSelectChange}
+                options={options}
+              />
             </div>
-            <label htmlFor="recipeform-input-diet">Diet:</label>
-            <Select
-              id="recipeform-input-diet"
-              components={animatedComponents}
-              name="diet"
-              isMulti
-              value={diet}
-              onChange={handleSelectChange}
-              options={options}
-            />
-          </div>
-          <div className="recipeform-right-div">
-            <label htmlFor="recipeform-input-title">Title:</label>
-            <input
-              id="recipeform-input-title"
-              type="text"
-              name="title"
-              className="recipeform-input"
-              onChange={handleInputChange}
-              value={values.title}
-              placeholder="What do you call this?"
-            />
-            <p class="recipeform-error-message">
-              {recipeFormErrorMessage.length > 0 &&
-                recipeFormErrorMessage.filter((x) =>
-                  x.toLowerCase().includes("title")
-                )}
-            </p>
-            <label htmlFor="recipeform-input-description">Description:</label>
-            <textarea
-              id="recipeform-input-description"
-              type="text"
-              name="description"
-              className="recipeform-textarea"
-              onChange={handleInputChange}
-              value={values.description}
-              placeholder="Why is this so tasty?"
-            />
-            <p class="recipeform-error-message">
-              {recipeFormErrorMessage.length > 0 &&
-                recipeFormErrorMessage.filter((x) =>
-                  x.toLowerCase().includes("description")
-                )}
-            </p>
-            <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
-            <textarea
-              id="recipeform-input-ingredients"
-              name="ingredients"
-              className="recipeform-textarea"
-              onChange={handleInputChange}
-              value={values.ingredients}
-              placeholder="Enter each ingredient on a new line."
-            />
-            <p class="recipeform-error-message">
-              {recipeFormErrorMessage.length > 0 &&
-                recipeFormErrorMessage.filter((x) =>
-                  x.toLowerCase().includes("ingredients")
-                )}
-            </p>
-            <label htmlFor="recipeform-input-instructions">Instructions:</label>
-            <textarea
-              id="recipeform-input-instructions"
-              name="instructions"
-              className="recipeform-textarea"
-              onChange={handleInputChange}
-              value={values.instructions}
-              placeholder="Enter each instruction on a new line."
-            />
-            <p class="recipeform-error-message">
-              {recipeFormErrorMessage.length > 0 &&
-                recipeFormErrorMessage.filter((x) =>
-                  x.toLowerCase().includes("instructions")
-                )}
-            </p>
-          </div>
-        </form>
-      </div>
-      <Button
-        onClick={(event) => handleRecipeSubmit(event)}
-        text="Submit"
-        wrapperID="recipeform-button-wrapper"
-        buttonID="recipeform-button"
-      />
+            <div className="recipeform-right-div">
+              <label htmlFor="recipeform-input-title">Title:</label>
+              <input
+                id="recipeform-input-title"
+                type="text"
+                name="title"
+                className="recipeform-input"
+                onChange={handleInputChange}
+                value={values.title}
+                placeholder="What do you call this?"
+              />
+              <p class="recipeform-error-message">
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("title")
+                  )}
+              </p>
+              <label htmlFor="recipeform-input-description">Description:</label>
+              <textarea
+                id="recipeform-input-description"
+                type="text"
+                name="description"
+                className="recipeform-textarea"
+                onChange={handleInputChange}
+                value={values.description}
+                placeholder="Why is this so tasty?"
+              />
+              <p class="recipeform-error-message">
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("description")
+                  )}
+              </p>
+              <label htmlFor="recipeform-input-ingredients">Ingredients:</label>
+              <textarea
+                id="recipeform-input-ingredients"
+                name="ingredients"
+                className="recipeform-textarea"
+                onChange={handleInputChange}
+                value={values.ingredients}
+                placeholder="Enter each ingredient on a new line."
+              />
+              <p class="recipeform-error-message">
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("ingredients")
+                  )}
+              </p>
+              <label htmlFor="recipeform-input-instructions">
+                Instructions:
+              </label>
+              <textarea
+                id="recipeform-input-instructions"
+                name="instructions"
+                className="recipeform-textarea"
+                onChange={handleInputChange}
+                value={values.instructions}
+                placeholder="Enter each instruction on a new line."
+              />
+              <p class="recipeform-error-message">
+                {recipeFormErrorMessage.length > 0 &&
+                  recipeFormErrorMessage.filter((x) =>
+                    x.toLowerCase().includes("instructions")
+                  )}
+              </p>
+            </div>
+          </form>
+        </div>
+        <Button
+          onClick={(event) => handleRecipeSubmit(event)}
+          text="Submit"
+          wrapperID="recipeform-button-wrapper"
+          buttonID="recipeform-button"
+        />
+      </motion.div>
     </>
   );
 };
