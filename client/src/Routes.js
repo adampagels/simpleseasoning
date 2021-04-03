@@ -6,12 +6,14 @@ import Profile from "../src/domain/Profile/Profile";
 import Recipe from "../src/domain/Recipe/Recipe";
 import RecipeForm from "./domain/RecipeForm/RecipeForm";
 import SearchResults from "./domain/SearchResults/SearchResults";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const Routes = () => {
+  const location = useLocation();
   return (
-    <div>
-      <Switch>
+    <AnimatePresence exitBeforeEnter initial={false}>
+      <Switch location={location} key={location.pathname}>
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
@@ -25,7 +27,7 @@ const Routes = () => {
         <Route path="/search/:searchresults" exact component={SearchResults} />
         <Route path="/add-recipe" exact component={RecipeForm} />
       </Switch>
-    </div>
+    </AnimatePresence>
   );
 };
 
