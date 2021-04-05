@@ -67,6 +67,7 @@ const Home = ({ history }) => {
   return (
     <>
       <HeaderBackground page={"home"} />
+      <Header headerText={"Recently Added Recipes"} ID={"page-header"} />
       <motion.div
         initial="initial"
         animate="in"
@@ -74,7 +75,6 @@ const Home = ({ history }) => {
         variants={pageVariants}
         transition={pageTransition}
       >
-        <Header headerText={"Recently Added Recipes"} ID={"page-header"} />
         {!loading && (
           <RecipeCard
             recipes={recipes}

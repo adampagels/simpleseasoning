@@ -85,6 +85,7 @@ const Profile = ({ location, history }) => {
       {user && !loading && (
         <>
           <HeaderBackground page={"profile"} />
+          <Header headerText={`Chef ${user.username}`} />
           <motion.div
             initial="initial"
             animate="in"
@@ -92,7 +93,6 @@ const Profile = ({ location, history }) => {
             variants={pageVariants}
             transition={pageTransition}
           >
-            <Header headerText={`Chef ${user.username}`} />
             <div className="profile-recipes-favorites-toggle-wrapper">
               <div className="profile-button-wrapper">
                 <button

@@ -127,6 +127,8 @@ const RecipeForm = () => {
 
   return (
     <>
+      <HeaderBackground page={"recipeform"} />
+      <Header headerText={"Add a recipe"} ID={"page-header"} />
       <motion.div
         initial="initial"
         animate="in"
@@ -134,7 +136,6 @@ const RecipeForm = () => {
         variants={pageVariants}
         transition={pageTransition}
       >
-        <Header headerText={"Add a recipe"} ID={"page-header"} />
         <div className="recipeform-container">
           <form className="recipeform-form">
             <div className="recipeform-left-div">
@@ -285,7 +286,6 @@ const RecipeForm = () => {
           buttonID="recipeform-button"
         />
       </motion.div>
-      <HeaderBackground page={"recipeform"} />
     </>
   );
 };
