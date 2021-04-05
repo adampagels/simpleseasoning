@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import { updateUser } from "../../redux/slices/user/authenticateUser";
 import RatingModal from "../../components/RatingModal/RatingModal";
+import HeaderBackground from "../../components/HeaderBackground/HeaderBackground";
 
 const Recipe = ({ location, history }) => {
   const [loadingFavoriteRecipe, setLoadingFavoriteRecipe] = useState(false);
@@ -139,7 +140,7 @@ const Recipe = ({ location, history }) => {
 
   return (
     <>
-      <div className="recipe-background"></div>
+      <HeaderBackground page={"recipe"} />
       {recipe && !loading && recipe.length !== 0 && (
         <div className="recipe-container">
           <div className="recipe-left-div">

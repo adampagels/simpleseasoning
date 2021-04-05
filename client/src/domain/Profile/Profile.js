@@ -8,6 +8,7 @@ import {
 } from "../../redux/slices/user/fetchUserById";
 import Header from "../../components/Header/Header";
 import { motion } from "framer-motion";
+import HeaderBackground from "../../components/HeaderBackground/HeaderBackground";
 
 const Profile = ({ location, history }) => {
   const [toggleStatus, setToggleStatus] = useState(true);
@@ -83,6 +84,7 @@ const Profile = ({ location, history }) => {
     <>
       {user && !loading && (
         <>
+          <HeaderBackground page={"profile"} />
           <motion.div
             initial="initial"
             animate="in"

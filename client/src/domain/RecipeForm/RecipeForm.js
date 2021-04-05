@@ -9,6 +9,7 @@ import {
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import { motion } from "framer-motion";
+import HeaderBackground from "../../components/HeaderBackground/HeaderBackground";
 
 const RecipeForm = () => {
   const [values, setValues] = useState({
@@ -284,6 +285,7 @@ const RecipeForm = () => {
           buttonID="recipeform-button"
         />
       </motion.div>
+      <HeaderBackground page={"recipeform"} />
     </>
   );
 };

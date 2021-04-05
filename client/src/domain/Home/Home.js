@@ -7,6 +7,7 @@ import {
 } from "../../redux/slices/recipe/fetchRecipeList";
 import Header from "../../components/Header/Header";
 import { motion } from "framer-motion";
+import HeaderBackground from "../../components/HeaderBackground/HeaderBackground";
 
 const Home = ({ history }) => {
   const { loading, hasErrors, recipes } = useSelector(
@@ -65,6 +66,7 @@ const Home = ({ history }) => {
 
   return (
     <>
+      <HeaderBackground page={"home"} />
       <motion.div
         initial="initial"
         animate="in"
