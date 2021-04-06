@@ -82,9 +82,9 @@ const Profile = ({ location, history }) => {
 
   return (
     <>
+      <HeaderBackground page={"profile"} />
       {user && !loading && (
         <>
-          <HeaderBackground page={"profile"} />
           <Header headerText={`Chef ${user.username}`} />
           <motion.div
             initial="initial"
