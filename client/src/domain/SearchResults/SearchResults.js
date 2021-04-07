@@ -2,6 +2,7 @@ import React from "react";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import Header from "../../components/Header/Header";
 import { motion } from "framer-motion";
+import HeaderBackground from "../../components/HeaderBackground/HeaderBackground";
 
 const SearchResults = ({ location, history }) => {
   const handleImageClick = (value) => {
@@ -36,6 +37,10 @@ const SearchResults = ({ location, history }) => {
 
   return (
     <>
+      <HeaderBackground page={"searchresults"} />
+      <Header
+        headerText={`${location.state.searchResults.length} results for '${location.state.inputValue}' `}
+      />
       <motion.div
         initial="initial"
         animate="in"
@@ -43,9 +48,6 @@ const SearchResults = ({ location, history }) => {
         variants={pageVariants}
         transition={pageTransition}
       >
-        <Header
-          headerText={`${location.state.searchResults.length} results for '${location.state.inputValue}' `}
-        />
         <RecipeCard
           handleImageClick={handleImageClick}
           recipes={location.state.searchResults}
