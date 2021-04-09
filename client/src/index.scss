@@ -16,27 +16,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.page {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-}
-
-.page-enter {
-  opacity: 0;
-}
-
-.page-enter-active {
-  opacity: 1;
-  transition: opacity 1200ms;
-}
-
-.page-exit {
-  opacity: 1;
-}
-
-.page-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
