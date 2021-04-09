@@ -1,24 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const HeaderBackground = ({ page }) => {
-  const [backgroundHeight, setBackgroundHeight] = useState(null);
-
-  useEffect(() => {
-    if (page === "recipe") {
-      return setBackgroundHeight("big");
-    } else {
-      return setBackgroundHeight("small")
-    }
-  }, [])
-  return (
-    <div
-      className={
-        backgroundHeight === "big"
-          ? "headerbackground-big"
-          : "headerbackground-small"
-      }
-    ></div>
-  );
+const HeaderBackground = () => {
+  return <div className={"headerbackground-container"}></div>;
 };
 
 export default HeaderBackground;
