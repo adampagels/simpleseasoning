@@ -3,6 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "app.js",
+	"engines": {
+		"node": "14.12.x",
+		"npm": "7.6.x"
+	},
 	"scripts": {
 		"start": "node app.js",
 		"dev": "nodemon app.js",
