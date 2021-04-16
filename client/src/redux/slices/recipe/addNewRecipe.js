@@ -10,7 +10,7 @@ const addNewRecipeSlice = createSlice({
   },
   reducers: {
     removeRecipeFormErrorMessage: (state) => {
-      state.errorMessage = [];
+      state.recipeFormErrorMessage = [];
     },
     submitRecipe: (state) => {
       state.loading = true;
@@ -29,7 +29,7 @@ const addNewRecipeSlice = createSlice({
 });
 
 export const {
-  removeErrorMessage,
+  removeRecipeFormErrorMessage,
   submitRecipe,
   submitRecipeFailure,
   submitRecipeSuccess,
