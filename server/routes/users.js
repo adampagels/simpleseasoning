@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const verify = require("./verifyToken");
 const { registerValidation, loginValidation } = require("../validation");
 
-const secret = require("../config/config").tokenSecret;
+const secret = process.env.tokenSecret;
 
 // Login page
 router.get("/login", (req, res) => res.send("Login"));
