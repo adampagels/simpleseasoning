@@ -5,8 +5,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
-module.exports = app;
+dotenv.config();
 
+module.exports = app;
 
 // DB Config
 const db = process.env.MongoURI;
