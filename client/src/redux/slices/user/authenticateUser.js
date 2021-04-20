@@ -58,7 +58,7 @@ export const authenticateUser = createAsyncThunk(
     thunkAPI.dispatch(verifyUser());
     try {
       const response = await axios.post(
-        `http://localhost:5000/users/${authEndpoint}`,
+        `https://pinchofsalt-server.herokuapp.com/users/${authEndpoint}`,
         authEndpoint === "register" ? userRegisterForm : userLoginForm
       );
       thunkAPI.dispatch(verifyUserSuccess(response.data));

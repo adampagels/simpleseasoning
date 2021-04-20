@@ -70,7 +70,7 @@ const Recipe = ({ location, history }) => {
     const accessToken = localStorage.getItem("auth-token");
     try {
       const response = await axios.post(
-        `http://localhost:5000/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
+        `https://pinchofsalt-server.herokuapp.com/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
         {
           username: `${currentUser.username}`,
         },
@@ -95,7 +95,7 @@ const Recipe = ({ location, history }) => {
     const accessToken = localStorage.getItem("auth-token");
     try {
       const response = await axios.delete(
-        `http://localhost:5000/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
+        `https://pinchofsalt-server.herokuapp.com/users/${currentUser.username}/favorite-recipes/${location.state.recipe}`,
         {
           headers: {
             "auth-token": accessToken,

@@ -34,7 +34,7 @@ const RatingModal = ({ recipeID, modalIsOpen, closeModal, recipeTitle }) => {
     const accessToken = localStorage.getItem("auth-token");
     try {
       const response = await axios.post(
-        `http://localhost:5000/rating/${recipeID}`,
+        `https://pinchofsalt-server.herokuapp.com/rating/${recipeID}`,
         { stars: recipeRating },
         {
           headers: {

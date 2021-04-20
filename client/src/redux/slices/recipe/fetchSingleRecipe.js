@@ -6,7 +6,7 @@ export const fetchSingleRecipe = createAsyncThunk(
   async (recipeId, thunkAPI) => {
     const accessToken = localStorage.getItem("auth-token");
     const response = await axios.get(
-      `http://localhost:5000/recipes/${recipeId}`,
+      `https://pinchofsalt-server.herokuapp.com/recipes/${recipeId}`,
       {
         headers: {
           "auth-token": `${accessToken}`,

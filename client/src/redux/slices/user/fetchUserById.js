@@ -5,11 +5,14 @@ export const fetchUserById = createAsyncThunk(
   "userAuthentication/fetchUserByIdStatus",
   async (userId) => {
     const accessToken = localStorage.getItem("auth-token");
-    const response = await axios.get(`http://localhost:5000/users/${userId}`, {
-      headers: {
-        "auth-token": `${accessToken}`,
-      },
-    });
+    const response = await axios.get(
+      `https://pinchofsalt-server.herokuapp.com/users/${userId}`,
+      {
+        headers: {
+          "auth-token": `${accessToken}`,
+        },
+      }
+    );
     return response.data;
   }
 );

@@ -54,7 +54,7 @@ export const addNewRecipe = createAsyncThunk(
     thunkAPI.dispatch(submitRecipe());
     try {
       const response = await axios.post(
-        "http://localhost:5000/recipes",
+        "https://pinchofsalt-server.herokuapp.com/recipes",
         {
           title: title,
           photo: photo,

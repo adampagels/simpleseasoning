@@ -78,8 +78,7 @@ const RecipeForm = () => {
     const token = localStorage.getItem("auth-token");
     const imageData = new FormData();
     imageData.append("image", values.image);
-    const url = "http://localhost:5000/recipes/image-upload";
-
+    const url = "https://pinchofsalt-server.herokuapp.com/recipes/image-upload";
     const config = {
       method: "POST",
       body: imageData,

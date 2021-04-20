@@ -5,7 +5,7 @@ export const fetchRecipeList = createAsyncThunk(
   "recipes/fetchRecipesStatus",
   async (token, thunkAPI) => {
     const response = await axios.get(
-      "http://localhost:5000/recipes/most-recent",
+      "https://pinchofsalt-server.herokuapp.com/recipes/most-recent",
       {
         headers: {
           "auth-token": token,

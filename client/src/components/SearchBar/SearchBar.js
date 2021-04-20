@@ -9,11 +9,14 @@ const SearchBar = ({ history }) => {
 
   const handleSearch = (searchValue) => {
     return axios
-      .get(`http://localhost:5000/recipes/search/${searchValue}`, {
-        headers: {
-          "auth-token": `${accessToken}`,
-        },
-      })
+      .get(
+        `https://pinchofsalt-server.herokuapp.com/recipes/search/${searchValue}`,
+        {
+          headers: {
+            "auth-token": `${accessToken}`,
+          },
+        }
+      )
       .then((response) => {
         history.push({
           pathname: `/search/${searchValue}`,
