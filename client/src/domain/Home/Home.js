@@ -67,7 +67,7 @@ const Home = ({ history }) => {
   return (
     <>
       <HeaderBackground page={"home"} />
-      <Header headerText={"Recently Added Recipes"} ID={"page-header"} />
+      <Header headerText={"New Recipes"} ID={"page-header"} />
       <motion.div
         initial="initial"
         animate="in"
