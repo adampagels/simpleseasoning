@@ -13,6 +13,7 @@ const NavBar = () => {
   };
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useSelector((state) => state.authenticateUser);
+  const hamburgerIcon = process.env.PUBLIC_URL + "/hamburger-menu-icon.png";
 
   const variants = {
     open: {
@@ -78,11 +79,67 @@ const NavBar = () => {
           zIndex: 20,
           bottom: 20,
           right: 20,
+          boxShadow: "0px 1px 6px 1px #333",
         }}
         transition={{ duration: 0.2 }}
         onClick={() => setIsOpen((isOpen) => !isOpen)}
         class="navbar-hamburgermenu"
-      ></motion.nav>
+      >
+        {!isOpen && (
+          <img
+            src={hamburgerIcon}
+            alt={"hamburger menu icon"}
+            style={{
+              width: 70,
+              height: 60,
+              position: "absolute",
+              top: "20%",
+              right: "15%",
+            }}
+          />
+        )}
+        {isOpen && (
+          <ul className="navbar-hamburger-item-list">
+            <div className="navbar-hamburger-item-navlink-container">
+              <li className="navbar-hamburger-item">
+                <NavLink to="/" className="navbar-hamburger-item-navlink">
+                  Home{" "}
+                </NavLink>
+              </li>
+
+              <li className="navbar-item">
+                {" "}
+                <NavLink
+                  to="/add-recipe"
+                  className="navbar-hamburger-item-navlink"
+                >
+                  Add Recipe
+                </NavLink>
+              </li>
+
+              <li className="navbar-hamburger-item">
+                {" "}
+                <NavLink
+                  to={{
+                    pathname: `/user/${user && user._id}`,
+                    state: { isIdFromNav: true },
+                  }}
+                  className="navbar-hamburger-item-navlink"
+                >
+                  View Profile
+                </NavLink>
+              </li>
+            </div>
+            <SearchBar />
+            <li
+              className="navbar-hamburger-item-logout"
+              onClick={() => logOut()}
+            >
+              Logout
+            </li>
+          </ul>
+        )}
+      </motion.nav>
     </>
   );
 };
