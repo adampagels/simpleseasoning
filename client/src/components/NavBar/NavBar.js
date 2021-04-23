@@ -71,8 +71,8 @@ const NavBar = () => {
         variants={variants}
         style={{
           cursor: "pointer",
-          width: 100,
-          height: 100,
+          width: 80,
+          height: 80,
           backgroundColor: "#d54217",
           borderRadius: "100%",
           position: "fixed",
@@ -90,46 +90,45 @@ const NavBar = () => {
             src={hamburgerIcon}
             alt={"hamburger menu icon"}
             style={{
-              width: 70,
-              height: 60,
+              width: 50,
+              height: 40,
               position: "absolute",
-              top: "20%",
-              right: "15%",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
             }}
           />
         )}
         {isOpen && (
           <ul className="navbar-hamburger-item-list">
-            <div className="navbar-hamburger-item-navlink-container">
-              <li className="navbar-hamburger-item">
-                <NavLink to="/" className="navbar-hamburger-item-navlink">
-                  Home{" "}
-                </NavLink>
-              </li>
+            <li className="navbar-hamburger-item">
+              <NavLink to="/" className="navbar-hamburger-item-navlink">
+                Home{" "}
+              </NavLink>
+            </li>
 
-              <li className="navbar-item">
-                {" "}
-                <NavLink
-                  to="/add-recipe"
-                  className="navbar-hamburger-item-navlink"
-                >
-                  Add Recipe
-                </NavLink>
-              </li>
+            <li className="navbar-item">
+              {" "}
+              <NavLink
+                to="/add-recipe"
+                className="navbar-hamburger-item-navlink"
+              >
+                Add Recipe
+              </NavLink>
+            </li>
 
-              <li className="navbar-hamburger-item">
-                {" "}
-                <NavLink
-                  to={{
-                    pathname: `/user/${user && user._id}`,
-                    state: { isIdFromNav: true },
-                  }}
-                  className="navbar-hamburger-item-navlink"
-                >
-                  View Profile
-                </NavLink>
-              </li>
-            </div>
+            <li className="navbar-hamburger-item">
+              {" "}
+              <NavLink
+                to={{
+                  pathname: `/user/${user && user._id}`,
+                  state: { isIdFromNav: true },
+                }}
+                className="navbar-hamburger-item-navlink"
+              >
+                View Profile
+              </NavLink>
+            </li>
             <SearchBar />
             <li
               className="navbar-hamburger-item-logout"
